@@ -22,6 +22,9 @@ import { ApartmentDetailsComponent } from './apartment-details/apartment-details
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    HeaderComponent
   ]
 })
 export class MainModule { }
