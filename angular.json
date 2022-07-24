@@ -29,10 +29,12 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/fontawesome-pro/css/all.min.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "src/assets/fontawesome-pro/js/all.min.js"
             ]
           },
           "configurations": {
