@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApartmentListService } from './modules/components/shared/services/apartment-list.service';
+import { AuthService } from './modules/components/shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,23 @@ import { ApartmentListService } from './modules/components/shared/services/apart
 export class AppComponent {
   title = 'AngularDemo';
 
-  constructor(private apartmentService: ApartmentListService) {
+  isLoggedIn: boolean;
+
+  constructor(
+    private apartmentService: ApartmentListService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.isLoggedIn = authService.isLoggedIn();
+
+    if (!this.isLoggedIn && location.pathname !== '/login')
+      router.navigate(['login']);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.isLoggedIn = this.authService.isLoggedIn()
+
+    location.reload();
   }
 }
