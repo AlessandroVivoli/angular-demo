@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApartmentListService } from './modules/components/shared/services/apartment-list.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularDemo';
+
+  constructor(private apartmentService: ApartmentListService) {
+  }
 }

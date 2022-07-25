@@ -1,0 +1,12 @@
+#star {
+    color: black;
+    cursor: pointer;
+
+    &:hover {
+        color: gold
+    }
+
+    &:active {
+        color: goldenrod
+    }
+}

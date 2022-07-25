@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/assets/fontawesome-pro/css/all.min.css",
               "src/styles.scss"
             ],
