@@ -1,5 +1,5 @@
 #login-body {
     background: url('../../../../assets/img/login/background.png') no-repeat center;
     background-size: cover;
-    height: calc(100vh - 55.99px);
+    height: calc(100vh - var(--navbar-height));
 }

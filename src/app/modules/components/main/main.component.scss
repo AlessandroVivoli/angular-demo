@@ -1,0 +1,10 @@
+#header {
+    position: absolute;
+    height: 510px;
+}
+
+@media (max-width: 768px) {
+    #header {
+        height: 274px;
+    }
+}

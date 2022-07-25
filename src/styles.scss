@@ -1,3 +1,13 @@
+:root {
+    --navbar-height: 64px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 56px;
+    }
+}
+
 $font-sizes: (
     7: 14px
 );
@@ -15,26 +25,20 @@ $font-weights: (
     1000: 1000,
 );
 
+
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+
+$spacers: map-merge($spacers, (2d5: 0.75rem));
+
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/utilities";
 
-$utilities: map-merge(
-    $utilities,
-    (
-        "font-weight": map-merge(
-            map-get($utilities, "font-weight"),
-            (
-                values: map-merge(
-                    map-get(
-                        map-get($utilities, "font-weight"), "values"
-                    ),
-                    $font-weights
-                )
-            )
-        )
-    )
-);
+$utilities: map-merge($utilities,
+        ("font-weight": map-merge(map-get($utilities, "font-weight"),
+                (values: map-merge(map-get(map-get($utilities, "font-weight"), "values"
+                        ),
+                        $font-weights )))));
 
 @import "~bootstrap/scss/bootstrap.scss";
