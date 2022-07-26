@@ -12,6 +12,7 @@ import { LoginComponent } from './modules/components/login/login.component';
 import { MainComponent } from './modules/components/main/main.component';
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
+import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from './modules/components/shared/shared.module';
     FooterComponent,
     LocationsComponent,
     RecommendationsComponent,
-    LoginComponent
+    LoginComponent,
+    FormControlInputComponent
   ],
   imports: [
     BrowserModule,

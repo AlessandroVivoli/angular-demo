@@ -1,0 +1,16 @@
+<input class="form-control" [ngClass]="{'ps-4d5': hasIcon}" [type]="type" [name]="name" [required]="required"
+    *ngIf="type !== 'select'">
+<select class="form-select" [ngClass]="{'ps-4d5': hasIcon}" [name]="name" *ngIf="type === 'select'">
+    <option selected></option>
+    <option *ngFor="let keyValue of keyValues" [value]="keyValue.inputValue">{{keyValue.label}}</option>
+</select>
+<label [for]="name">{{label}}</label>
+<div id="icon" class="d-flex flex-column justify-content-center p-0" *ngIf="hasIcon">
+        <i [class]="icon"></i>
+</div>
+<div class="invalid-feedback" *ngIf="hasInvalid">
+    {{invalidFeedback}}
+</div>
+<div class="valid-feedback" *ngIf="hasValid">
+    {{validFeedback}}
+</div>
