@@ -1,0 +1,14 @@
+<div class="card">
+    <img [src]="apartment.img" [alt]="apartment.name" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title fw-500 mb-0">
+            {{apartment.name}}
+        </h5>
+        <small class="text-muted card-text">{{apartment.location.city}}</small>
+
+        <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
+        <div class="row">
+            <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i class="fas fa-star"></i></div>
+        </div>
+    </div>
+</div>

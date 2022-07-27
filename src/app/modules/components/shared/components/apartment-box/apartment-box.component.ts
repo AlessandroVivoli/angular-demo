@@ -8,8 +8,7 @@ import { ApartmentListService } from '../../services/apartment-list.service';
   styleUrls: ['./apartment-box.component.scss']
 })
 export class ApartmentBoxComponent implements OnInit {
-  @Input()
-  apartment: Apartment;
+  @Input() apartment: Apartment;
 
   constructor(private apartmentService: ApartmentListService) {
   }

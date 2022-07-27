@@ -10,3 +10,14 @@
         color: goldenrod
     }
 }
+
+.row {
+    color: #F3B08E;
+}
+
+@media (max-width: 575px) {
+
+    .col-1 {
+        padding: 0 10px;
+    }
+}

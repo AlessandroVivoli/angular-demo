@@ -1,6 +1,6 @@
-:root {
-    --navbar-height: 64px;
-}
+$primary-color: #40E0D0;
+
+
 
 @media (max-width: 768px) {
     :root {
@@ -8,13 +8,21 @@
     }
 }
 
+
+body {
+    min-height: 100vh;
+}
+
 .btn.btn-primary {
     color: white;
     text-transform: uppercase;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
-}
 
+    &:hover {
+        color: white;
+    }
+}
 
 
 $font-weights: (
@@ -33,12 +41,8 @@ $font-weights: (
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-$font-sizes: map-merge(
-    $font-sizes,
-    (
-        7: 14px
-    )
-);
+$font-sizes: map-merge($font-sizes,
+        (7: 14px));
 
 $btn-font-size: 15px;
 $btn-font-size-sm: 15px;
@@ -55,40 +59,31 @@ $spacers: map-merge($spacers,
             10: 8rem));
 
 @import "~bootstrap/scss/maps";
+
+$theme-colors: map-merge($theme-colors, ("primary": $primary-color));
+
 @import "~bootstrap/scss/utilities";
 
-$theme-colors: map-merge($theme-colors, (
-    "primary": #40E0D0
-));
-
-$utilities: map-merge(
-    $utilities,
-    (
-        "font-weight": map-merge(
-            map-get(
-                $utilities, "font-weight"
-            ),
-            (
-                values: map-merge(
-                    map-get(
-                        map-get(
-                            $utilities, "font-weight"
-                        ), 
-                        "values"
-                    ),
-                    $font-weights 
-                )
-            )
-        ),
-        "width": map-merge(
-            map-get(
-                $utilities, "width"
-            ),
-            (
-                responsive: true
-            )
-        )
-    )
-);
+$utilities: map-merge($utilities,
+        ("font-weight": map-merge(map-get($utilities, "font-weight"
+                ),
+                (values: map-merge(map-get(map-get($utilities, "font-weight"
+                            ),
+                            "values"
+                        ),
+                        $font-weights ))),
+            "width": map-merge(map-get($utilities, "width"
+                ),
+                (responsive: true))));
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+:root {
+    --navbar-height: 64px;
+    --bs-primary-rgb: 64, 224, 208;
+}
+
+.card {
+    box-shadow: none !important;
+    border: none !important;
+}

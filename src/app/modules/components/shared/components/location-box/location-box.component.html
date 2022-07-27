@@ -1,1 +1,7 @@
-<p>location-box works!</p>
+<a [href]="link" class="card text-white">
+    <img [src]="src" [alt]="location.city" class="card-img">
+    <div class="card-img-overlay">
+        <h5 class="card-title">{{location.city}}</h5>
+        <p class="card-text">{{num}} propert{{(num > 1) ? 'ies' : 'y'}}</p>
+    </div>
+</a>

@@ -1,9 +1,9 @@
 export class Location {
-    street?: string;
     city: string;
-    country?: string;
+    street: string;
+    country: string;
 
-    constructor(city: string, street?: string, country?: string) {
+    constructor(city: string, street: string, country: string, ) {
         this.street = street;
         this.city = city;
         this.country = country;

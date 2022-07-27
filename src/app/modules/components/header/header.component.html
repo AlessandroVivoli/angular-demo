@@ -1,25 +1,28 @@
 <nav class="navbar navbar-expand-md navbar-light px-2d5 px-md-5 py-1 py-md-3">
     <div class="container-fluid justify-content-md-between justify-content-start">
         <ng-template [ngIf]="isLoggedIn">
-            <button class="navbar-toggler me-4 p-0 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
+            <button class="navbar-toggler me-4 p-0 border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <i class="far fa-bars"></i>
             </button>
         </ng-template>
-        <a href="#" class="navbar-brand text-dark fw-500 flex-grow-1">Staycation</a>
+        <div class="d-flex justify-content-start flex-grow-1">
+            <a href="#" class="navbar-brand text-dark fw-500">Staycation</a>
+        </div>
         <ng-template [ngIf]="isLoggedIn">
             <div class="offcanvas offcanvas-start p-4" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header justify-content-end">
-                    <a class="text-primary text-decoration-none" type="button" data-bs-dismiss="offcanvas" aria-labelledby="Close">
+                    <a class="text-primary text-decoration-none" type="button" data-bs-dismiss="offcanvas"
+                        aria-labelledby="Close">
                         <span class="text-uppercase text-primary fw-500"><i class="fal fa-times me-2"></i>Close</span>
                     </a>
                 </div>
                 <div class="off-canvas-body">
                     <ul class="navbar-nav gap-4 gap-md-5">
-                        <li class="nav-item"><a href="#" class="nav-link link-dark">Locations</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link link-dark">My places</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link link-dark">My bookings</a></li>
+                        <li class="nav-item ripple rounded p-2"><a href="#" class="nav-link link-dark">Locations</a></li>
+                        <li class="nav-item ripple rounded p-2"><a href="#" class="nav-link link-dark">My places</a></li>
+                        <li class="nav-item ripple rounded p-2"><a href="#" class="nav-link link-dark">My bookings</a></li>
                     </ul>
                 </div>
             </div>
