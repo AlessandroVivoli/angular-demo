@@ -21,6 +21,11 @@ $primary-color: #40E0D0;
     }
 }
 
+* {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 html {
     overflow-y: overlay;
 }

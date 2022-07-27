@@ -26,8 +26,6 @@ export class AppComponent {
 
   logout() {
     this.authService.logout();
-    this.isLoggedIn = this.authService.isLoggedIn()
-
     location.reload();
   }
 }

@@ -2,4 +2,10 @@ nav {
     height: var(--navbar-height);
 
     z-index: 2;
+
+    box-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+}
+
+#logout-button:hover {
+    cursor: pointer;
 }

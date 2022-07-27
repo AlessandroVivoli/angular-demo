@@ -1,1 +1,18 @@
-<p>locations works!</p>
+<div class="container">
+    <h3 class="my-4">All locations</h3>
+    <div class="row align-items-stretch g-2 justify-content-start">
+        <div class="col-12 col-md-6">
+            <app-form-control-input icon="fas fa-car" type="select" label="Where are you going?">
+            </app-form-control-input>
+        </div>
+        <div class="align-items-stretch justify-content-stretch d-none d-md-flex" id="search">
+            <button type="button" class="btn btn-primary w-100">search</button>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-6 col-md-3" *ngFor="let value of data">
+            <app-location-box [href]="value.href" [location]="value.location" [property-num]="value.num">
+            </app-location-box>
+        </div>
+    </div>
+</div>

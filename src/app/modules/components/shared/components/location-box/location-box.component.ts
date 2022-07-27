@@ -7,10 +7,10 @@ import { Location } from '../../models/location/location.model';
   styleUrls: ['./location-box.component.scss']
 })
 export class LocationBoxComponent implements OnInit {
-  @Input() src: string;
   @Input() location: Location;
   @Input('property-num') num: number;
   @Input('href') link: string;
+  @Input() data: object;
 
   constructor() { }
 
