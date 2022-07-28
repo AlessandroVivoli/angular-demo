@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Apartment } from '../../models/apartment/apartment.model';
+import { Router } from '@angular/router';
+import { ApartmentModel } from '../../models/apartment/apartment.model';
 import { ApartmentListService } from '../../services/apartment-list.service';
 
 @Component({
@@ -8,14 +9,21 @@ import { ApartmentListService } from '../../services/apartment-list.service';
   styleUrls: ['./apartment-box.component.scss']
 })
 export class ApartmentBoxComponent implements OnInit {
-  @Input() apartment: Apartment;
+  @Input() apartment: ApartmentModel;
+  @Input() changeLayout: boolean;
+  @Input() href?: string;
 
-  constructor(private apartmentService: ApartmentListService) {
+  constructor(private apartmentService: ApartmentListService, private router: Router) {
   }
 
   ngAfterViewInit() {
   }
 
   ngOnInit(): void {
+  }
+
+  onClick() {
+    if (this.href)
+      this.router.navigateByUrl(this.href);
   }
 }

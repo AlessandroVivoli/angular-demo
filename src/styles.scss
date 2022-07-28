@@ -1,6 +1,4 @@
-$primary-color: #40E0D0;
-
-
+$primary-color: #40e0d0;
 
 @media (max-width: 768px) {
     :root {
@@ -14,7 +12,7 @@ $primary-color: #40E0D0;
 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.12);
-    border-radius: .5em;
+    border-radius: 0.5em;
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.22);
@@ -45,7 +43,6 @@ body {
     }
 }
 
-
 $font-weights: (
     100: 100,
     200: 200,
@@ -62,40 +59,68 @@ $font-weights: (
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-$font-sizes: map-merge($font-sizes,
-        (7: 14px));
+$font-sizes: map-merge(
+    $font-sizes,
+    (
+        7: 14px,
+    )
+);
 
 $btn-font-size: 15px;
 $btn-font-size-sm: 15px;
 $btn-font-size-lg: 15px;
 $btn-font-weight: 500;
 
-$spacers: map-merge($spacers,
-        (2d5: 0.75rem,
-            4d5: 2.5rem,
-            6: 4rem,
-            7: 5rem,
-            8: 6rem,
-            9: 7rem,
-            10: 8rem));
+$spacers: map-merge(
+    $spacers,
+    (
+        2d5: 0.75rem,
+        4d5: 2.5rem,
+        6: 4rem,
+        7: 5rem,
+        8: 6rem,
+        9: 7rem,
+        10: 8rem,
+    )
+);
 
 @import "~bootstrap/scss/maps";
 
-$theme-colors: map-merge($theme-colors, ("primary": $primary-color));
+$theme-colors: map-merge(
+    $theme-colors,
+    (
+        "primary": $primary-color,
+    )
+);
 
 @import "~bootstrap/scss/utilities";
 
-$utilities: map-merge($utilities,
-        ("font-weight": map-merge(map-get($utilities, "font-weight"
-                ),
-                (values: map-merge(map-get(map-get($utilities, "font-weight"
-                            ),
-                            "values"
-                        ),
-                        $font-weights ))),
-            "width": map-merge(map-get($utilities, "width"
-                ),
-                (responsive: true))));
+$utilities: map-merge(
+    $utilities,
+    (
+        "font-weight":
+            map-merge(
+                map-get($utilities, "font-weight"),
+                (
+                    values: map-merge(map-get(map-get($utilities, "font-weight"), "values"), $font-weights),
+                )
+            ),
+        "width":
+            map-merge(
+                map-get($utilities, "width"),
+                (
+                    responsive: true,
+                )
+            ),
+        "font-size":
+            map-merge(
+                map-get($utilities, "font-size"),
+                (
+                    responsive: true,
+                )
+            ),
+    )
+);
 
 @import "~bootstrap/scss/bootstrap.scss";
 

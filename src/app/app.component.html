@@ -1,5 +1,5 @@
 <app-header [isLoggedIn]="isLoggedIn" (onLogout)="logout()"></app-header>
-<div id="container">
+<div id="wrapper">
     <router-outlet></router-outlet>
 </div>
 <app-footer *ngIf="isLoggedIn"></app-footer>

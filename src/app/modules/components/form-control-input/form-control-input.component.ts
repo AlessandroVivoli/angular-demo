@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-control-input',
@@ -9,19 +10,12 @@ export class FormControlInputComponent implements OnInit {
   @Input() type: string;
   @Input() name: string;
   @Input() required: boolean;
-  @Input() invalidFeedback: string;
-  @Input() validFeedback: string;
   @Input() label: string;
+  @Input() control: FormControl = new FormControl;
 
-  @Input() keyValues: { inputValue: string, label: string }[] = [
-    { inputValue: 'test', label: 'test' },
-    { inputValue: 'test2', label: 'Test2' }
-  ];
+  @Input() data: { inputValue: string, label: string }[] = [];
 
   @Input() icon: string;
-
-  hasInvalid: boolean = false;
-  hasValid: boolean = false;
 
   hasIcon: boolean = false;
 
@@ -29,15 +23,11 @@ export class FormControlInputComponent implements OnInit {
     this.type = '';
     this.name = '';
     this.required = false;
-    this.invalidFeedback = '';
-    this.validFeedback = '';
     this.label = '';
     this.icon = '';
   }
 
   ngOnInit(): void {
-    this.hasInvalid = this.invalidFeedback.length > 0;
-    this.hasValid = this.validFeedback.length > 0;
     this.hasIcon = this.icon.length > 0;
   }
 }

@@ -1,15 +1,17 @@
-<div class="card h-100">
-    <img [src]="apartment.img" [alt]="apartment.name" class="card-img-top">
-    <div class="card-body d-flex flex-column">
-        <h5 class="card-title fw-500 mb-0">
-            {{apartment.name}}
-        </h5>
-        <small class="text-muted card-text">{{apartment.location.city}}</small>
-        <div class="d-flex flex-column justify-content-end flex-grow-1">
-            
-            <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
-            <div class="row">
-                <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i class="fas fa-star"></i></div>
+<div class="card h-100" (click)="onClick()">
+    <div class="d-flex h-100" [ngClass]="{'flex-column': !changeLayout, 'flex-row flex-md-column': changeLayout}">
+        <img [src]="apartment.img" [alt]="apartment.name" class="card-img" [ngClass]="{'w-md-100 w-50': changeLayout}">
+        <div class="card-body d-flex flex-column flex-grow-1">
+            <h5 class="card-title fw-500 mb-0 fs-md-5 fs-6">
+                {{apartment.name}}
+            </h5>
+            <small class="text-muted card-text">{{apartment.location.city}}</small>
+            <div class="d-flex flex-column justify-content-end flex-grow-1">
+                <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
+                <div class="row">
+                    <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i class="fas fa-star"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

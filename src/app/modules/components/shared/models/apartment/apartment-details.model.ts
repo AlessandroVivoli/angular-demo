@@ -1,3 +1,3 @@
-export interface ApartmentDetails {
+export interface ApartmentDetailsModel {
 
 }
