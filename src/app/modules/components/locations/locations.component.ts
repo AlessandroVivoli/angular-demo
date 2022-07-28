@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LocationModel } from '../shared/models/location/location.model';
 import { ApartmentListService } from '../shared/services/apartment-list.service';
 
@@ -9,13 +10,15 @@ import { ApartmentListService } from '../shared/services/apartment-list.service'
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.scss']
 })
-export class LocationsComponent implements OnInit {
+export class LocationsComponent implements OnInit, OnDestroy {
   places: { inputValue: string, label: string }[] = [];
   data: { src: string, href: string, location: LocationModel, num: number }[] = [];
 
   city = new FormControl('');
 
   @ViewChild('submit') button: ElementRef<HTMLButtonElement>;
+
+  private sub: Subscription;
 
   constructor(
     private apartmentService: ApartmentListService,
@@ -24,7 +27,7 @@ export class LocationsComponent implements OnInit {
   ) {
     let city: string = '';
 
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.sub = this.activatedRoute.queryParams.subscribe(params => {
       city = params['city'];
     });
 
@@ -49,6 +52,10 @@ export class LocationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   onSubmit() {

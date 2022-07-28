@@ -1,4 +1,5 @@
 import { LocationModel } from "../location/location.model";
+import { ApartmentDetailsModel } from "./apartment-details.model";
 
 export class ApartmentModel {
     private static global_id: number = 0;
@@ -9,8 +10,9 @@ export class ApartmentModel {
     location: LocationModel;
     rating: number;
     img: string;
+    apartmentDetails?: ApartmentDetailsModel;
 
-    constructor(name: string, price: number, location: LocationModel, rating: number, img: string, id?: number) {
+    constructor(name: string, price: number, location: LocationModel, rating: number, img: string, apartmentDetails?: ApartmentDetailsModel, id?: number) {
         if (id && id > ApartmentModel.global_id)
             ApartmentModel.global_id = id;
 
@@ -21,5 +23,6 @@ export class ApartmentModel {
         this.location = location;
         this.rating = rating;
         this.img = img;
+        this.apartmentDetails = apartmentDetails;
     }
 }

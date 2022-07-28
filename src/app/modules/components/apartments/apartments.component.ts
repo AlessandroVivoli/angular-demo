@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ApartmentModel } from '../shared/models/apartment/apartment.model';
 import { ApartmentListService } from '../shared/services/apartment-list.service';
 
@@ -10,7 +10,7 @@ import { ApartmentListService } from '../shared/services/apartment-list.service'
   templateUrl: './apartments.component.html',
   styleUrls: ['./apartments.component.scss']
 })
-export class ApartmentsComponent implements OnInit {
+export class ApartmentsComponent implements OnInit, OnDestroy {
 
   city: string;
 
@@ -23,12 +23,14 @@ export class ApartmentsComponent implements OnInit {
 
   data: {inputValue: string, label: string}[];
 
+  private sub: Subscription;
+
   constructor(private activatedRoute: ActivatedRoute, private apartmentService: ApartmentListService) {
     this.data = apartmentService.accomodationTypes;
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.sub = this.activatedRoute.queryParams.subscribe(params => {
       this.city = params['city'];
       this.checkIn.setValue(params['check-in']);
       this.checkOut.setValue(params['check-out']);
@@ -41,6 +43,10 @@ export class ApartmentsComponent implements OnInit {
 
       return false;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }
