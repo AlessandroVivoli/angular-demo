@@ -3,7 +3,6 @@ export interface ApartmentDetailsModel {
     numberOfGuests: number;
     cancellationFee: number;
     accomodationType: string;
-    price: number;
     postalCode: number;
     img: string;
 }

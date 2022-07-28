@@ -37,7 +37,6 @@ export class ApartmentListService {
         cancellationFee: 0,
         numberOfGuests: 2,
         accomodationType: 'Room',
-        price: 500,
         postalCode: 10001,
         img: 'assets/img/apartments/headings/apartment-1.png'
       }),
