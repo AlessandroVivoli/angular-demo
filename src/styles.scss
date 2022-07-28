@@ -1,1 +1,135 @@
-/* You can add global styles to this file, and also import other style files */
+$primary-color: #40e0d0;
+
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 56px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 0.5em;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.22);
+    }
+}
+
+* {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+html {
+    overflow-y: overlay;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.btn.btn-primary {
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+
+    &:hover {
+        color: white;
+    }
+}
+
+$font-weights: (
+    100: 100,
+    200: 200,
+    300: 300,
+    400: 400,
+    500: 500,
+    600: 600,
+    700: 700,
+    800: 800,
+    900: 900,
+    1000: 1000,
+);
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$font-sizes: map-merge(
+    $font-sizes,
+    (
+        7: 14px,
+    )
+);
+
+$btn-font-size: 15px;
+$btn-font-size-sm: 15px;
+$btn-font-size-lg: 15px;
+$btn-font-weight: 500;
+
+$spacers: map-merge(
+    $spacers,
+    (
+        2d5: 0.75rem,
+        4d5: 2.5rem,
+        6: 4rem,
+        7: 5rem,
+        8: 6rem,
+        9: 7rem,
+        10: 8rem,
+    )
+);
+
+@import "~bootstrap/scss/maps";
+
+$theme-colors: map-merge(
+    $theme-colors,
+    (
+        "primary": $primary-color,
+    )
+);
+
+@import "~bootstrap/scss/utilities";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "font-weight":
+            map-merge(
+                map-get($utilities, "font-weight"),
+                (
+                    values: map-merge(map-get(map-get($utilities, "font-weight"), "values"), $font-weights),
+                )
+            ),
+        "width":
+            map-merge(
+                map-get($utilities, "width"),
+                (
+                    responsive: true,
+                )
+            ),
+        "font-size":
+            map-merge(
+                map-get($utilities, "font-size"),
+                (
+                    responsive: true,
+                )
+            ),
+    )
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+:root {
+    --navbar-height: 64px;
+    --bs-primary-rgb: 64, 224, 208;
+}
+
+.card {
+    box-shadow: none !important;
+    border: none !important;
+}

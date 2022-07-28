@@ -1,0 +1,40 @@
+.card {
+    cursor: pointer;
+
+    transition: box-shadow .15s ease, .15s transform ease;
+
+    &:hover {
+        box-shadow: 4px 4px 4px rgba(157, 155, 155, 0.25) !important;
+        transform: scale(1.01);
+        cursor: pointer;
+    }
+
+    &:active {
+        box-shadow: 2px 2px 2px rgba(157, 155, 155, 0.25) !important;
+        transition-delay: 0ms;
+        transform: scale(1.0025);
+    }
+}
+
+#star {
+    color: black;
+    cursor: pointer;
+
+    &:hover {
+        color: gold;
+    }
+
+    &:active {
+        color: goldenrod;
+    }
+}
+
+.row {
+    color: #f3b08e;
+}
+
+@media (max-width: 575px) {
+    .col-1 {
+        padding: 0 10px;
+    }
+}

@@ -1,0 +1,40 @@
+<div class="container-fluid d-flex justify-content-center align-items-center" id="login-body">
+    <div class="card" style="width: 25.25rem">
+        <div class="card-body">
+            <h4 class="card-title mb-0">Log in</h4>
+            <small class="card-subtitle text-muted mt-0">Get started for free</small>
+        </div>
+        <div class="card-body">
+            <form class="d-flex flex-column gap-3 needs-validation" #loginForm novalidate (submit)="submit($event)">
+                <div class="form-group d-flex flex-column gap-3">
+                    <div class="col-12">
+                        <input type="email" autocomplete="email" class="form-control py-3" name="email" id="email"
+                            placeholder="Email" required>
+                        <div class="invalid-feedback">
+                            Please provide an email.
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input type="password" autocomplete="current-password" class="form-control py-3" name="password" id="password"
+                            placeholder="Password"  required>
+                        <div class="invalid-feedback">
+                            Please provide a password.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="accept" id="accept" required>
+                        <label for="accept" class="form-check-label">
+                            I accept the Terms and conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

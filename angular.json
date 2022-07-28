@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/fontawesome-pro/css/all.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "src/assets/fontawesome-pro/js/all.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -103,5 +107,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "56d9bb0b-122a-4dde-9eb5-f6ffbf846af0"
   }
 }

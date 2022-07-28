@@ -1,0 +1,141 @@
+#container {
+    min-height: calc(100vh - var(--navbar-height) - 56px);
+}
+
+#header {
+    position: relative;
+    padding-top: 50px;
+
+    --title-size: 96px;
+    --subtitle-size: 58px;
+    --sub-subtitle-size: 38px;
+}
+
+#form {
+    box-shadow: 0px 4px 4px rgba(205, 205, 205, .25);
+    border-radius: 20px;
+}
+
+#submit {
+    max-height: 56px;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background: url('../../../../assets/img/header/background.png') no-repeat top center;
+    background-size: cover;
+    filter: opacity(0.7) brightness(0.7) contrast(1);
+}
+
+header {
+    h1 {
+        font-size: var(--title-size);
+        height: fit-content;
+        margin: 0;
+    }
+
+    h3 {
+        font-size: var(--subtitle-size);
+        height: fit-content;
+        margin: 0;
+    }
+
+    h4 {
+        font-size: var(--sub-subtitle-size);
+        height: fit-content;
+        margin: 0;
+    }
+}
+
+section h1 {
+    font-size: 32px;
+}
+
+section #mobile {
+    display: none;
+}
+
+@media (min-width: 1400px) {
+    #header .col-xxl-3 {
+        width: 20%;
+    }
+}
+
+@media (max-width: 1199px) {
+    #header {
+        --title-size: 86px;
+        --subtitle-size: 48px;
+    }
+
+    #background {
+        bottom: 300px;
+    }
+}
+
+@media (max-width: 991px) {
+    #header {
+        --title-size: 66px;
+        --subtitle-size: 38px;
+    }
+}
+
+@media (max-width: 767px) {
+    #header {
+        position: relative;
+        padding-top: 23px;
+
+        --title-size: 24px;
+        --subtitle-size: 20px;
+        --sub-subtitle-size: 16px;
+
+        #mobile {
+            display: none;
+        }
+    }
+
+    section {
+        #mobile {
+            display: inherit;
+        }
+
+        #desktop {
+            display: none;
+        }
+    }
+
+    #popular-locations,
+    #popular-homes {
+        a {
+            padding: .625rem 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+
+    #popular-locations,
+    #popular-homes {
+        h1 {
+            font-size: 20px;
+        }
+
+        a {
+            font-size: 10px;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+
+    #popular-locations,
+    #popular-homes {
+        a {
+            padding: .675rem .5rem;
+        }
+    }
+}

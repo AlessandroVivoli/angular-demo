@@ -1,0 +1,33 @@
+.card {
+    --border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    justify-content: stretch;
+    align-items: stretch;
+    border-radius: var(--border-radius);
+    transition: box-shadow .15s ease-in-out, .15s transform ease-in-out;
+}
+
+.card-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+}
+
+.card-img-overlay {
+    border-radius: var(--border-radius);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px rgba(157, 155, 155, 0.25) !important;
+    transform: scale(1.01);
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .card-img{ aspect-ratio: calc(158px/155px); }
+}

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="d-flex justify-content-between my-5">
+        <h3>My places</h3>
+        <button class="btn btn-primary text-uppercase text-white d-none d-md-inline-block">Add new place</button>
+    </div>
+    <div class="row g-3">
+        <div class="col-12 col-md-4 col-lg-3" *ngFor="let apartment of apartments">
+            <app-apartment-box [changeLayout]="true" [isFavorite]="true" [apartment]="apartment"></app-apartment-box>
+        </div>
+    </div>
+</div>

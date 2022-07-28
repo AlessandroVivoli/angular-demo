@@ -37,6 +37,9 @@ yarn-error.log
 testem.log
 /typings
 
+# font-awesome
+src/assets/fontawesome-pro
+
 # System files
 .DS_Store
 Thumbs.db

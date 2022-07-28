@@ -1,0 +1,37 @@
+<div class="container pt-3">
+    <div class="d-flex justify-content-between">
+        <h3 class="col d-flex flex-column fw-400">
+            <span *ngIf="!city">Homes guests love</span>
+            <span *ngIf="!!city">Stays in {{city}}</span>
+            <small class="text-muted fs-5 mt-1">{{1}} properties</small>
+        </h3>
+        <a class="d-lg-none text-primary text-decoration-none fs-5 text-uppercase fw-500" data-bs-toggle="offcanvas"
+            href="#offcanvas" role="button" aria-controls="offcanvas">
+            <i class="far fa-sort-amount-down me-2"></i>filters
+        </a>
+    </div>
+    <div class="offcanvas-lg offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvas">
+        <div class="offcanvas-header">
+            <a class="text-primary text-decoration-none" role="button" data-bs-dismiss="offcanvas" href="#offcanvas"
+                aria-labelledby="Close">
+                <span class="text-uppercase text-primary fw-500"><i class="fal fa-times me-2"></i>Close</span>
+            </a>
+        </div>
+        <div class="offcanvas-body py-lg-4 d-flex flex-column flex-lg-row gap-3 align-items-stretch">
+            <app-form-control-input [control]="checkIn" type="text" icon="far fa-calendar" name="check-in"
+                label="Check in"></app-form-control-input>
+            <app-form-control-input [control]="checkOut" type="text" icon="far fa-calendar" name="check-out"
+                label="Check out"></app-form-control-input>
+            <app-form-control-input [control]="guests" type="text" icon="fas fa-user" name="guests"
+                label="How many people?"></app-form-control-input>
+            <app-form-control-input [control]="accomodationType" [data]="data" type="select" icon="fas fa-bed"
+                name="type" label="What type of accomodation?"></app-form-control-input>
+            <button class="btn btn-primary text-white text-uppercase" style="min-width: 148px">search</button>
+        </div>
+    </div>
+    <div class="row py-4 pt-lg-0 g-3">
+        <div class="col-lg-3 col-md-6 col-12" *ngFor="let apartment of apartments">
+            <app-apartment-box [href]="apartment.apartmentDetails ? '/apartments/' + apartment.id : undefined" [apartment]="apartment" [changeLayout]="true"></app-apartment-box>
+        </div>
+    </div>
+</div>

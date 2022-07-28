@@ -1,0 +1,36 @@
+<div class="container py-4">
+    <img [src]="apartment.apartmentDetails?.img" alt="" class="rounded-4 w-100">
+    <div class="d-flex flex-column flex-lg-row justify-content-lg-between gap-3 py-4">
+        <div id="details" class="w-100">
+            <div
+                class="d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-lg-4 gap-2">
+                <h3 class="m-0">{{apartment.name}}</h3>
+                <div id="stars" class="d-flex gap-2" style="color: #F3B08E">
+                    <i class="fas fa-star" *ngFor="let i of [].constructor(5)"></i>
+                </div>
+            </div>
+            <div class="my-2">
+                <small class="text-muted">Stay in the heart of {{apartment.location.city}}</small>
+            </div>
+            <div class="d-flex py-2 py-lg-4 align-items-center gap-3 fw-600">
+                <i class="far fa-calendar" style="color:#F3B08E"></i>
+                {{apartment.apartmentDetails?.cancellationFee ? 'Cancellation fee: ' +
+                apartment.apartmentDetails?.cancellationFee : 'Free cancellation available'}}
+            </div>
+            <div id="summary" [innerHtml]="apartment.apartmentDetails?.summary"></div>
+        </div>
+        <div  class="d-flex justify-content-center align-items-start">
+            <div id="info" class="d-flex flex-column justify-content-between rounded-3">
+                <div id="wrapper">
+                    <h5 class="mb-2 fw-500">Property info</h5>
+                    <p class="mb-2">{{apartment.apartmentDetails?.numberOfGuests}}</p>
+                    <p class="mb-2">{{apartment.apartmentDetails?.accomodationType}}</p>
+                    <p class="mb-2">EUR {{apartment.price}} per night</p>
+                    <p class="mb-2">{{apartment.location.city}}</p>
+                    <p class="mb-2">{{apartment.apartmentDetails?.postalCode}}</p>
+                </div>
+                <button class="btn btn-primary text-white text-uppercase">Book your stay</button>
+            </div>
+        </div>
+    </div>
+</div>
