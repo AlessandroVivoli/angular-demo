@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Apartment } from '../models/apartment/apartment.model';
-import { Location } from '../models/location/location.model';
+import { ApartmentModel } from '../models/apartment/apartment.model';
+import { LocationModel } from '../models/location/location.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApartmentListService {
 
-  private apartments: Apartment[];
+  private readonly apartments: ApartmentModel[];
 
-  private locations: Location[] = [
-    new Location('New York', '', '', 'assets/img/locations/new-york.png'),
-    new Location('Rome', '', '', 'assets/img/locations/rome.png'),
-    new Location('London', '', '', 'assets/img/locations/london.png'),
-    new Location('Tokyo', '', '', 'assets/img/locations/tokyo.png'),
-    new Location('Barcelona', '', '', 'assets/img/locations/barcelona.png'),
-  ]
+  private readonly locations: LocationModel[] = [
+    new LocationModel('New York', '', '', 'assets/img/locations/new-york.png'),
+    new LocationModel('Rome', '', '', 'assets/img/locations/rome.png'),
+    new LocationModel('London', '', '', 'assets/img/locations/london.png'),
+    new LocationModel('Tokyo', '', '', 'assets/img/locations/tokyo.png'),
+    new LocationModel('Barcelona', '', '', 'assets/img/locations/barcelona.png'),
+  ];
+
+  private readonly accomodationType: { inputValue: string, label: string }[] = [
+    { inputValue: 'apartment', label: 'Apartment' },
+    { inputValue: 'room', label: 'Room' },
+    { inputValue: 'mobile', label: 'Mobile' }
+  ];
 
   constructor() {
     this.apartments = [
-      { img: 'assets/img/apartments/apartment-1.png', location: this.locations[0], name: 'Sugar & Spice Apartments', price: 75, rating: 5 },
-      { img: 'assets/img/apartments/apartment-2.png', location: this.locations[1], name: 'Lemon Luxury Apartments', price: 174, rating: 5 },
-      { img: 'assets/img/apartments/apartment-3.png', location: this.locations[2], name: 'Casa Krystal', price: 123, rating: 5 },
-      { img: 'assets/img/apartments/apartment-4.png', location: this.locations[3], name: 'Phuket Kamala Beach Hotel', price: 55, rating: 5 },
-      { img: 'assets/img/apartments/apartment-5.png', location: this.locations[4], name: 'Expo Hotel', price: 178, rating: 5 }
+      new ApartmentModel('Sugar & Spice Apartments', 75, this.locations[0], 5, 'assets/img/apartments/apartment-1.png'),
+      new ApartmentModel('Lemon Luxury Apartments', 174, this.locations[1], 5, 'assets/img/apartments/apartment-2.png'),
+      new ApartmentModel('Casa Krystal', 123, this.locations[2], 5, 'assets/img/apartments/apartment-3.png'),
+      new ApartmentModel('Phuket Kamala Beach Hotel', 55, this.locations[3], 5, 'assets/img/apartments/apartment-4.png'),
+      new ApartmentModel('Expo Hotel', 178, this.locations[3], 5, 'assets/img/apartments/apartment-5.png')
     ];
   }
 
@@ -31,12 +37,16 @@ export class ApartmentListService {
     return this.apartments;
   }
 
-  addApartments(apartments: Apartment[]) {
+  get accomodationTypes() {
+    return this.accomodationType;
+  }
+
+  addApartments(apartments: ApartmentModel[]) {
     for (const apartment of apartments)
       this.apartments.push(apartment);
   }
 
-  removeApartment(node: Apartment) {
+  removeApartment(node: ApartmentModel) {
     this.apartments.forEach((apartment, index) => {
       if (apartment === node)
         this.apartments.splice(index, 1);
