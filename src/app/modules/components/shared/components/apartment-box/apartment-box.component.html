@@ -7,11 +7,21 @@
             </h5>
             <small class="text-muted card-text">{{apartment.location.city}}</small>
             <div class="d-flex flex-column justify-content-end flex-grow-1">
-                <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
-                <div class="row">
-                    <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i class="fas fa-star"></i>
+                <ng-template [ngIf]="isFavorite">
+                    <p class="card-text fw-500 my-3">Renting the entire unit</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="text-primary text-decoration-none text-uppercase fw-500">Edit</a>
+                        <a href="#" class="text-danger text-decoration-none text-uppercase fw-500">Delete place</a>
                     </div>
-                </div>
+                </ng-template>
+                <ng-template [ngIf]="!isFavorite">
+                    <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
+                    <div class="row">
+                        <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i
+                                class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ export class ApartmentBoxComponent implements OnInit {
   @Input() apartment: ApartmentModel;
   @Input() changeLayout: boolean;
   @Input() href?: string;
+  @Input() isFavorite: boolean = false;
 
   constructor(private apartmentService: ApartmentListService, private router: Router) {
   }
