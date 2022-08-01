@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { ApartmentModel } from '../shared/models/apartment/apartment.model';
+import { AccomodationModel } from '../../../models/apartment/accomodation.model';
 import { ApartmentListService } from '../shared/services/apartment-list.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ApartmentsComponent implements OnInit, OnDestroy {
   guests = new FormControl<number>(0);
   accomodationType = new FormControl('');
   
-  apartments: ApartmentModel[] = [];
+  apartments: AccomodationModel[] = [];
 
   data: {inputValue: string, label: string}[];
 
@@ -39,7 +39,7 @@ export class ApartmentsComponent implements OnInit, OnDestroy {
     });
 
     this.apartments = this.apartmentService.apartmentList.filter(apartment => {
-      if(!this.city || apartment.location.city === this.city) return true;
+      if(!this.city || apartment.location.name === this.city) return true;
 
       return false;
     });

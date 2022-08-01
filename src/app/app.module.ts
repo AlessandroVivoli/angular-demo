@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,9 @@ import { LoginComponent } from './modules/components/login/login.component';
 import { MainComponent } from './modules/components/main/main.component';
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
+import { LocationComponent } from './modules/components/locations/location/location.component';
+import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
+import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { SharedModule } from './modules/components/shared/shared.module';
     RecommendationsComponent,
     LoginComponent,
     FormControlInputComponent,
-    ApartmentsComponent
+    ApartmentsComponent,
+    LocationComponent,
+    MyPlacesComponent,
+    MyBookingComponent
   ],
   imports: [
     AppRoutingModule,

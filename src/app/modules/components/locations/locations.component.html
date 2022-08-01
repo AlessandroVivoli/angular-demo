@@ -11,7 +11,7 @@
     </div>
     <div class="row g-3 py-3 py-md-4">
         <div class="col-6 col-md-3" *ngFor="let value of data">
-            <app-location-box [href]="'/apartments?city=' + value.location.city" [location]="value.location" [property-num]="value.num">
+            <app-location-box [href]="'/apartments?city=' + value.location.name" [location]="value.location" [property-num]="value.num">
             </app-location-box>
         </div>
     </div>

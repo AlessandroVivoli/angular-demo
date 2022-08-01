@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApartmentModel } from '../shared/models/apartment/apartment.model';
-import { LocationModel } from '../shared/models/location/location.model';
+import { AccomodationModel } from '../../../models/apartment/accomodation.model';
+import { LocationModel } from '../../../models/location/location.model';
 import { ApartmentListService } from '../shared/services/apartment-list.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { ApartmentListService } from '../shared/services/apartment-list.service'
 })
 export class MainComponent implements OnInit {
   locations: LocationModel[] = [];
-  apartments: ApartmentModel[] = [];
+  apartments: AccomodationModel[] = [];
   nums: number[] = [];
 
   place = new FormControl('');
@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
     this.types = apartmentService.accomodationTypes;
 
     this.locations.forEach((location) => {
-      this.places.push({ inputValue: location.city, label: location.city });
+      this.places.push({ inputValue: location.name, label: location.name });
 
       this.nums.push(this.apartments.filter((apartment) => apartment.location === location).reduce((prev, next) => {
         return prev + 1;

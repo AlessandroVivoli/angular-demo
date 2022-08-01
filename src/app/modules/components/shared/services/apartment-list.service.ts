@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ApartmentModel } from '../models/apartment/apartment.model';
-import { LocationModel } from '../models/location/location.model';
+import { AccomodationModel } from '../../../../models/apartment/accomodation.model';
+import { LocationModel } from '../../../../models/location/location.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApartmentListService {
 
-  private readonly apartments: ApartmentModel[];
+  private readonly apartments: AccomodationModel[];
 
   private readonly locations: LocationModel[] = [
-    new LocationModel('New York', '', '', 'assets/img/locations/new-york.png'),
-    new LocationModel('Rome', '', '', 'assets/img/locations/rome.png'),
-    new LocationModel('London', '', '', 'assets/img/locations/london.png'),
-    new LocationModel('Tokyo', '', '', 'assets/img/locations/tokyo.png'),
-    new LocationModel('Barcelona', '', '', 'assets/img/locations/barcelona.png'),
+    new LocationModel('New York', ''),
+    new LocationModel('Rome', ''),
+    new LocationModel('London', ''),
+    new LocationModel('Tokyo', ''),
+    new LocationModel('Barcelona', ''),
   ];
 
   private readonly accomodationType: { inputValue: string, label: string }[] = [
@@ -25,7 +25,7 @@ export class ApartmentListService {
 
   constructor() {
     this.apartments = [
-      new ApartmentModel('Sugar & Spice Apartments', 75, this.locations[0], 5, 'assets/img/apartments/apartment-1.png', {
+      new AccomodationModel('Sugar & Spice Apartments', 75, this.locations[0], 5, 'assets/img/apartments/apartment-1.png', {
         summary: `
         <p>This property is 3 minutes walk from the beach. Overlooking Mykonos Windmills, the Poseidon Hotel Suites is only 50 m from Megali Ammos Beach. The 3-star hotel offers a freshwater pool, and bright rooms with air conditioning and fan.</p>
         <p>Each of the Cycladic rooms opens to a private balcony with across to Mykonos Town, the sea and Delos. A fridge, satellite TV and safe are standard.</p>
@@ -40,10 +40,10 @@ export class ApartmentListService {
         postalCode: 10001,
         img: 'assets/img/apartments/headings/apartment-1.png'
       }),
-      new ApartmentModel('Lemon Luxury Apartments', 174, this.locations[1], 5, 'assets/img/apartments/apartment-2.png'),
-      new ApartmentModel('Casa Krystal', 123, this.locations[2], 5, 'assets/img/apartments/apartment-3.png'),
-      new ApartmentModel('Phuket Kamala Beach Hotel', 55, this.locations[3], 5, 'assets/img/apartments/apartment-4.png'),
-      new ApartmentModel('Expo Hotel', 178, this.locations[4], 5, 'assets/img/apartments/apartment-5.png')
+      new AccomodationModel('Lemon Luxury Apartments', 174, this.locations[1], 5, 'assets/img/apartments/apartment-2.png'),
+      new AccomodationModel('Casa Krystal', 123, this.locations[2], 5, 'assets/img/apartments/apartment-3.png'),
+      new AccomodationModel('Phuket Kamala Beach Hotel', 55, this.locations[3], 5, 'assets/img/apartments/apartment-4.png'),
+      new AccomodationModel('Expo Hotel', 178, this.locations[4], 5, 'assets/img/apartments/apartment-5.png')
     ];
   }
 
@@ -55,12 +55,12 @@ export class ApartmentListService {
     return this.accomodationType;
   }
 
-  addApartments(apartments: ApartmentModel[]) {
+  addApartments(apartments: AccomodationModel[]) {
     for (const apartment of apartments)
       this.apartments.push(apartment);
   }
 
-  removeApartment(node: ApartmentModel) {
+  removeApartment(node: AccomodationModel) {
     this.apartments.forEach((apartment, index) => {
       if (apartment === node)
         this.apartments.splice(index, 1);

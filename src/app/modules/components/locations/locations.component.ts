@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LocationModel } from '../shared/models/location/location.model';
+import { LocationModel } from '../../../models/location/location.model';
 import { ApartmentListService } from '../shared/services/apartment-list.service';
 
 @Component({
@@ -36,7 +36,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
     this.city.setValue(city);
 
     const locations = [...new Set(this.apartmentService.apartmentList.map((apartment) => { return apartment.location }))];
-    locations.filter(location => city === undefined || city === '' || location.city === city).forEach(location => {
+    locations.filter(location => city === undefined || city === '' || location.name === city).forEach(location => {
       this.data.push({
         src: 'assets/img/locations/barcelona.png',
         href: '/apartments',
@@ -47,7 +47,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
     })
 
     locations.forEach((location) => {
-      this.places.push({ inputValue: location.city, label: location.city });
+      this.places.push({ inputValue: location.name, label: location.name });
     });
   }
 

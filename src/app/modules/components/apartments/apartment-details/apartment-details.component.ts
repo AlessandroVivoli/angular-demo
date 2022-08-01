@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ApartmentModel } from '../../shared/models/apartment/apartment.model';
+import { AccomodationModel } from '../../../../models/apartment/accomodation.model';
 import { ApartmentListService } from '../../shared/services/apartment-list.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ApartmentListService } from '../../shared/services/apartment-list.servi
 })
 export class ApartmentDetailsComponent implements OnInit, OnDestroy {
 
-  apartment: ApartmentModel;
+  apartment: AccomodationModel;
 
   private sub: Subscription;
   private id: number;
@@ -24,7 +24,7 @@ export class ApartmentDetailsComponent implements OnInit, OnDestroy {
       this.id = params['id'];
     });
 
-    this.apartment = this.apartmentService.apartmentList.find(apartment => apartment.id == this.id) as ApartmentModel;
+    this.apartment = this.apartmentService.apartmentList.find(apartment => apartment.id == this.id) as AccomodationModel;
   }
 
   ngOnDestroy(): void {

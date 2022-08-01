@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApartmentModel } from '../../models/apartment/apartment.model';
+import { AccomodationModel } from '../../../../../models/apartment/accomodation.model';
 import { ApartmentListService } from '../../services/apartment-list.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ApartmentListService } from '../../services/apartment-list.service';
   styleUrls: ['./apartment-box.component.scss']
 })
 export class ApartmentBoxComponent implements OnInit {
-  @Input() apartment: ApartmentModel;
+  @Input() apartment: AccomodationModel;
   @Input() changeLayout: boolean;
   @Input() href?: string;
   @Input() isFavorite: boolean = false;

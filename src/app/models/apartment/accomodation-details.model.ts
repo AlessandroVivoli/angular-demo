@@ -1,4 +1,4 @@
-export interface ApartmentDetailsModel {
+export interface AccomodationDetailsModel {
     summary: string;
     numberOfGuests: number;
     cancellationFee: number;

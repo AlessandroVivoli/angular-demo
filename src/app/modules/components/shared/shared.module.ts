@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ApartmentBoxComponent } from './components/apartment-box/apartment-box.component';
 import { LocationBoxComponent } from './components/location-box/location-box.component';
 import { RouterModule } from '@angular/router';
+import { FavouriteDirective } from './directives/favourite.directive';
 
 @NgModule({
   declarations: [
     LocationBoxComponent,
-    ApartmentBoxComponent
+    ApartmentBoxComponent,
+    FavouriteDirective
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     LocationBoxComponent,
-    ApartmentBoxComponent
+    ApartmentBoxComponent,
+    FavouriteDirective
   ]
 })
 export class SharedModule { }
