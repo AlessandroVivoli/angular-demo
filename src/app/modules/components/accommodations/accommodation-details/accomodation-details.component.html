@@ -6,7 +6,7 @@
                 class="d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-lg-4 gap-2">
                 <h3 class="m-0">{{accommodation.title}}</h3>
                 <div id="stars" class="d-flex gap-2" style="color: #F3B08E">
-                    <i class="fas fa-star" *ngFor="let i of [].constructor(5)"></i>
+                    <i class="fas fa-star" *ngFor="let i of [].constructor(accommodation.categorization)"></i>
                 </div>
             </div>
             <div class="my-2">
@@ -22,8 +22,8 @@
             <div id="info" class="d-flex flex-column justify-content-between rounded-3">
                 <div id="wrapper">
                     <h5 class="mb-2 fw-500">Property info</h5>
-                    <p class="mb-2">{{accommodation.personCount}}</p>
-                    <p class="mb-2">{{accommodation.type}}</p>
+                    <p class="mb-2">{{accommodation.personCount}} {{accommodation.personCount != 1 ? 'guests' : 'guest'}}</p>
+                    <p class="mb-2">{{AccommodationType[accommodation.type]}}</p>
                     <p class="mb-2">EUR {{accommodation.price}} per night</p>
                     <p class="mb-2">{{location.name}}</p>
                     <p class="mb-2">{{location.postalCode}}</p>

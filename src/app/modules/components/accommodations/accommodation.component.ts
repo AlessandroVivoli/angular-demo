@@ -23,7 +23,7 @@ export class AccommodationComponent implements OnInit, OnDestroy {
 
   accommodations: AccommodationModel[] = [];
 
-  data: { inputValue: string, label: string }[];
+  data: { inputValue: string, label: string }[] = [];
 
   private sub: Subscription;
 

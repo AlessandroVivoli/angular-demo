@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
   accomodation = new FormControl('');
 
   places: { inputValue: string, label: string }[] = [];
-  types: { inputValue: string, label: string }[];
+  types: { inputValue: string, label: string }[] = [];
 
   @ViewChild('form') el: ElementRef<HTMLFormElement>;
 
@@ -57,7 +57,7 @@ export class MainComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      this.router.navigateByUrl(`/apartments?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
+      this.router.navigateByUrl(`/accommodations?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
     }
 
     this.el.nativeElement.classList.add('was-validated')

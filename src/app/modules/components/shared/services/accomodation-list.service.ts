@@ -27,7 +27,7 @@ export class AccommodationListService {
         },
         {
           id: "28536d76-65e3-4be1-b6e2-89d04a915582",
-          title: "Best htel in Zagreb",
+          title: "Best hotel in Zagreb",
           subtitle: "Zagreb Hilton",
           description: null,
           type: AccommodationTypeEnum.Suite,
@@ -92,7 +92,7 @@ export class AccommodationListService {
         },
         {
           id: "83aff79b-4a25-4131-8a1f-a3ed581891e3",
-          title: "Best htel in Zagreb",
+          title: "Best hotel in Zagreb",
           subtitle: "Zagreb Hilton",
           description: null,
           type: AccommodationTypeEnum.Suite,

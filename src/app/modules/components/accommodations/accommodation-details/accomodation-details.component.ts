@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
 import { LocationModel } from 'src/app/models/location.model';
 import { AccommodationModel } from '../../../../models/accommodation.model';
 import { AccommodationListService } from '../../shared/services/accomodation-list.service';
@@ -15,6 +16,8 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
 
   accommodation!: AccommodationModel;
   location!: LocationModel;
+
+  AccommodationType = AccommodationTypeEnum;
 
   private sub: Subscription;
   private id: string;
