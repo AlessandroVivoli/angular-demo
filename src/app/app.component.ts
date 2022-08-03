@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApartmentListService } from './modules/components/shared/services/apartment-list.service';
+import { AccommodationListService } from './modules/components/shared/services/accomodation-list.service';
 import { AuthService } from './modules/components/shared/services/auth.service';
 
 @Component({
@@ -8,24 +8,22 @@ import { AuthService } from './modules/components/shared/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AngularDemo';
 
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = false;
 
-  constructor(
-    private apartmentService: ApartmentListService,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.isLoggedIn = authService.isLoggedIn();
-
-    if (!this.isLoggedIn && location.pathname !== '/login')
-      router.navigate(['login']);
-  }
+  constructor(private authService: AuthService, private router: Router) { }
 
   logout() {
     this.authService.logout();
     location.reload();
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
+
+    if (!this.isLoggedIn && location.pathname !== '/login')
+      this.router.navigate(['login']);
   }
 }

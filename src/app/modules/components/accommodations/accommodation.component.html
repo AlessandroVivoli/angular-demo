@@ -30,8 +30,8 @@
         </div>
     </div>
     <div class="row py-4 pt-lg-0 g-3">
-        <div class="col-lg-3 col-md-6 col-12" *ngFor="let apartment of apartments">
-            <app-apartment-box [href]="apartment.apartmentDetails ? '/apartments/' + apartment.id : undefined" [apartment]="apartment" [changeLayout]="true"></app-apartment-box>
+        <div class="col-lg-3 col-md-6 col-12" *ngFor="let accommodation of accommodations">
+            <app-accommodation-box [href]="'/accommodations/' + accommodation.id" [accommodation]="accommodation" [changeLayout]="true"></app-accommodation-box>
         </div>
     </div>
 </div>

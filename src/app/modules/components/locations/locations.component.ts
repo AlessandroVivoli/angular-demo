@@ -2,8 +2,9 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LocationModel } from '../../../models/location/location.model';
-import { ApartmentListService } from '../shared/services/apartment-list.service';
+import { LocationModel } from '../../../models/location.model';
+import { AccommodationListService } from '../shared/services/accomodation-list.service';
+import { LocationListService } from '../shared/services/location-list.service';
 
 @Component({
   selector: 'app-locations',
@@ -12,7 +13,7 @@ import { ApartmentListService } from '../shared/services/apartment-list.service'
 })
 export class LocationsComponent implements OnInit, OnDestroy {
   places: { inputValue: string, label: string }[] = [];
-  data: { src: string, href: string, location: LocationModel, num: number }[] = [];
+  data: { location: LocationModel, num: number }[] = [];
 
   city = new FormControl('');
 
@@ -21,10 +22,13 @@ export class LocationsComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    private apartmentService: ApartmentListService,
+    private accomodationService: AccommodationListService,
+    private locationService: LocationListService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     let city: string = '';
 
     this.sub = this.activatedRoute.queryParams.subscribe(params => {
@@ -35,23 +39,17 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
     this.city.setValue(city);
 
-    const locations = [...new Set(this.apartmentService.apartmentList.map((apartment) => { return apartment.location }))];
+    const locations = this.locationService.locationList;
     locations.filter(location => city === undefined || city === '' || location.name === city).forEach(location => {
       this.data.push({
-        src: 'assets/img/locations/barcelona.png',
-        href: '/apartments',
         location: location,
-        num: this.apartmentService.apartmentList.filter(apartment => { return apartment.location === location })
-          .reduce((first, next) => { return first + 1 }, 0)
+        num: this.accomodationService.accommodationList.filter(apartment => apartment.locationID === location.id).reduce((first) => { return first + 1 }, 0)
       });
     })
 
     locations.forEach((location) => {
       this.places.push({ inputValue: location.name, label: location.name });
     });
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
