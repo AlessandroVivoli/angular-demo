@@ -14,7 +14,7 @@ export class LocationListService {
         {
           id: "0f29d778-0592-43cb-a21c-a4aa6a4c7997",
           name: "Vukovar",
-          imageUrl: "https://www.dw.com/hr/vukovar-grad-heroj-ali-i-sredstvo-za-ideolo%C5%A1ko-dijeljenje-hrvatske/a-59853062",
+          imageUrl: "https://static.dw.com/image/59853146_403.jpg",
           postalCode: 32000
         },
         {
