@@ -22,7 +22,11 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private id: string;
 
-  constructor(private accommodationService: AccommodationListService, private locationService: LocationListService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private accommodationService: AccommodationListService,
+    private locationService: LocationListService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.sub = this.activatedRoute.params.subscribe(params => {
@@ -35,5 +39,9 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe;
+  }
+
+  onBook() {
+    localStorage.getItem('account')
   }
 }

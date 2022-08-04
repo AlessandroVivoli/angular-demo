@@ -16,5 +16,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('email');
   }
 }

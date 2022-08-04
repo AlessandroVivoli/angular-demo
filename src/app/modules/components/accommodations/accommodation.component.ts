@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
 import { AccommodationModel } from '../../../models/accommodation.model';
@@ -27,7 +27,12 @@ export class AccommodationComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private apartmentService: AccommodationListService, private locationService: LocationListService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private apartmentService: AccommodationListService,
+    private locationService: LocationListService,
+    private router: Router
+  ) {
     const types: Set<string> = new Set(apartmentService.accommodationList.map((accomodation) => AccommodationTypeEnum[accomodation.type]));
 
     types.forEach(type => {
@@ -44,12 +49,20 @@ export class AccommodationComponent implements OnInit, OnDestroy {
       this.accomodationType.setValue(params['type']);
     });
 
-    this.accommodations = this.apartmentService.accommodationList.filter(apartment => {
-      let location = this.locationService.locationList.find(location => location.id === apartment.locationID);
+    this.accommodations = this.apartmentService.accommodationList.filter(accommodation => {
+      let location = this.locationService.locationList.find(location => location.id === accommodation.locationID);
 
-      if (!this.city || location!.name === this.city) return true;
+      let filtered = false;
 
-      return false;
+      console.log(AccommodationTypeEnum[accommodation.type]);
+
+      if (
+        (!this.city || location!.name === this.city) &&
+        (!this.guests.value || this.guests.value < accommodation.personCount) &&
+        (!this.accomodationType.value || this.accomodationType.value === AccommodationTypeEnum[accommodation.type])
+      ) filtered = true;
+
+        return filtered;
     });
   }
 
@@ -57,4 +70,15 @@ export class AccommodationComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  onSearch(): void {
+    const checkInValue = this.checkIn.value !== undefined ? this.checkIn.value : '';
+    const checkOutValue = this.checkOut.value !== undefined ? this.checkOut.value : '';
+    const guestsValue = this.guests.value !== undefined ? this.guests.value : 0;
+    const typeValue = this.accomodationType.value !== undefined ? this.accomodationType.value : '';
+    const cityValue = this.city !== undefined ? this.city : '';
+
+    this.router.navigateByUrl(
+      `/accommodations?city=${cityValue}&check-in=${checkInValue}&check-out=${checkOutValue}&guests=${guestsValue}&type=${typeValue}`
+    ).then(() => location.reload());
+  }
 }
