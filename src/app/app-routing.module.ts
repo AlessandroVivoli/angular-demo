@@ -6,6 +6,7 @@ import { FavoritesComponent } from './modules/components/favorites/favorites.com
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
 import { MainComponent } from './modules/components/main/main.component';
+import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'accommodations', component: AccommodationComponent },
   { path: 'accommodations/:id', component: AccommodationDetailsComponent },
   { path: 'favorites', component: FavoritesComponent },
+  { path: 'bookings', component: MyBookingComponent },
   { path: 'login', component: LoginComponent }
 ];
 
