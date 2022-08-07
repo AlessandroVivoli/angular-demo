@@ -14,6 +14,9 @@ export class AccommodationBoxComponent implements OnInit {
   @Input() changeLayout: boolean;
   @Input() href?: string;
   @Input() isFavorite: boolean = false;
+  @Input() isReservation: boolean = false;
+  @Input() checkIn?: string;
+  @Input() checkOut?: string;
 
   location: LocationModel;
 

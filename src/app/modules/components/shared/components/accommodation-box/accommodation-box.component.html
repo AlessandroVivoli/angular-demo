@@ -1,6 +1,7 @@
 <div class="card h-100" (click)="onClick()">
     <div class="d-flex h-100" [ngClass]="{'flex-column': !changeLayout, 'flex-row flex-md-column': changeLayout}">
-        <img [src]="accommodation.imageUrl" [alt]="accommodation.title" class="card-img" [ngClass]="{'w-md-100 w-50': changeLayout}">
+        <img [src]="accommodation.imageUrl" [alt]="accommodation.title" class="card-img"
+            [ngClass]="{'w-md-100 w-50': changeLayout}">
         <div class="card-body d-flex flex-column flex-grow-1">
             <h5 class="card-title fw-500 mb-0 fs-md-5 fs-6">
                 {{accommodation.title}}
@@ -15,10 +16,13 @@
                     </div>
                 </ng-template>
                 <ng-template [ngIf]="!isFavorite">
-                    <p class="card-text text-uppercase fw-500 my-3">EUR {{accommodation.price}}</p>
+                    <p class="card-text text-uppercase fw-500 my-3" *ngIf="!isReservation">EUR {{accommodation.price}}
+                    </p>
+                    <p class="card-text fw-500 my-3" *ngIf="isReservation">{{checkIn}} - {{checkOut}}
+                        2022</p>
                     <div class="row">
-                        <div class="col-1" *ngFor="let i of [].constructor(accommodation.categorization)"><i
-                                class="fas fa-star"></i>
+                        <div class="col-1" *ngFor="let i of [].constructor(accommodation.categorization)">
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </ng-template>
