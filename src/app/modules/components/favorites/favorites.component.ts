@@ -13,17 +13,9 @@ export class FavoritesComponent implements OnInit {
 
   accommodations: AccommodationModel[] = [];
 
-  constructor(
-    private reservationList: ReservationListService,
-    private accommodationList: AccommodationListService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.accommodations = this.accommodationList.accommodationList.filter(
-      accommodation => this.reservationList.reservationList.find(
-        reservation => reservation.accommodationId === accommodation.id
-      )
-    );
   }
 
 }
