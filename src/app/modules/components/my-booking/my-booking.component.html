@@ -1,1 +1,11 @@
-<p>my-booking works!</p>
+<div class="container">
+    <h3 class="mt-3 mb-5">My bookings</h3>
+    <h5 class="mb-3">Upcoming bookings</h5>
+    <div class="col row-md">
+        <div class="col-12 col-md-3 col-lg-4">
+            <app-accommodation-box *ngFor="let reservation of reservations" [isReservation]="true"
+                [accommodation]="reservation" [changeLayout]="true" [checkIn]="getReservation(reservation).checkIn"
+                [checkOut]="getReservation(reservation).checkOut" [href]="'accommodations/' + reservation.id"></app-accommodation-box>
+        </div>
+    </div>
+</div>

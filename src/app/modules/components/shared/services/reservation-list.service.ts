@@ -9,7 +9,7 @@ export class ReservationListService {
   private readonly favorites: Set<ReservationModel>;
 
   constructor() {
-    this.favorites = new Set();
+    this.favorites = new Set(JSON.parse(localStorage.getItem('reservation') as string));
   }
 
   public addReservation(reservation: ReservationModel) {

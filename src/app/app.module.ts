@@ -17,6 +17,7 @@ import { MainComponent } from './modules/components/main/main.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
+import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SharedModule } from './modules/components/shared/shared.module';
     AccommodationComponent,
     AccommodationDetailsComponent,
     LocationComponent,
-    MyBookingComponent
+    MyBookingComponent,
+    AccommodationBookingComponent
   ],
   imports: [
     AppRoutingModule,
