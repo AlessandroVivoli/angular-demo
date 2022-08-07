@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
 import { LocationModel } from 'src/app/models/location.model';
@@ -25,7 +25,8 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private accommodationService: AccommodationListService,
     private locationService: LocationListService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +43,6 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
   }
 
   onBook() {
-    localStorage.getItem('account')
+    this.router.navigateByUrl(`accommodations/${this.id}/book`);
   }
 }
