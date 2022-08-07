@@ -1,0 +1,20 @@
+.card {
+    border: 1px solid #90909090 !important;
+    max-height: 200px;
+    
+    img {
+        object-fit: cover;
+        border-radius: 4px;
+        width: 150px;
+    }
+}
+
+#rating {
+    color: #F3B08E;
+}
+
+@media (max-width: 767px) {
+    .card img {
+        width: 100px;
+    }
+}
