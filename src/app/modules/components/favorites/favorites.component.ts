@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationModel } from 'src/app/models/location.model';
 import { AccommodationModel } from '../../../models/accommodation.model';
+import { AccommodationListService } from '../shared/services/accomodation-list.service';
+import { ReservationListService } from '../shared/services/reservation-list.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,11 +11,19 @@ import { AccommodationModel } from '../../../models/accommodation.model';
 })
 export class FavoritesComponent implements OnInit {
 
-  accommodations: AccommodationModel[];
+  accommodations: AccommodationModel[] = [];
 
-  constructor() { }
+  constructor(
+    private reservationList: ReservationListService,
+    private accommodationList: AccommodationListService
+  ) { }
 
   ngOnInit(): void {
+    this.accommodations = this.accommodationList.accommodationList.filter(
+      accommodation => this.reservationList.reservationList.find(
+        reservation => reservation.accommodationId === accommodation.id
+      )
+    );
   }
 
 }
