@@ -54,8 +54,6 @@ export class AccommodationComponent implements OnInit, OnDestroy {
 
       let filtered = false;
 
-      console.log(AccommodationTypeEnum[accommodation.type]);
-
       if (
         (!this.city || location!.name === this.city) &&
         (!this.guests.value || this.guests.value < accommodation.personCount) &&
@@ -80,5 +78,11 @@ export class AccommodationComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(
       `/accommodations?city=${cityValue}&check-in=${checkInValue}&check-out=${checkOutValue}&guests=${guestsValue}&type=${typeValue}`
     ).then(() => location.reload());
+  }
+
+  accommodationClicked(accommodation: AccommodationModel) {
+    console.log('Accommodation Output');
+    console.log(accommodation.id);
+    this.router.navigate(['accommodations', accommodation.id]);
   }
 }

@@ -19,23 +19,23 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
   @ViewChild('submit') button: ElementRef<HTMLButtonElement>;
 
-  private sub: Subscription;
+  #sub: Subscription = new Subscription();
 
   constructor(
     private accomodationService: AccommodationListService,
     private locationService: LocationListService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     let city: string = '';
 
-    this.sub = this.activatedRoute.queryParams.subscribe(params => {
-      city = params['city'];
-    });
-
-    console.log(city);
+    this.#sub.add(
+      this.activatedRoute.queryParams.subscribe(params => {
+        city = params['city'];
+      })
+    );
 
     this.city.setValue(city);
 
@@ -53,7 +53,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.#sub.unsubscribe();
   }
 
   onSubmit() {
@@ -61,8 +61,6 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   onSelectChange(event: Event) {
-    console.log(this.city.value);
-
     const parentDisplay = window.getComputedStyle(this.button.nativeElement.parentElement as HTMLDivElement).display;
 
     if (parentDisplay === 'none')

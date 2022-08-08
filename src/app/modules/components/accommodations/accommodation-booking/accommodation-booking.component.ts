@@ -22,7 +22,7 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
   accommodation: AccommodationModel;
   location: LocationModel;
 
-  private sub: Subscription;
+  #sub: Subscription = new Subscription();
   private id: string;
   nights: number;
 
@@ -39,9 +39,6 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
   @ViewChild('submitForm')
   private form: ElementRef<HTMLFormElement>;
 
-  @ViewChild('bookingModal')
-  private modal: any;
-
   constructor(
     private accommodationList: AccommodationListService,
     private locationList: LocationListService,
@@ -50,16 +47,18 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-    });
+    this.#sub.add(
+      this.activatedRoute.params.subscribe(params => {
+        this.id = params['id'];
+      })
+    );
 
     this.accommodation = this.accommodationList.accommodationList.find(accommodation => accommodation.id === this.id) as AccommodationModel;
     this.location = this.locationList.locationList.find(location => location.id === this.accommodation.locationID) as LocationModel;
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.#sub.unsubscribe();
   }
 
   onSubmit() {
@@ -67,7 +66,7 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
 
     this.nights = ((Date.parse(this.checkOut.value) - Date.parse(this.checkIn.value)) / 1000 / 60 / 60 / 24);
 
-    if(this.form.nativeElement.checkValidity())
+    if (this.form.nativeElement.checkValidity())
       $('#bookingModal').modal('show');
     this.form.nativeElement.classList.add('was-validated');
   }
