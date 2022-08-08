@@ -42,8 +42,6 @@ export class MyAccommodationFormComponent implements OnInit, AfterViewInit {
           else children.item(children.length - 1 - i)?.classList.remove('selected');
         }
       });
-
-    console.log(this.data);
   }
 
 }

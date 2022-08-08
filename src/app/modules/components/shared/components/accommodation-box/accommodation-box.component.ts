@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationModel } from 'src/app/models/location.model';
 import { AccommodationModel } from '../../../../../models/accommodation.model';
@@ -18,6 +18,9 @@ export class AccommodationBoxComponent implements OnInit {
   @Input() checkIn?: string;
   @Input() checkOut?: string;
 
+  @Output('OnClick')
+  accommodationOutput: EventEmitter<AccommodationModel> = new EventEmitter();
+
   location: LocationModel;
 
   constructor(private locationService: LocationListService, private router: Router) { }
@@ -27,7 +30,6 @@ export class AccommodationBoxComponent implements OnInit {
   }
 
   onClick() {
-    if (this.href)
-      this.router.navigateByUrl(this.href);
+    this.accommodationOutput.emit(this.accommodation);
   }
 }

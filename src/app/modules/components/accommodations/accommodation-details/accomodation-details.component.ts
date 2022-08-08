@@ -19,7 +19,7 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
 
   AccommodationType = AccommodationTypeEnum;
 
-  private sub: Subscription;
+  #sub: Subscription = new Subscription();
   private id: string;
 
   constructor(
@@ -30,16 +30,18 @@ export class AccommodationDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-    });
+    this.#sub.add(
+      this.activatedRoute.params.subscribe(params => {
+        this.id = params['id'];
+      })
+    );
 
     this.accommodation = this.accommodationService.accommodationList.find(accommodation => accommodation.id === this.id) as AccommodationModel;
     this.location = this.locationService.locationList.find(location => location.id === this.accommodation.locationID) as LocationModel;
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe;
+    this.#sub.unsubscribe();
   }
 
   onBook() {
