@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
 import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
-import { FavoritesComponent } from './modules/components/favorites/favorites.component';
+import { MyPlacesComponent } from './modules/components/favorites/my-places.component';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
@@ -22,7 +22,7 @@ import { AccommodationBookingComponent } from './modules/components/accommodatio
 @NgModule({
   declarations: [
     AppComponent,
-    FavoritesComponent,
+    MyPlacesComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent,
