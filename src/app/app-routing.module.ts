@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'my-places', component: MyPlacesComponent },
   { path: 'my-bookings', component: MyBookingComponent },
   { path: 'add-new', component: MyAccommodationFormComponent },
+  { path: 'edit/:id', component: MyAccommodationFormComponent},
   { path: 'login', component: LoginComponent }
 ];
 
