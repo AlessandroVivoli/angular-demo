@@ -13,7 +13,7 @@ import { HeaderComponent } from './modules/components/header/header.component';
 import { LocationComponent } from './modules/components/locations/location/location.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
-import { MainComponent } from './modules/components/main/main.component';
+import { HomeComponent } from './modules/components/home/home.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
@@ -24,7 +24,7 @@ import { AccommodationBookingComponent } from './modules/components/accommodatio
     AppComponent,
     FavoritesComponent,
     HeaderComponent,
-    MainComponent,
+    HomeComponent,
     FooterComponent,
     LocationsComponent,
     RecommendationsComponent,
