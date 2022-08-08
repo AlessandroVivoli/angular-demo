@@ -25,6 +25,6 @@ export class AppComponent implements OnInit {
 
     if (!this.isLoggedIn && location.pathname !== '/login')
       this.router.navigate(['login']);
-    else this.router.navigate(['home']);
+    else if(location.pathname === '/') this.router.navigate(['home']);
   }
 }
