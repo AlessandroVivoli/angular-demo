@@ -20,9 +20,24 @@
                 </div>
                 <div class="off-canvas-body">
                     <ul class="navbar-nav gap-4 gap-md-5">
-                        <li class="nav-item rounded p-2"><a href="locations" class="nav-link link-dark">Locations</a></li>
-                        <li class="nav-item rounded p-2"><a href="my-places" class="nav-link link-dark">My places</a></li>
-                        <li class="nav-item rounded p-2"><a href="my-bookings" class="nav-link link-dark">My bookings</a></li>
+                        <li class="nav-item rounded p-2">
+                            <a href="locations" class="nav-link link-primary" [ngClass]="{
+                                'text-primary disabled': pathName === '/locations',
+                                'text-dark': pathName !== '/locations'
+                            }">Locations</a>
+                        </li>
+                        <li class="nav-item rounded p-2">
+                            <a href="my-places" class="nav-link link-primary" [ngClass]="{
+                                'text-primary disabled': pathName === '/my-places',
+                                'text-dark': pathName !== '/my-places'
+                            }">My places</a>
+                        </li>
+                        <li class="nav-item rounded p-2">
+                            <a href="my-bookings" class="nav-link link-primary" [ngClass]="{
+                                'text-primary disabled': pathName === '/my-bookings',
+                                'text-dark': pathName !== '/my-bookings'
+                            }">My bookings</a>
+                        </li>
                     </ul>
                 </div>
             </div>
