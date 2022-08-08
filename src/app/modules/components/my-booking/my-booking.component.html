@@ -5,7 +5,7 @@
         <div class="col-12 col-md-3 col-lg-4">
             <app-accommodation-box *ngFor="let reservation of reservations" [isReservation]="true"
                 [accommodation]="reservation" [changeLayout]="true" [checkIn]="getReservation(reservation).checkIn"
-                [checkOut]="getReservation(reservation).checkOut" [href]="'accommodations/' + reservation.id"></app-accommodation-box>
+                [checkOut]="getReservation(reservation).checkOut" [href]="'accommodation/' + reservation.id"></app-accommodation-box>
         </div>
     </div>
 </div>

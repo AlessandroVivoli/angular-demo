@@ -15,10 +15,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'locations', component: LocationsComponent },
   { path: 'accommodations', component: AccommodationComponent },
-  { path: 'accommodations/:id', component: AccommodationDetailsComponent },
-  { path: 'accommodations/:id/book', component: AccommodationBookingComponent },
-  { path: 'favorites', component: FavoritesComponent },
-  { path: 'bookings', component: MyBookingComponent },
+  { path: 'accommodation/:id', component: AccommodationDetailsComponent },
+  { path: 'accommodation/:id/book', component: AccommodationBookingComponent },
+  { path: 'my-places', component: FavoritesComponent },
+  { path: 'my-bookings', component: MyBookingComponent },
   { path: 'login', component: LoginComponent }
 ];
 
