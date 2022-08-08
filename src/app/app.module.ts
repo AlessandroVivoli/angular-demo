@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
 import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
-import { MyPlacesComponent } from './modules/components/favorites/my-places.component';
+import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
@@ -18,6 +18,7 @@ import { MyBookingComponent } from './modules/components/my-booking/my-booking.c
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
 import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
+import { MyAccommodationFormComponent } from './modules/components/my-accommodation-form/my-accommodation-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AccommodationBookingComponent } from './modules/components/accommodatio
     AccommodationDetailsComponent,
     LocationComponent,
     MyBookingComponent,
-    AccommodationBookingComponent
+    AccommodationBookingComponent,
+    MyAccommodationFormComponent
   ],
   imports: [
     AppRoutingModule,
