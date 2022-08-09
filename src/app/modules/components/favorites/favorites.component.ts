@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApartmentModel } from '../shared/models/apartment/apartment.model';
+import { LocationModel } from 'src/app/models/location.model';
+import { AccommodationModel } from '../../../models/accommodation.model';
+import { AccommodationListService } from '../shared/services/accomodation-list.service';
+import { ReservationListService } from '../shared/services/reservation-list.service';
 
 @Component({
   selector: 'app-favorites',
@@ -8,10 +11,7 @@ import { ApartmentModel } from '../shared/models/apartment/apartment.model';
 })
 export class FavoritesComponent implements OnInit {
 
-  apartments: ApartmentModel[] = [
-    new ApartmentModel('Treehouse', 0, {city: 'Hrusice', country: '', img: '', location: '', street: ''}, 0, 'assets/img/apartments/favorite-1.png'),
-    new ApartmentModel('Tiny House', 0, {city: 'Hrusice', country: '', img: '', location: '', street: ''}, 0, 'assets/img/apartments/favorite-2.png')
-  ]
+  accommodations: AccommodationModel[] = [];
 
   constructor() { }
 

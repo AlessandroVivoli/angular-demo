@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApartmentDetailsComponent } from './modules/components/apartments/apartment-details/apartment-details.component';
-import { ApartmentsComponent } from './modules/components/apartments/apartments.component';
+import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
+import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
+import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
 import { FavoritesComponent } from './modules/components/favorites/favorites.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
 import { MainComponent } from './modules/components/main/main.component';
-import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
+import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'locations', component: LocationsComponent },
-  { path: 'apartments', component: ApartmentsComponent },
-  { path: 'apartments/:id', component: ApartmentDetailsComponent },
+  { path: 'accommodations', component: AccommodationComponent },
+  { path: 'accommodations/:id', component: AccommodationDetailsComponent },
+  { path: 'accommodations/:id/book', component: AccommodationBookingComponent},
   { path: 'favorites', component: FavoritesComponent },
-  { path: 'recommendations', component: RecommendationsComponent },
+  { path: 'bookings', component: MyBookingComponent },
   { path: 'login', component: LoginComponent }
 ];
 

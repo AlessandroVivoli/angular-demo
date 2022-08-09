@@ -4,22 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApartmentDetailsComponent } from './modules/components/apartments/apartment-details/apartment-details.component';
-import { ApartmentsComponent } from './modules/components/apartments/apartments.component';
+import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
+import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
 import { FavoritesComponent } from './modules/components/favorites/favorites.component';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
+import { LocationComponent } from './modules/components/locations/location/location.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
 import { MainComponent } from './modules/components/main/main.component';
+import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
 import { SharedModule } from './modules/components/shared/shared.module';
+import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApartmentDetailsComponent,
     FavoritesComponent,
     HeaderComponent,
     MainComponent,
@@ -28,12 +30,17 @@ import { SharedModule } from './modules/components/shared/shared.module';
     RecommendationsComponent,
     LoginComponent,
     FormControlInputComponent,
-    ApartmentsComponent
+    AccommodationComponent,
+    AccommodationDetailsComponent,
+    LocationComponent,
+    MyBookingComponent,
+    AccommodationBookingComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule
   ],
   providers: [],

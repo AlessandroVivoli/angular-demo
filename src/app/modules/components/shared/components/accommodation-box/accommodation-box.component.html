@@ -1,11 +1,12 @@
-<div class="card h-100" (click)="onClick()">
+<div type="button" class="card h-100" (click)="onClick()">
     <div class="d-flex h-100" [ngClass]="{'flex-column': !changeLayout, 'flex-row flex-md-column': changeLayout}">
-        <img [src]="apartment.img" [alt]="apartment.name" class="card-img" [ngClass]="{'w-md-100 w-50': changeLayout}">
+        <img [src]="accommodation.imageUrl" [alt]="accommodation.title" class="card-img"
+            [ngClass]="{'w-md-100 w-50': changeLayout}">
         <div class="card-body d-flex flex-column flex-grow-1">
             <h5 class="card-title fw-500 mb-0 fs-md-5 fs-6">
-                {{apartment.name}}
+                {{accommodation.title}}
             </h5>
-            <small class="text-muted card-text">{{apartment.location.city}}</small>
+            <small class="text-muted card-text">{{location.name}}</small>
             <div class="d-flex flex-column justify-content-end flex-grow-1">
                 <ng-template [ngIf]="isFavorite">
                     <p class="card-text fw-500 my-3">Renting the entire unit</p>
@@ -15,10 +16,13 @@
                     </div>
                 </ng-template>
                 <ng-template [ngIf]="!isFavorite">
-                    <p class="card-text text-uppercase fw-500 my-3">EUR {{apartment.price}}</p>
+                    <p class="card-text text-uppercase fw-500 my-3" *ngIf="!isReservation">EUR {{accommodation.price}}
+                    </p>
+                    <p class="card-text fw-500 my-3" *ngIf="isReservation">{{checkIn}} - {{checkOut}}
+                        2022</p>
                     <div class="row">
-                        <div class="col-1" *ngFor="let i of [].constructor(apartment.rating)"><i
-                                class="fas fa-star"></i>
+                        <div class="col-1" *ngFor="let i of [].constructor(accommodation.categorization)">
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </ng-template>

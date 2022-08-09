@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm') el: ElementRef<HTMLFormElement>;
 
+  email: string = '';
+
   constructor(private authService: AuthService, private router: Router) {
     if(authService.isLoggedIn())
       router.navigate(['']);
@@ -25,6 +27,8 @@ export class LoginComponent implements OnInit {
       event.stopPropagation();
     }else {
       this.authService.login();
+
+      localStorage.setItem('email', this.email);
 
       location.reload();
     }

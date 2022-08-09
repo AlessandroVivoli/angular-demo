@@ -1,7 +1,7 @@
 <a [href]="link" class="card text-white">
-    <img [src]="location.img" [alt]="location.city" class="card-img">
+    <img [src]="location.imageUrl" [alt]="location.name" class="card-img">
     <div class="card-img-overlay">
-        <h5 class="card-title">{{location.city}}</h5>
+        <h5 class="card-title">{{location.name}}</h5>
         <p class="card-text">{{num == null ? 0 : num | number}} propert{{(num != 1) ? 'ies' : 'y'}}</p>
     </div>
 </a>
