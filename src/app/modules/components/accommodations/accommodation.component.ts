@@ -24,7 +24,6 @@ export class AccommodationComponent implements OnInit, OnDestroy {
   accommodations: AccommodationModel[] = [];
 
   data: { inputValue: string, label: string }[] = [];
-
   #sub: Subscription = new Subscription();
 
   constructor(

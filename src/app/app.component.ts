@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccommodationListService } from './modules/components/shared/services/accomodation-list.service';
 import { AuthService } from './modules/components/shared/services/auth.service';
 
 @Component({
