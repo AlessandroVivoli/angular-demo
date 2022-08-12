@@ -1,7 +1,9 @@
-<div class="container">
-    <div class="d-flex justify-content-between my-5">
+<div class="container pt-5">
+    <div class="d-flex justify-content-between pb-5">
         <h3>My places</h3>
-        <button class="btn btn-primary text-uppercase text-white d-none d-md-inline-block">Add new place</button>
+        <a href="add-new" class="btn btn-primary text-uppercase text-white d-none d-md-flex justify-content-center align-items-center">
+            Add new place
+        </a>
     </div>
     <div class="row g-3">
         <div class="col-12 col-md-4 col-lg-3" *ngFor="let accommodation of accommodations">

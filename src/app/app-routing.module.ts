@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
 import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
 import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
-import { FavoritesComponent } from './modules/components/favorites/favorites.component';
+import { HomeComponent } from './modules/components/home/home.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
-import { MainComponent } from './modules/components/main/main.component';
+import { MyAccommodationFormComponent } from './modules/components/my-accommodation-form/my-accommodation-form.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
+import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
+
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
+  { path: '', component: AppComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'locations', component: LocationsComponent },
   { path: 'accommodations', component: AccommodationComponent },
   { path: 'accommodations/:id', component: AccommodationDetailsComponent },
-  { path: 'accommodations/:id/book', component: AccommodationBookingComponent},
-  { path: 'favorites', component: FavoritesComponent },
-  { path: 'bookings', component: MyBookingComponent },
+  { path: 'accommodations/:id/book', component: AccommodationBookingComponent },
+  { path: 'my-places', component: MyPlacesComponent },
+  { path: 'my-bookings', component: MyBookingComponent },
+  { path: 'add-new', component: MyAccommodationFormComponent },
+  { path: 'edit/:id', component: MyAccommodationFormComponent},
   { path: 'login', component: LoginComponent }
 ];
 

@@ -18,6 +18,23 @@ select {
     }
 }
 
+textarea {
+    width: 100%;
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+
+    &:focus {
+        box-shadow: none;
+        outline: none;
+
+        &+label {
+            color: #EF976B;
+        }
+
+        border-color: #EF976B;
+    }
+}
+
 ::ng-deep .was-validated {
 
 

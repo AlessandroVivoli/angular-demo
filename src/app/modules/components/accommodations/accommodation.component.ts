@@ -24,8 +24,7 @@ export class AccommodationComponent implements OnInit, OnDestroy {
   accommodations: AccommodationModel[] = [];
 
   data: { inputValue: string, label: string }[] = [];
-
-  private sub: Subscription;
+  #sub: Subscription = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,13 +40,15 @@ export class AccommodationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.queryParams.subscribe(params => {
-      this.city = params['city'];
-      this.checkIn.setValue(params['check-in']);
-      this.checkOut.setValue(params['check-out']);
-      this.guests.setValue(params['guests']);
-      this.accomodationType.setValue(params['type']);
-    });
+    this.#sub.add(
+      this.activatedRoute.queryParams.subscribe(params => {
+        this.city = params['city'];
+        this.checkIn.setValue(params['check-in']);
+        this.checkOut.setValue(params['check-out']);
+        this.guests.setValue(params['guests']);
+        this.accomodationType.setValue(params['type']);
+      })
+    );
 
     this.accommodations = this.apartmentService.accommodationList.filter(accommodation => {
       let location = this.locationService.locationList.find(location => location.id === accommodation.locationID);
@@ -60,12 +61,12 @@ export class AccommodationComponent implements OnInit, OnDestroy {
         (!this.accomodationType.value || this.accomodationType.value === AccommodationTypeEnum[accommodation.type])
       ) filtered = true;
 
-        return filtered;
+      return filtered;
     });
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.#sub.unsubscribe();
   }
 
   onSearch(): void {
@@ -81,7 +82,7 @@ export class AccommodationComponent implements OnInit, OnDestroy {
   }
 
   accommodationClicked(accommodation: AccommodationModel) {
-    console.log('Accommodation Output');
+    console.log('Accommodation output');
     console.log(accommodation.id);
     this.router.navigate(['accommodations', accommodation.id]);
   }

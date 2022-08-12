@@ -6,10 +6,10 @@ import { ReservationListService } from '../shared/services/reservation-list.serv
 
 @Component({
   selector: 'app-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.scss']
+  templateUrl: './my-places.component.html',
+  styleUrls: ['./my-places.component.scss']
 })
-export class FavoritesComponent implements OnInit {
+export class MyPlacesComponent implements OnInit {
 
   accommodations: AccommodationModel[] = [];
 

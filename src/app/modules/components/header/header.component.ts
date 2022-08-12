@@ -12,10 +12,13 @@ export class HeaderComponent implements OnInit {
   @Output()
   onLogout = new EventEmitter();
 
+  pathName: string;
+
   constructor() {
   }
 
   ngOnInit(): void {
+    this.pathName = location.pathname;
   }
 
   logout() {

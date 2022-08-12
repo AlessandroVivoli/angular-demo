@@ -1,44 +1,43 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
 import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
 import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
-import { FavoritesComponent } from './modules/components/favorites/favorites.component';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
-import { LocationComponent } from './modules/components/locations/location/location.component';
+import { HomeComponent } from './modules/components/home/home.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
-import { MainComponent } from './modules/components/main/main.component';
+import { MyAccommodationFormComponent } from './modules/components/my-accommodation-form/my-accommodation-form.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
-import { RecommendationsComponent } from './modules/components/recommendations/recommendations.component';
+import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
 import { SharedModule } from './modules/components/shared/shared.module';
-import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FavoritesComponent,
-    HeaderComponent,
-    MainComponent,
-    FooterComponent,
-    LocationsComponent,
-    RecommendationsComponent,
     LoginComponent,
-    FormControlInputComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
     AccommodationComponent,
     AccommodationDetailsComponent,
-    LocationComponent,
+    AccommodationBookingComponent,
+    MyAccommodationFormComponent,
+    LocationsComponent,
+    MyPlacesComponent,
     MyBookingComponent,
-    AccommodationBookingComponent
+    FormControlInputComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     SharedModule
