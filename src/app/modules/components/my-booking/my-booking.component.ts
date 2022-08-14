@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { ReservationModel } from 'src/app/models/reservation.model';
-import { AccomodationListService } from '../../../services/accomodation-list.service';
-import { ReservationListService } from '../../../services/reservation-list.service';
+import { AccomodationListService } from 'src/app/services/accomodation-list.service';
+import { ReservationListService } from 'src/app/services/reservation-list.service';
 
 @Component({
   selector: 'app-my-booking',

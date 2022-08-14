@@ -1,6 +1,5 @@
+import { LocationModel } from 'src/app/models/location.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { QueryParamsHandling, RouterLink } from '@angular/router';
-import { LocationModel } from '../../../../../models/location.model';
 
 @Component({
   selector: 'app-location-box',

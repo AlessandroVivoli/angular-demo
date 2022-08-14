@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccomodationModel } from '../../../models/accomodation.model';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
 
 @Component({
   selector: 'app-favorites',

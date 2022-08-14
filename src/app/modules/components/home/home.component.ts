@@ -2,10 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
-import { AccomodationModel } from '../../../models/accomodation.model';
-import { LocationModel } from '../../../models/location.model';
-import { AccomodationListService } from '../../../services/accomodation-list.service';
-import { LocationListService } from '../../../services/location-list.service';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { LocationModel } from 'src/app/models/location.model';
+import { AccomodationListService } from 'src/app/services/accomodation-list.service';
+import { LocationListService } from 'src/app/services/location-list.service';
 
 @Component({
   selector: 'app-main',

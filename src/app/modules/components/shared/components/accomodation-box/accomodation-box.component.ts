@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocationModel } from 'src/app/models/location.model';
-import { AccomodationModel } from '../../../../../models/accomodation.model';
-import { LocationListService } from '../../../../../services/location-list.service';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { LocationListService } from 'src/app/services/location-list.service';
 
 @Component({
   selector: 'app-accomodation-box',

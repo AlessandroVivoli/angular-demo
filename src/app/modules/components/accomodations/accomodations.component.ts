@@ -3,9 +3,9 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
-import { AccomodationModel } from '../../../models/accomodation.model';
-import { AccomodationListService } from '../../../services/accomodation-list.service';
-import { LocationListService } from '../../../services/location-list.service';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { AccomodationListService } from 'src/app/services/accomodation-list.service';
+import { LocationListService } from 'src/app/services/location-list.service';
 
 @Component({
   selector: 'app-apartments',
