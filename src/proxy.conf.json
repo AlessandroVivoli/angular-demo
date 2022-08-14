@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://devcademy.herokuapp.com",
+        "secure": true,
+        "changeOrigin": true
+    }
+}
