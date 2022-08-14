@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AccommodationBoxComponent } from './components/accommodation-box/accommodation-box.component';
+import { AccomodationBoxComponent } from './components/accomodation-box/accomodation-box.component';
 import { LocationBoxComponent } from './components/location-box/location-box.component';
 
 @NgModule({
   declarations: [
     LocationBoxComponent,
-    AccommodationBoxComponent
+    AccomodationBoxComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +15,7 @@ import { LocationBoxComponent } from './components/location-box/location-box.com
   ],
   exports: [
     LocationBoxComponent,
-    AccommodationBoxComponent
+    AccomodationBoxComponent
   ]
 })
 export class SharedModule { }

@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
+import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
 
 @Component({
-  selector: 'app-my-accommodation-form',
-  templateUrl: './my-accommodation-form.component.html',
-  styleUrls: ['./my-accommodation-form.component.scss']
+  selector: 'app-my-accomodation-form',
+  templateUrl: './my-accomodation-form.component.html',
+  styleUrls: ['./my-accomodation-form.component.scss']
 })
-export class MyAccommodationFormComponent implements OnInit, AfterViewInit {
+export class MyAccomodationFormComponent implements OnInit, AfterViewInit {
   name = new FormControl();
   shortDesc = new FormControl();
   longDesc = new FormControl();
@@ -21,7 +21,7 @@ export class MyAccommodationFormComponent implements OnInit, AfterViewInit {
   @ViewChild('stars')
   starContainer: ElementRef<HTMLDivElement>;
 
-  data: { inputValue: string, label: string }[] = Object.keys(AccommodationTypeEnum).filter(item => {
+  data: { inputValue: string, label: string }[] = Object.keys(AccomodationTypeEnum).filter(item => {
     return isNaN(Number(item));
   }).map(item => { return { inputValue: item, label: item } });
 

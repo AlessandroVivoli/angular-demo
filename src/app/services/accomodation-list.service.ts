@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
-import { AccommodationModel as AccommodationModel } from '../../../../models/accommodation.model';
+import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
+import { AccomodationModel as AccomodationModel } from '../models/accomodation.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccommodationListService {
+export class AccomodationListService {
 
-  private readonly accommodations: Set<AccommodationModel>;
+  private readonly accommodations: Set<AccomodationModel>;
 
   constructor() {
-    this.accommodations = new Set<AccommodationModel>(
+    this.accommodations = new Set<AccomodationModel>(
       [
         {
           id: "1c0a2708-5f22-4797-88bd-ab81d64e02b1",
@@ -20,7 +20,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://njuskalo.blob.core.windows.net/njuskalo/93676/365375/img-1667582.jpg",
@@ -36,7 +36,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://travelcroatia.live/wp-content/uploads/2021/08/doubletree_hilton_zagreb.jpg",
@@ -52,7 +52,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Room,
+          type: AccomodationTypeEnum.Room,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/9c/49/4f/the-westin-zagreb-daytime.jpg?w=1200&h=-1&s=1",
@@ -68,7 +68,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/39/87/7b/hotel-sport.jpg?w=1200&h=-1&s=1",
@@ -84,7 +84,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://cf.bstatic.com/xdata/images/hotel/max500/214277752.jpg?k=d02735b8d16255f7be13a430520315c500686a32dc1cbfb013927666f89f1718&o=&hp=1",
@@ -100,7 +100,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.MobileHome,
+          type: AccomodationTypeEnum.MobileHome,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://q-xx.bstatic.com/xdata/images/hotel/840x460/67108182.jpg?k=781ee2a3a2c00292c52aecb23276c716fcc4f096a8acc4b3ccc8ed30ef4e8c15&o=",
@@ -116,7 +116,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://m.vecernji.hr/media/img/1e/c1/8c6a7be051b3d87557aa.jpeg",
@@ -132,7 +132,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://www.sunturist.com/wp-content/uploads/2020/01/img537308.jpeg",
@@ -148,7 +148,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.Suite,
+          type: AccomodationTypeEnum.Suite,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://media-cdn.tripadvisor.com/media/photo-s/0e/94/2f/95/hotel-matija-gubec.jpg",
@@ -164,7 +164,7 @@ export class AccommodationListService {
           `<p>Sed vitae augue ut orci scelerisque sollicitudin nec venenatis libero. Aliquam tincidunt eu ante non accumsan. In eget nisl ut mauris tempus ultrices ornare vel nulla. Integer viverra diam quis neque consequat, nec euismod arcu hendrerit. Quisque at mauris bibendum, pulvinar elit id, accumsan felis. Etiam pretium tempor mauris sed auctor. Quisque mollis orci vitae luctus dictum. Vestibulum consectetur accumsan porta. Proin vel felis tincidunt, dapibus neque tempus, aliquet odio. Sed nec felis erat. Suspendisse fringilla nibh et purus commodo euismod. Donec suscipit ligula urna, non pretium eros consectetur ac. Praesent sodales in odio vel finibus. Aenean metus lectus, condimentum in malesuada venenatis, ullamcorper quis diam. Sed luctus gravida tortor, ac mollis risus gravida vitae. Quisque porta rutrum velit.</p>
            <p>In pellentesque tellus ac lorem auctor, in elementum ante ultricies. Praesent eu porttitor mauris. Fusce quis erat ut libero mollis convallis id et ligula. Phasellus vel venenatis nibh. Nam lacinia erat sit amet rhoncus posuere. Etiam ultricies, tellus at congue malesuada, libero leo iaculis ex, id porta est felis at arcu. Aliquam sit amet massa accumsan, dapibus nisi et, convallis ipsum. Donec nec sem massa. Fusce felis nisi, gravida ac feugiat ac, auctor sed risus. Aenean viverra nunc et gravida tincidunt. Mauris id aliquam augue. Maecenas dapibus nec nunc vitae vulputate. Aliquam elementum semper lacinia.</p>
            <p>Suspendisse pretium semper pulvinar. Proin semper rutrum lorem et porttitor. Aliquam lacinia dolor in nisl pretium, non pulvinar nulla placerat. Praesent sit amet leo eget diam rhoncus facilisis a a ipsum. Sed nec mollis orci, id luctus libero. Mauris luctus, quam vitae volutpat suscipit, eros orci mollis felis, a tincidunt est mauris id diam. Pellentesque et ullamcorper sapien. Integer consectetur iaculis tellus a placerat. Donec ac metus non ipsum fringilla pretium quis porta enim. Quisque ligula erat, ullamcorper non scelerisque eget, lacinia vel nulla. Quisque maximus leo quis lacus posuere, ut finibus mi vulputate.</p>`,
-          type: AccommodationTypeEnum.MobileHome,
+          type: AccomodationTypeEnum.MobileHome,
           categorization: 3,
           personCount: 4,
           imageUrl: "https://www.private-apartments-croatia.com/img/object_photo/4269_2877/24.jpeg",
@@ -172,20 +172,20 @@ export class AccommodationListService {
           price: 100,
           locationID: "0f29d778-0592-43cb-a21c-a4aa6a4c7997"
         }
-      ] as AccommodationModel[]
+      ] as AccomodationModel[]
     );
   }
 
-  get accommodationList() {
+  get accomodationList() {
     return [...this.accommodations];
   }
 
-  addAccommodations(...accommodations: AccommodationModel[]) {
+  addAccommodations(...accommodations: AccomodationModel[]) {
     for (const accommodation of accommodations)
       this.accommodations.add(accommodation);
   }
 
-  removeAccomodation(node: AccommodationModel) {
+  removeAccomodation(node: AccomodationModel) {
     this.accommodations.delete(node);
   }
 }

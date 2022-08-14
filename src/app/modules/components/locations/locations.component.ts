@@ -2,9 +2,9 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LocationModel } from '../../../models/location.model';
-import { AccommodationListService } from '../shared/services/accomodation-list.service';
-import { LocationListService } from '../shared/services/location-list.service';
+import { LocationModel } from 'src/app/models/location.model';
+import { AccomodationListService } from 'src/app/services/accomodation-list.service';
+import { LocationListService } from 'src/app/services/location-list.service';
 
 @Component({
   selector: 'app-locations',
@@ -22,7 +22,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
   #sub: Subscription = new Subscription();
 
   constructor(
-    private accomodationService: AccommodationListService,
+    private accomodationService: AccomodationListService,
     private locationService: LocationListService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -43,7 +43,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
     locations.filter(location => city === undefined || city === '' || location.name === city).forEach(location => {
       this.data.push({
         location: location,
-        num: this.accomodationService.accommodationList.filter(apartment => apartment.locationID === location.id).reduce((first) => { return first + 1 }, 0)
+        num: this.accomodationService.accomodationList.filter(apartment => apartment.locationID === location.id).reduce((first) => { return first + 1 }, 0)
       });
     })
 
@@ -57,13 +57,13 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
+    //this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
   }
 
   onSelectChange(event: Event) {
     const parentDisplay = window.getComputedStyle(this.button.nativeElement.parentElement as HTMLDivElement).display;
 
-    if (parentDisplay === 'none')
-      this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
+    if (parentDisplay === 'none') {}
+      //this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
   }
 }

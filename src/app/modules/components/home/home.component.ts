@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
-import { AccommodationModel } from '../../../models/accommodation.model';
+import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
+import { AccomodationModel } from '../../../models/accomodation.model';
 import { LocationModel } from '../../../models/location.model';
-import { AccommodationListService } from '../shared/services/accomodation-list.service';
-import { LocationListService } from '../shared/services/location-list.service';
+import { AccomodationListService } from '../../../services/accomodation-list.service';
+import { LocationListService } from '../../../services/location-list.service';
 
 @Component({
   selector: 'app-main',
@@ -14,7 +14,7 @@ import { LocationListService } from '../shared/services/location-list.service';
 })
 export class HomeComponent implements OnInit {
   locations: LocationModel[] = [];
-  accomodations: AccommodationModel[] = [];
+  accomodations: AccomodationModel[] = [];
   nums: number[] = [];
 
   place = new FormControl('');
@@ -28,20 +28,20 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('form') el: ElementRef<HTMLFormElement>;
 
-  constructor(private accommodationService: AccommodationListService, private locationService: LocationListService, private router: Router) {}
+  constructor(private accommodationService: AccomodationListService, private locationService: LocationListService, private router: Router) {}
 
   ngOnInit(): void {
-    this.accomodations = this.accommodationService.accommodationList;
+    this.accomodations = this.accommodationService.accomodationList;
     this.locations = this.locationService.locationList;
 
-    const types: Set<string> = new Set(this.accommodationService.accommodationList.map((accommodation) => AccommodationTypeEnum[accommodation.type]));
+    const types: Set<string> = new Set(this.accommodationService.accomodationList.map((accommodation) => AccomodationTypeEnum[accommodation.type]));
 
     types.forEach(type => {
       this.types.push({ inputValue: type, label: type })
     });
 
     this.locations.forEach((location) => {
-      this.places.push({ inputValue: location.name, label: location.name });
+      this.places.push({ inputValue: location.id, label: location.name });
 
       this.nums.push(
         this.accomodations.filter((accommodation) => accommodation.locationID === location.id)
@@ -57,9 +57,14 @@ export class HomeComponent implements OnInit {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      this.router.navigateByUrl(`/accommodations?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
+      // this.router.navigateByUrl(`/accommodations?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
+      this.router.navigate(['location', this.place.value])
     }
 
     this.el.nativeElement.classList.add('was-validated')
+  }
+
+  accomodationClicked(accomodation: AccomodationModel) {
+    this.router.navigate(['accomodation', accomodation.id])
   }
 }

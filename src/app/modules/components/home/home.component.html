@@ -36,23 +36,23 @@
     <section id="popular-locations" class="mt-5 mt-md-6 mt-xl-7">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Popular locations</h1>
-            <a href="/locations" class="btn btn-light text-primary text-uppercase fw-500">
+            <a routerLink="/locations" class="btn btn-light text-primary text-uppercase fw-500">
                 <span id="desktop">View all locations <i class="far fa-arrow-right"></i></span>
                 <span id="mobile">View more</span>
             </a>
         </div>
         <div class="row g-3 g-md-4 mt-2">
             <div class="col-6">
-                <app-location-box [href]="'/accommodations?city=' + locations[0].name" [location]="locations[0]"
+                <app-location-box [routerLink]="['/location', locations[0].id]" [location]="locations[0]"
                     [property-num]="nums[0]"></app-location-box>
             </div>
             <div class="col-6">
-                <app-location-box [href]="'/accommodations?city=' + locations[1].name" [location]="locations[1]"
+                <app-location-box [routerLink]="['/location', locations[1].id]" [location]="locations[1]"
                     [property-num]="nums[0]">
                 </app-location-box>
             </div>
             <div class="col-6 col-md-4">
-                <app-location-box [href]="'/accommodations?city=' + locations[2].name" [location]="locations[2]"
+                <app-location-box [routerLink]="['/location', locations[2].id]" [location]="locations[2]"
                     [property-num]="nums[0]">
                 </app-location-box>
             </div><!-- 
@@ -70,23 +70,23 @@
     <section id="popular-homes" class="mt-5 mt-md-6 mt-xl-7 mb-5">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Homes guests love</h1>
-            <a href="/accommodations" class="btn btn-light text-primary text-uppercase fw-500">
+            <a routerLink="/recommendations" class="btn btn-light text-primary text-uppercase fw-500">
                 <span id="desktop">View all homes <i class="far fa-arrow-right"></i></span>
                 <span id="mobile">View more</span>
             </a>
         </div>
         <div class="row g-3 g-md-4 mt-2">
             <div class="col-6 col-md-3">
-                <app-accommodation-box [href]="'/accommodations/'+accomodations[0].id" [accommodation]="accomodations[0]"></app-accommodation-box>
+                <app-accomodation-box [accomodation]="accomodations[0]" (OnClick)="accomodationClicked($event)"></app-accomodation-box>
             </div>
             <div class="col-6 col-md-3">
-                <app-accommodation-box [href]="'/accommodations/'+accomodations[1].id" [accommodation]="accomodations[1]"></app-accommodation-box>
+                <app-accomodation-box [accomodation]="accomodations[1]" (OnClick)="accomodationClicked($event)"></app-accomodation-box>
             </div>
             <div class="col-3 d-none d-md-inline">
-                <app-accommodation-box [href]="'/accommodations/'+accomodations[2].id" [accommodation]="accomodations[2]"></app-accommodation-box>
+                <app-accomodation-box [accomodation]="accomodations[2]" (OnClick)="accomodationClicked($event)"></app-accomodation-box>
             </div>
             <div class="col-3 d-none d-md-inline">
-                <app-accommodation-box [href]="'/accommodations/'+accomodations[3].id" [accommodation]="accomodations[3]"></app-accommodation-box>
+                <app-accomodation-box [accomodation]="accomodations[3]" (OnClick)="accomodationClicked($event)"></app-accomodation-box>
             </div>
         </div>
     </section>

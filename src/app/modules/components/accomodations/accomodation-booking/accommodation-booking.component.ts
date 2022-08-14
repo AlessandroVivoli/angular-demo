@@ -2,24 +2,24 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
-import { AccommodationModel } from 'src/app/models/accommodation.model';
+import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { LocationModel } from 'src/app/models/location.model';
 import { ReservationModel } from 'src/app/models/reservation.model';
-import { AccommodationListService } from '../../shared/services/accomodation-list.service';
-import { LocationListService } from '../../shared/services/location-list.service';
-import { ReservationListService } from '../../shared/services/reservation-list.service';
+import { AccomodationListService } from '../../../../services/accomodation-list.service';
+import { LocationListService } from '../../../../services/location-list.service';
+import { ReservationListService } from '../../../../services/reservation-list.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-accommodation-booking',
-  templateUrl: './accommodation-booking.component.html',
-  styleUrls: ['./accommodation-booking.component.scss']
+  selector: 'app-accomodation-booking',
+  templateUrl: './accomodation-booking.component.html',
+  styleUrls: ['./accomodation-booking.component.scss']
 })
-export class AccommodationBookingComponent implements OnInit, OnDestroy {
+export class AccomodationBookingComponent implements OnInit, OnDestroy {
 
-  accommodation: AccommodationModel;
+  accommodation: AccomodationModel;
   location: LocationModel;
 
   #sub: Subscription = new Subscription();
@@ -34,13 +34,13 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
 
   year: number;
 
-  AccommodationType = AccommodationTypeEnum;
+  AccommodationType = AccomodationTypeEnum;
 
   @ViewChild('submitForm')
   private form: ElementRef<HTMLFormElement>;
 
   constructor(
-    private accommodationList: AccommodationListService,
+    private accommodationList: AccomodationListService,
     private locationList: LocationListService,
     private reservationList: ReservationListService,
     private activatedRoute: ActivatedRoute
@@ -53,7 +53,7 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.accommodation = this.accommodationList.accommodationList.find(accommodation => accommodation.id === this.id) as AccommodationModel;
+    this.accommodation = this.accommodationList.accomodationList.find(accommodation => accommodation.id === this.id) as AccomodationModel;
     this.location = this.locationList.locationList.find(location => location.id === this.accommodation.locationID) as LocationModel;
   }
 
@@ -73,7 +73,7 @@ export class AccommodationBookingComponent implements OnInit, OnDestroy {
 
   onConfirm() {
     let reservation = new ReservationModel();
-    reservation.accommodationId = this.accommodation.id;
+    reservation.accomodationId = this.accommodation.id;
     reservation.checkIn = this.checkIn.value;
     reservation.checkOut = this.checkOut.value;
     reservation.confirmed = true;

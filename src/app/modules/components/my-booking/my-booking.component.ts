@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AccommodationModel } from 'src/app/models/accommodation.model';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { ReservationModel } from 'src/app/models/reservation.model';
-import { AccommodationListService } from '../shared/services/accomodation-list.service';
-import { ReservationListService } from '../shared/services/reservation-list.service';
+import { AccomodationListService } from '../../../services/accomodation-list.service';
+import { ReservationListService } from '../../../services/reservation-list.service';
 
 @Component({
   selector: 'app-my-booking',
@@ -11,24 +11,24 @@ import { ReservationListService } from '../shared/services/reservation-list.serv
 })
 export class MyBookingComponent implements OnInit {
 
-  reservations: AccommodationModel[] = [];
+  reservations: AccomodationModel[] = [];
 
   constructor(
-    private accommodationList: AccommodationListService,
+    private accommodationList: AccomodationListService,
     private reservationList: ReservationListService
   ) { }
 
   ngOnInit(): void {
-    this.reservations = this.accommodationList.accommodationList.filter(
+    this.reservations = this.accommodationList.accomodationList.filter(
       accommodation => this.reservationList.reservationList.find(
-        reservation => reservation.accommodationId === accommodation.id
+        reservation => reservation.accomodationId === accommodation.id
       )
     );
   }
 
-  getReservation(accommodation: AccommodationModel): ReservationModel {
+  getReservation(accommodation: AccomodationModel): ReservationModel {
     return this.reservationList.reservationList.find(
-      reservation => reservation.accommodationId === accommodation.id
+      reservation => reservation.accomodationId === accommodation.id
     ) as ReservationModel;
   }
 }
