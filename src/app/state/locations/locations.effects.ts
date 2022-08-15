@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, from, map, of, switchMap } from 'rxjs';
 import { StayVacationService } from 'src/app/services/stay-vacation.service';
-import * as LocationActions from './location.actions';
+import * as LocationActions from './locations.actions';
 
 @Injectable()
-export class LocationEffects {
+export class LocationsEffects {
 	getLocations = createEffect(() =>
 		this.actions$.pipe(
 			ofType(LocationActions.GetLocations),
