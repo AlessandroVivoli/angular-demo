@@ -25,8 +25,12 @@ import { LoggingInterceptorService } from './services/logging-interceptor.servic
 import { StayVacationService } from './services/stay-vacation.service';
 import { AccomodationEffects } from './state/accomodations/accomodation.effects';
 import { accomodationReducer } from './state/accomodations/accomodation.reducer';
-import { LocationEffects } from './state/locations/location.effects';
-import { locationReducer } from './state/locations/location.reducer';
+import { LocationEffects } from './state/location/location.effects';
+import { locationReducer } from './state/location/location.reducer';
+import { LocationsEffects } from './state/locations/locations.effects';
+import { locationsReducer } from './state/locations/locations.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -53,12 +57,15 @@ import { locationReducer } from './state/locations/location.reducer';
     HttpClientModule,
     EffectsModule.forRoot([
       AccomodationEffects,
+      LocationsEffects,
       LocationEffects
     ]),
     StoreModule.forRoot({
       accomodations: accomodationReducer,
-      locations: locationReducer
-    })
+      locations: locationsReducer,
+      location: locationReducer
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     StayVacationService,
