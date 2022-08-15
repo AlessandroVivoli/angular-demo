@@ -1,23 +1,29 @@
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccommodationBookingComponent } from './modules/components/accommodations/accommodation-booking/accommodation-booking.component';
-import { AccommodationDetailsComponent } from './modules/components/accommodations/accommodation-details/accomodation-details.component';
-import { AccommodationComponent } from './modules/components/accommodations/accommodation.component';
+import { AccomodationBookingComponent } from './modules/components/accomodations/accomodation-booking/accommodation-booking.component';
+import { AccomodationDetailsComponent } from './modules/components/accomodations/accomodation-details/accomodation-details.component';
+import { AccomodationsComponent } from './modules/components/accomodations/accomodations.component';
+
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
 import { HomeComponent } from './modules/components/home/home.component';
 import { LocationsComponent } from './modules/components/locations/locations.component';
 import { LoginComponent } from './modules/components/login/login.component';
-import { MyAccommodationFormComponent } from './modules/components/my-accommodation-form/my-accommodation-form.component';
+import { MyAccomodationFormComponent } from './modules/components/my-accomodation-form/my-accomodation-form.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
 import { SharedModule } from './modules/components/shared/shared.module';
+import { RequestService } from './services/request.service';
+import { AccomodationEffects } from './state/accomodations/accomodation.effects';
+import { accomodationReducer } from './state/accomodations/accomodation.reducer';
 
 @NgModule({
   declarations: [
@@ -26,10 +32,10 @@ import { SharedModule } from './modules/components/shared/shared.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AccommodationComponent,
-    AccommodationDetailsComponent,
-    AccommodationBookingComponent,
-    MyAccommodationFormComponent,
+    AccomodationsComponent,
+    AccomodationBookingComponent,
+    AccomodationDetailsComponent,
+    MyAccomodationFormComponent,
     LocationsComponent,
     MyPlacesComponent,
     MyBookingComponent,
@@ -40,9 +46,18 @@ import { SharedModule } from './modules/components/shared/shared.module';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    EffectsModule.forRoot([
+      AccomodationEffects
+    ]),
+    StoreModule.forRoot({
+      accomodations: accomodationReducer
+    })
   ],
-  providers: [],
+  providers: [
+    RequestService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
