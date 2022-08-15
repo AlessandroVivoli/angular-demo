@@ -4,7 +4,7 @@
 			<span *ngIf="!location && !(locationsLoading$ | async)">Homes guests love</span>
 			<div class="loader loader-primary loader-small" *ngIf="(locationsLoading$ | async) && !location"></div>
 			<span *ngIf="location">Stays in {{ location.name }}</span>
-			<small class="text-muted fs-5 mt-1">{{ properties }} {{properties != 1 ? 'properties' : 'property' }}</small>
+			<small class="text-muted fs-5 mt-1">{{ properties }} {{ properties != 1 ? "properties" : "property" }}</small>
 		</h3>
 		<a
 			class="d-lg-none text-primary text-decoration-none fs-5 text-uppercase fw-500"
@@ -24,13 +24,7 @@
 		</div>
 		<div class="offcanvas-body py-lg-4 d-flex flex-column flex-lg-row gap-3 align-items-stretch">
 			<app-form-control-input [control]="checkIn" type="text" icon="far fa-calendar" name="check-in" label="Check in"></app-form-control-input>
-			<app-form-control-input
-				[control]="checkOut"
-				type="text"
-				icon="far fa-calendar"
-				name="check-out"
-				label="Check out"
-			></app-form-control-input>
+			<app-form-control-input [control]="checkOut" type="text" icon="far fa-calendar" name="check-out" label="Check out"></app-form-control-input>
 			<app-form-control-input [control]="guests" type="text" icon="fas fa-user" name="guests" label="How many people?"></app-form-control-input>
 			<app-form-control-input
 				[control]="accomodationType"

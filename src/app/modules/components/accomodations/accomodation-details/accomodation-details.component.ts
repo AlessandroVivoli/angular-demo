@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
@@ -9,8 +9,9 @@ import { LocationModel } from 'src/app/models/location.model';
 import { GetAccomodation } from 'src/app/state/accomodations/accomodation.actions';
 import { selectAccomodation, selectAccomodationError, selectAccomodationLoading } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
-import { GetLocations } from 'src/app/state/locations/location.actions';
-import { selectAllLocations, selectLocationLoading } from 'src/app/state/locations/location.selectors';
+import { GetLocation } from 'src/app/state/location/location.actions';
+import { selectLocation, selectLocationLoading, selectOneLocation } from 'src/app/state/location/location.selectors';
+import { selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
 
 @Component({
 	selector: 'app-accomodation-details',
@@ -24,20 +25,19 @@ export class AccomodationDetailsComponent implements OnInit, OnDestroy {
 
 	locationLoading$: Observable<boolean>;
 
-	location?: LocationModel;
+	location$: Observable<LocationModel | undefined>;
 
 	AccomodationType = AccomodationTypeEnum;
 
 	#sub: Subscription = new Subscription();
 	private id: string;
 
-	private locationId: string;
-
 	constructor(private activatedRoute: ActivatedRoute, private router: Router, private store: Store<AppState>) {
 		this.accomodation$ = this.store.select(selectAccomodation);
 		this.accomodationLoading$ = this.store.select(selectAccomodationLoading);
 		this.accomodationError$ = this.store.select(selectAccomodationError);
 
+		this.location$ = this.store.select(selectOneLocation);
 		this.locationLoading$ = this.store.select(selectLocationLoading);
 	}
 
@@ -49,18 +49,7 @@ export class AccomodationDetailsComponent implements OnInit, OnDestroy {
 			})
 		);
 
-		this.#sub.add(
-			this.accomodation$.subscribe((accomodation) => {
-				this.store.dispatch(GetLocations());
-				if (accomodation?.locationID) this.locationId = accomodation.locationID;
-			})
-		);
-
-		this.#sub.add(
-			this.store.select(selectAllLocations).subscribe((locations) => {
-				this.location = locations.filter((location) => location.id === this.locationId)[0];
-			})
-		);
+		this.#sub.add(this.accomodation$.subscribe((accomodation) => this.store.dispatch(GetLocation({ payload: accomodation?.locationID as string }))));
 	}
 
 	ngOnDestroy(): void {

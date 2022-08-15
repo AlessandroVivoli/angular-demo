@@ -11,8 +11,8 @@ import { LocationModel } from 'src/app/models/location.model';
 import { GetAccomodations, GetLocationAccomodations, GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
 import { selectAccomodationError, selectAccomodationLoading, selectAllAccomodations } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
-import { GetLocations } from 'src/app/state/locations/location.actions';
-import { selectAllLocations, selectLocationLoading } from 'src/app/state/locations/location.selectors';
+import { GetLocations } from 'src/app/state/locations/locations.actions';
+import { selectAllLocations, selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
 
 @Component({
 	selector: 'app-apartments',
@@ -49,7 +49,7 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 		this.accomodations$ = this.store.select(selectAllAccomodations);
 
 		this.locations$ = this.store.select(selectAllLocations);
-		this.locationsLoading$ = this.store.select(selectLocationLoading);
+		this.locationsLoading$ = this.store.select(selectLocationsLoading);
 	}
 
 	ngOnInit(): void {
@@ -62,11 +62,9 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 					this.store.dispatch(GetLocationAccomodations({ payload: this.id }));
 					this.store.dispatch(GetLocations());
 
-					this.#sub.add(
-						this.locations$.subscribe(locations => {
-							this.location = locations.filter(location => location.id === this.id)[0];
-						})
-					)
+					this.#sub.add(this.locations$.subscribe(locations => {
+						this.location = locations.find(location => location.id === this.id);
+					}));
 				}
 			})
 		);

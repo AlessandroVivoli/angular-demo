@@ -80,7 +80,7 @@
 		<ng-template #locationBlock>
 			<div class="d-flex justify-content-center align-items-center">
 				<div class="loader loader-primary" *ngIf="locationsLoading$ | async"></div>
-				<p class="text-danger" *ngIf="locationsError$ | async as error">{{ error.error.title }}</p>
+				<p class="text-danger" *ngIf="locationsError$ | async as error">{{ error.statusText }}</p>
 			</div>
 		</ng-template>
 	</section>

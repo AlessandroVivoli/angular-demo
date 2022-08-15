@@ -16,8 +16,8 @@ import {
 	selectAllAccomodations
 } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
-import { GetLocations } from 'src/app/state/locations/location.actions';
-import { selectAllLocations, selectLocationError, selectLocationLoading } from 'src/app/state/locations/location.selectors';
+import { GetLocations } from 'src/app/state/locations/locations.actions';
+import { selectAllLocations, selectLocationsError, selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
 
 @Component({
 	selector: 'app-main',
@@ -52,12 +52,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.accomodationsError$ = this.store.select(selectAccomodationError);
 
 		this.locations$ = this.store.select(selectAllLocations);
-		this.locationsLoading$ = this.store.select(selectLocationLoading);
-		this.locationsError$ = this.store.select(selectLocationError);
+		this.locationsLoading$ = this.store.select(selectLocationsLoading);
+		this.locationsError$ = this.store.select(selectLocationsError);
 	}
 
 	ngOnInit(): void {
-		const types: Set<string> = new Set();
+		let types: Set<string> = new Set();
 
 		this.#sub.add(
 			this.accomodations$.subscribe((accomodations) => {
