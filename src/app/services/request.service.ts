@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AccommodationModel } from '../models/accommodation.model';
+import { AccomodationModel } from '../models/accomodation.model';
 import { LocationModel } from '../models/location.model';
 import { ReservationModel } from '../models/reservation.model';
 
@@ -12,31 +12,31 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
-  public getAccommodations(): Observable<AccommodationModel[]> {
-    return this.http.get<AccommodationModel[]>('/api/Accomodationa');
+  public getAccommodations(): Observable<AccomodationModel[]> {
+    return this.http.get<AccomodationModel[]>('/api/Accomodationa');
   }
 
-  public postAccommodation(payload: AccommodationModel) {
+  public postAccommodation(payload: AccomodationModel) {
     return this.http.post('/api/Accomodations', payload);
   }
 
-  public getRecommendations(): Observable<AccommodationModel[]> {
-    return this.http.get<AccommodationModel[]>('/api/Accomodations/recommendation');
+  public getRecommendations(): Observable<AccomodationModel[]> {
+    return this.http.get<AccomodationModel[]>('/api/Accomodations/recommendation');
   }
 
-  public getAccommodationsFromLocation(payload: string): Observable<AccommodationModel[]> {
-    return this.http.get<AccommodationModel[]>(`/api/Accomodation/${payload}`);
+  public getAccommodationsFromLocation(payload: string): Observable<AccomodationModel[]> {
+    return this.http.get<AccomodationModel[]>(`/api/Accomodation/${payload}`);
   }
 
-  public getAccommodation(payload: string): Observable<AccommodationModel> {
-    return this.http.get<AccommodationModel>(`/api/Accomodations/${payload}`)
+  public getAccommodation(payload: string): Observable<AccomodationModel> {
+    return this.http.get<AccomodationModel>(`/api/Accomodations/${payload}`)
   }
 
   public deleteAccommodation(payload: string) {
     return this.http.delete(`/api/Accomodations/${payload}`);
   }
 
-  public putAccommodation(payload: AccommodationModel) {
+  public putAccommodation(payload: AccomodationModel) {
     return this.http.put(`/api/Accomodations/${payload.id}`, payload);
   }
 
