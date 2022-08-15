@@ -49,7 +49,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
     this.#sub.add(
       this.locations$.subscribe(locations => {
         this.places = locations.map(location => ({inputValue: location.name, label: location.name}))
-        this.locations = locations.filter(location => (location.name === city || city.trim().length === 0));
+        this.locations = locations.filter(location => (location.name === city || city === '' || !city));
       })
     )
 
