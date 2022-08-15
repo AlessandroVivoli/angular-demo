@@ -1,5 +1,7 @@
+import { HttpErrorResponse, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { createReducer, on } from '@ngrx/store';
-import { AccomodationModel } from '../../models/accomodation.model';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import {
 	DeleteAccomodation,
 	DeleteAccomodationFail,
@@ -27,7 +29,7 @@ import {
 export interface AccomodationState {
 	accomodations: AccomodationModel[];
 	accomodation?: AccomodationModel;
-	error?: any;
+	error?: CustomErrorResponse;
 	loading: boolean;
 }
 

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, from, map, mergeMap, Observable, of, switchMap } from 'rxjs';
 
 import * as AccomodationActions from './accomodation.actions';
-import { RequestService } from 'src/app/services/request.service';
+import { StayVacationService } from 'src/app/services/stay-vacation.service';
 
 @Injectable()
 export class AccomodationEffects {
@@ -91,5 +91,5 @@ export class AccomodationEffects {
 		)
 	);
 
-	constructor(private actions$: Actions, private requestService: RequestService) {}
+	constructor(private actions$: Actions, private requestService: StayVacationService) {}
 }

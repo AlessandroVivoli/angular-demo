@@ -6,4 +6,4 @@ export const selectAccomodations = (state: AppState) => state.accomodations;
 export const selectAllAccomodations = createSelector(selectAccomodations, (state: AccomodationState) => state.accomodations);
 export const selectAccomodationError = createSelector(selectAccomodations, (state: AccomodationState) => state.error);
 export const selectAccomodation = createSelector(selectAccomodations, (state: AccomodationState) => state.accomodation);
-export const selectLoading = createSelector(selectAccomodations, (state: AccomodationState) => state.loading);
+export const selectAccomodationLoading = createSelector(selectAccomodations, (state: AccomodationState) => state.loading);

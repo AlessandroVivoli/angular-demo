@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { AccomodationModel } from '../../models/accomodation.model';
 
@@ -31,28 +32,28 @@ export const PUT_ACCOMODATION_FAIL = '[Accomodation] PUT FAIL';
 
 export const GetAccomodations = createAction(GET_ACCOMODATIONS);
 export const GetAccomodationsSuccess = createAction(GET_ACCOMODATIONS_SUCCESS, props<{ payload: AccomodationModel[] }>());
-export const GetAccomodationsFail = createAction(GET_ACCOMODATIONS_FAIL, props<{ payload: any }>());
+export const GetAccomodationsFail = createAction(GET_ACCOMODATIONS_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const PostAccomodation = createAction(POST_ACCOMODATION, props<{ payload: AccomodationModel }>());
 export const PostAccomodationSuccess = createAction(POST_ACCOMODATION_SUCCESS);
-export const PostAccomodationFail = createAction(POST_ACCOMODATION_FAIL, props<{ payload: any }>());
+export const PostAccomodationFail = createAction(POST_ACCOMODATION_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const GetRecommendations = createAction(GET_RECOMMENDATIONS);
 export const GetRecommodationsSuccess = createAction(GET_RECOMMENDATIONS_SUCCESS, props<{ payload: AccomodationModel[] }>());
-export const GetRecommodationsFail = createAction(GET_RECOMMENDATIONS_FAIL, props<{ payload: any }>());
+export const GetRecommodationsFail = createAction(GET_RECOMMENDATIONS_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const GetLocationAccomodations = createAction(GET_LOCATION_ACCOMODATIONS, props<{ payload: string }>());
 export const GetLocationAccomodationsSuccess = createAction(GET_LOCATION_ACCOMODATIONS_SUCCESS, props<{ payload: AccomodationModel[] }>());
-export const GetLocationAccomodationsFail = createAction(GET_ACCOMODATIONS_FAIL, props<{ payload: any }>());
+export const GetLocationAccomodationsFail = createAction(GET_ACCOMODATIONS_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const GetAccomodation = createAction(GET_ACCOMODATION, props<{ payload: string }>());
 export const GetAccomodationSuccess = createAction(GET_ACCOMODATION_SUCCESS, props<{ payload: AccomodationModel }>());
-export const GetAccomodationFail = createAction(GET_ACCOMODATION_FAIL, props<{ payload: any }>());
+export const GetAccomodationFail = createAction(GET_ACCOMODATION_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const DeleteAccomodation = createAction(DELETE_ACCOMODATION, props<{ payload: string }>());
 export const DeleteAccomodationSuccess = createAction(DELETE_ACCOMODATION_SUCCESS);
-export const DeleteAccomodationFail = createAction(DELETE_ACCOMODATION_FAIL, props<{ payload: any }>());
+export const DeleteAccomodationFail = createAction(DELETE_ACCOMODATION_FAIL, props<{ payload: HttpErrorResponse }>());
 
 export const PutAccomodation = createAction(PUT_ACCOMODATION, props<{ payload: AccomodationModel }>());
 export const PutAccomodationSuccess = createAction(PUT_ACCOMODATION_SUCCESS);
-export const PutAccomodationFail = createAction(PUT_ACCOMODATION_FAIL, props<{ payload: any }>());
+export const PutAccomodationFail = createAction(PUT_ACCOMODATION_FAIL, props<{ payload: HttpErrorResponse }>());
