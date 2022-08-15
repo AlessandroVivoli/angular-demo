@@ -1,7 +1,9 @@
 <a [href]="link" [routerLink]="routerLink" [queryParams]="queryParams" class="card text-white">
-    <img [src]="location.imageUrl" [alt]="location.name" class="card-img">
-    <div class="card-img-overlay">
-        <h5 class="card-title">{{location.name}}</h5>
-        <p class="card-text">{{num == null ? 0 : num | number}} propert{{(num != 1) ? 'ies' : 'y'}}</p>
-    </div>
+	<img [src]="location.imageUrl" [alt]="location.name" class="card-img" />
+	<div class="card-img-overlay">
+		<h5 class="card-title">{{ location.name }}</h5>
+		<p class="card-text">
+			{{ location.properties == null ? 0 : (location.properties | number) }} propert{{ location.properties != 1 ? "ies" : "y" }}
+		</p>
+	</div>
 </a>

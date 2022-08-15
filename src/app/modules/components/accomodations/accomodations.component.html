@@ -1,9 +1,10 @@
 <div class="container pt-3">
 	<div class="d-flex justify-content-between">
 		<h3 class="col d-flex flex-column fw-400">
-			<span *ngIf="!locationName">Homes guests love</span>
-			<span *ngIf="!!locationName">Stays in {{ locationName }}</span>
-			<small class="text-muted fs-5 mt-1">{{ 1 }} properties</small>
+			<span *ngIf="!location && !(locationsLoading$ | async)">Homes guests love</span>
+			<div class="loader loader-primary loader-small" *ngIf="(locationsLoading$ | async) && !location"></div>
+			<span *ngIf="location">Stays in {{ location.name }}</span>
+			<small class="text-muted fs-5 mt-1">{{ properties }} {{properties != 1 ? 'properties' : 'property' }}</small>
 		</h3>
 		<a
 			class="d-lg-none text-primary text-decoration-none fs-5 text-uppercase fw-500"

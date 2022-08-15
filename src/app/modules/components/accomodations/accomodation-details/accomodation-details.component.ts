@@ -1,50 +1,73 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { LocationModel } from 'src/app/models/location.model';
-import { AccomodationListService } from 'src/app/services/accomodation-list.service';
-import { LocationListService } from 'src/app/services/location-list.service';
+import { GetAccomodation } from 'src/app/state/accomodations/accomodation.actions';
+import { selectAccomodation, selectAccomodationError, selectAccomodationLoading } from 'src/app/state/accomodations/accomodation.selectors';
+import { AppState } from 'src/app/state/app.state';
+import { GetLocations } from 'src/app/state/locations/location.actions';
+import { selectAllLocations, selectLocationLoading } from 'src/app/state/locations/location.selectors';
 
 @Component({
-  selector: 'app-accomodation-details',
-  templateUrl: './accomodation-details.component.html',
-  styleUrls: ['./accomodation-details.component.scss']
+	selector: 'app-accomodation-details',
+	templateUrl: './accomodation-details.component.html',
+	styleUrls: ['./accomodation-details.component.scss']
 })
 export class AccomodationDetailsComponent implements OnInit, OnDestroy {
+	accomodation$: Observable<AccomodationModel | undefined>;
+	accomodationLoading$: Observable<boolean>;
+	accomodationError$: Observable<CustomErrorResponse | undefined>;
 
-  accomodation!: AccomodationModel;
-  location!: LocationModel;
+	locationLoading$: Observable<boolean>;
 
-  AccomodationType = AccomodationTypeEnum;
+	location?: LocationModel;
 
-  #sub: Subscription = new Subscription();
-  private id: string;
+	AccomodationType = AccomodationTypeEnum;
 
-  constructor(
-    private accomodationService: AccomodationListService,
-    private locationService: LocationListService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+	#sub: Subscription = new Subscription();
+	private id: string;
 
-  ngOnInit(): void {
-    this.#sub.add(
-      this.activatedRoute.params.subscribe(params => {
-        this.id = params['id'];
-      })
-    );
+	private locationId: string;
 
-    this.accomodation = this.accomodationService.accomodationList.find(accomodation => accomodation.id === this.id) as AccomodationModel;
-    this.location = this.locationService.locationList.find(location => location.id === this.accomodation.locationID) as LocationModel;
-  }
+	constructor(private activatedRoute: ActivatedRoute, private router: Router, private store: Store<AppState>) {
+		this.accomodation$ = this.store.select(selectAccomodation);
+		this.accomodationLoading$ = this.store.select(selectAccomodationLoading);
+		this.accomodationError$ = this.store.select(selectAccomodationError);
 
-  ngOnDestroy(): void {
-    this.#sub.unsubscribe();
-  }
+		this.locationLoading$ = this.store.select(selectLocationLoading);
+	}
 
-  onBook() {
-    this.router.navigateByUrl(`accomodations/${this.id}/book`);
-  }
+	ngOnInit(): void {
+		this.#sub.add(
+			this.activatedRoute.params.subscribe((params) => {
+				this.id = params['id'];
+				this.store.dispatch(GetAccomodation({ payload: this.id }));
+			})
+		);
+
+		this.#sub.add(
+			this.accomodation$.subscribe((accomodation) => {
+				this.store.dispatch(GetLocations());
+				if (accomodation?.locationID) this.locationId = accomodation.locationID;
+			})
+		);
+
+		this.#sub.add(
+			this.store.select(selectAllLocations).subscribe((locations) => {
+				this.location = locations.filter((location) => location.id === this.locationId)[0];
+			})
+		);
+	}
+
+	ngOnDestroy(): void {
+		this.#sub.unsubscribe();
+	}
+
+	onBook() {
+		this.router.navigateByUrl(`accomodations/${this.id}/book`);
+	}
 }

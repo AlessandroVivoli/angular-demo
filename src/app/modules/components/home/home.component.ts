@@ -9,24 +9,35 @@ import { CustomErrorResponse } from 'src/app/models/custom-error-response.model'
 import { LocationModel } from 'src/app/models/location.model';
 import { LocationListService } from 'src/app/services/location-list.service';
 import { GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
-import { selectAccomodationError, selectAccomodationLoading, selectAccomodations } from 'src/app/state/accomodations/accomodation.selectors';
+import {
+	selectAccomodationError,
+	selectAccomodationLoading,
+	selectAccomodations,
+	selectAllAccomodations
+} from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
+import { GetLocations } from 'src/app/state/locations/location.actions';
+import { selectAllLocations, selectLocationError, selectLocationLoading } from 'src/app/state/locations/location.selectors';
 
 @Component({
 	selector: 'app-main',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss'],
+	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-	locations: LocationModel[] = [];
-	accomodations: AccomodationModel[] = [];
-	nums: number[] = [];
+	accomodations$: Observable<AccomodationModel[]>;
+	accomodationsLoading$: Observable<boolean>;
+	accomodationsError$: Observable<CustomErrorResponse | undefined>;
+
+	locations$: Observable<LocationModel[]>;
+	locationsLoading$: Observable<boolean>;
+	locationsError$: Observable<CustomErrorResponse | undefined>;
 
 	place = new FormControl('');
 	checkIn = new FormControl('');
 	checkOut = new FormControl('');
 	guests = new FormControl<number>(0);
-	accomodation = new FormControl('');
+	accomodationType = new FormControl('');
 
 	places: { inputValue: string; label: string }[] = [];
 	types: { inputValue: string; label: string }[] = [];
@@ -34,37 +45,31 @@ export class HomeComponent implements OnInit, OnDestroy {
 	@ViewChild('form') el: ElementRef<HTMLFormElement>;
 
 	#sub: Subscription = new Subscription();
-	accomodationsLoading$: Observable<boolean>;
-	accomodationsError$: Observable<CustomErrorResponse | undefined>;
 
 	constructor(private store: Store<AppState>, private locationService: LocationListService, private router: Router) {
+		this.accomodations$ = this.store.select(selectAllAccomodations);
 		this.accomodationsLoading$ = this.store.select(selectAccomodationLoading);
 		this.accomodationsError$ = this.store.select(selectAccomodationError);
+
+		this.locations$ = this.store.select(selectAllLocations);
+		this.locationsLoading$ = this.store.select(selectLocationLoading);
+		this.locationsError$ = this.store.select(selectLocationError);
 	}
 
 	ngOnInit(): void {
-		this.#sub.add(this.store.select(selectAccomodations).subscribe(({ accomodations }) => (this.accomodations = accomodations)));
+		const types: Set<string> = new Set();
+
+		this.#sub.add(
+			this.accomodations$.subscribe((accomodations) => {
+				accomodations.forEach((accomodation) => types.add(accomodation.type.toString()));
+			})
+		);
 
 		this.store.dispatch(GetRecommendations());
-
-		this.locations = this.locationService.locationList;
-
-		const types: Set<string> = new Set(this.accomodations.map((accommodation) => AccomodationTypeEnum[accommodation.type]));
+		this.store.dispatch(GetLocations());
 
 		types.forEach((type) => {
 			this.types.push({ inputValue: type, label: type });
-		});
-
-		this.locations.forEach((location) => {
-			this.places.push({ inputValue: location.id, label: location.name });
-
-			this.nums.push(
-				this.accomodations
-					.filter((accommodation) => accommodation.locationID === location.id)
-					.reduce((prev) => {
-						return prev + 1;
-					}, 0)
-			);
 		});
 	}
 
@@ -77,8 +82,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 			event.preventDefault();
 			event.stopPropagation();
 		} else {
-			// this.router.navigateByUrl(`/accommodations?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
-			this.router.navigate(['location', this.place.value]);
+			this.router.navigate(['location', this.place.value], { queryParams: {
+				'check-in': this.checkIn.value,
+				'check-out': this.checkOut.value,
+				guests: this.guests.value,
+				type: this.accomodationType.value
+			} });
 		}
 
 		this.el.nativeElement.classList.add('was-validated');

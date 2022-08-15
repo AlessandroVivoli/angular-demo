@@ -25,6 +25,8 @@ import { LoggingInterceptorService } from './services/logging-interceptor.servic
 import { StayVacationService } from './services/stay-vacation.service';
 import { AccomodationEffects } from './state/accomodations/accomodation.effects';
 import { accomodationReducer } from './state/accomodations/accomodation.reducer';
+import { LocationEffects } from './state/locations/location.effects';
+import { locationReducer } from './state/locations/location.reducer';
 
 @NgModule({
   declarations: [
@@ -50,10 +52,12 @@ import { accomodationReducer } from './state/accomodations/accomodation.reducer'
     SharedModule,
     HttpClientModule,
     EffectsModule.forRoot([
-      AccomodationEffects
+      AccomodationEffects,
+      LocationEffects
     ]),
     StoreModule.forRoot({
-      accomodations: accomodationReducer
+      accomodations: accomodationReducer,
+      locations: locationReducer
     })
   ],
   providers: [

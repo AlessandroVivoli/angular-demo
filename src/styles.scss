@@ -3,16 +3,22 @@ $primary-color: #40e0d0;
 .loader {
     --border-color: #555;
     --border-width: 10px;
+    --loader-size: 3rem;
 
-    border: var(--border-width) solid white;
+    border: var(--border-width) solid #eee;
     border-top: var(--border-width) solid var(--border-color);
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
+    width: var(--loader-size);
+    height: var(--loader-size);
     animation: spin 2s linear infinite;
 
     &.loader-primary {
         --border-color: #40e0d0;
+    }
+
+    &.loader-small {
+        --border-width: 5px;
+        --loader-size: 1.5rem;
     }
 }
 

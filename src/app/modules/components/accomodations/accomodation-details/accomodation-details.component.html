@@ -1,35 +1,60 @@
-<div class="container py-4">
-    <img [src]="accomodation.imageUrl" alt="" class="rounded-4 w-100">
-    <div class="d-flex flex-column flex-lg-row justify-content-lg-between gap-3 py-4">
-        <div id="details" class="w-100">
-            <div
-                class="d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-lg-4 gap-2">
-                <h3 class="m-0">{{accomodation.title}}</h3>
-                <div id="stars" class="d-flex gap-2" style="color: #F3B08E">
-                    <i class="fas fa-star" *ngFor="let i of [].constructor(accomodation.categorization)"></i>
-                </div>
-            </div>
-            <div class="my-2">
-                <small class="text-muted">Stay in the heart of {{location.name}}</small>
-            </div>
-            <div class="d-flex py-2 py-lg-4 align-items-center gap-3 fw-600">
-                <i class="far fa-calendar" style="color:#F3B08E"></i>
-                {{accomodation.freeCancelation ? 'Free cancellation available' : 'No free cancellation available'}}
-            </div>
-            <div id="summary" [innerHtml]="accomodation.description"></div>
-        </div>
-        <div  class="d-flex justify-content-center align-items-start">
-            <div id="info" class="d-flex flex-column justify-content-between rounded-3">
-                <div id="wrapper">
-                    <h5 class="mb-2 fw-500">Property info</h5>
-                    <p class="mb-2">{{accomodation.personCount}} {{accomodation.personCount != 1 ? 'guests' : 'guest'}}</p>
-                    <p class="mb-2">{{AccomodationType[accomodation.type]}}</p>
-                    <p class="mb-2">EUR {{accomodation.price}} per night</p>
-                    <p class="mb-2">{{location.name}}</p>
-                    <p class="mb-2">{{location.postalCode}}</p>
-                </div>
-                <button type="button" class="btn btn-primary text-white text-uppercase" (click)="onBook()">Book your stay</button>
-            </div>
-        </div>
-    </div>
+<div class="container py-4" *ngIf="(!(accomodationLoading$ | async) && !(accomodationError$ | async)) || (accomodation$ | async); else elseBlock">
+	<ng-container *ngIf="accomodation$ | async as accomodation">
+		<img [src]="accomodation.imageUrl" alt="" class="rounded-4 w-100" />
+		<div class="d-flex flex-column flex-lg-row justify-content-lg-between gap-3 py-4">
+			<div id="details" class="w-100">
+				<div class="d-flex flex-column flex-lg-row justify-content-start align-items-lg-center gap-lg-4 gap-2">
+					<h3 class="m-0">{{ accomodation.title }}</h3>
+					<div id="stars" class="d-flex gap-2" style="color: #f3b08e">
+						<i class="fas fa-star" *ngFor="let i of [].constructor(accomodation.categorization)"></i>
+					</div>
+				</div>
+				<div class="my-2">
+					<small class="text-muted" *ngIf="accomodation.location; else locationNameBlock">
+						Stay in the heart of {{ accomodation.location.name }}
+					</small>
+					<ng-template #locationNameBlock>
+						<small class="text-muted" *ngIf="location">Stay in the heart of {{ location.name }}</small>
+						<div class="loader loader-primary loader-small" *ngIf="(locationLoading$ | async) && !location"></div>
+					</ng-template>
+				</div>
+				<div class="d-flex py-2 py-lg-4 align-items-center gap-3 fw-600">
+					<i class="far fa-calendar" style="color: #f3b08e"></i>
+					{{ accomodation.freeCancelation ? "Free cancellation available" : "No free cancellation available" }}
+				</div>
+				<div id="summary" [innerHtml]="accomodation.description"></div>
+			</div>
+			<div class="d-flex justify-content-center align-items-start">
+				<div id="info" class="d-flex flex-column justify-content-between rounded-3">
+					<div id="wrapper">
+						<h5 class="mb-2 fw-500">Property info</h5>
+						<p class="mb-2" *ngIf="accomodation.capacity">
+							{{ accomodation.capacity }} {{ accomodation.capacity != 1 ? "guests" : "guest" }}
+						</p>
+						<p class="mb-2">{{ accomodation.type }}</p>
+						<p class="mb-2">EUR {{ accomodation.price }} per night</p>
+						<ng-container *ngIf="accomodation.location; else locationBlock">
+							<p class="mb-2">{{ accomodation.location.name }}</p>
+							<p class="mb-2">{{ accomodation.location.postalCode }}</p>
+						</ng-container>
+						<ng-template #locationBlock>
+							<ng-container *ngIf="location">
+								<p class="mb-2">{{ location.name }}</p>
+								<p class="mb-2">{{ location.postalCode }}</p>
+							</ng-container>
+							<div class="loader loader-primary loader-small" *ngIf="(locationLoading$ | async) && !location"></div>
+						</ng-template>
+					</div>
+					<button type="button" class="btn btn-primary text-white text-uppercase" (click)="onBook()">Book your stay</button>
+				</div>
+			</div>
+		</div>
+	</ng-container>
 </div>
+
+<ng-template #elseBlock>
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div class="loader loader-primary" *ngIf="accomodationLoading$ | async"></div>
+		<h1 class="text-danger" *ngIf="accomodationError$ | async">{{ (accomodationError$ | async)?.error?.title }}</h1>
+	</div>
+</ng-template>

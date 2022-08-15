@@ -1,6 +1,6 @@
 export enum AccomodationTypeEnum {
-    "Suite",
-    "Room",
-    "MobileHome",
-    "Apartment"
+    Suite = "Suite",
+    Room = "Room",
+    MobileHome = "MobileHome",
+    Apartment = "Apartment"
 }
