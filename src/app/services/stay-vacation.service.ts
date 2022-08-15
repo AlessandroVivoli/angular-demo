@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AccomodationModel } from '../models/accomodation.model';
 import { LocationModel } from '../models/location.model';
 import { ReservationModel } from '../models/reservation.model';
@@ -45,6 +45,14 @@ export class StayVacationService {
 
 	public getLocations(): Observable<LocationModel[]> {
 		return this.http.get<LocationModel[]>('/api/Location');
+	}
+
+	public getLocation(payload: string): Observable<LocationModel | undefined> {
+		return this.http.get<LocationModel[]>('/api/Location').pipe(
+			map((locations) => {
+				return locations.find((location) => location.id === payload);
+			})
+		);
 	}
 
 	public putLocation(payload: LocationModel) {
