@@ -11,7 +11,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.GetAccomodations),
 			switchMap(() =>
-				from(this.requestService.getAccommodations()).pipe(
+				from(this.stayVacationService.getAccommodations()).pipe(
 					map((accomodations) => AccomodationActions.GetAccomodationsSuccess({ payload: accomodations })),
 					catchError((error) => of(AccomodationActions.GetAccomodationsFail({ payload: error })))
 				)
@@ -23,7 +23,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.PostAccomodation),
 			switchMap(({ payload }) =>
-				from(this.requestService.postAccommodation(payload)).pipe(
+				from(this.stayVacationService.postAccommodation(payload)).pipe(
 					map(() => AccomodationActions.PostAccomodationSuccess()),
 					catchError((error) => of(AccomodationActions.PostAccomodationFail({ payload: error })))
 				)
@@ -35,7 +35,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.GetRecommendations),
 			switchMap(() =>
-				from(this.requestService.getRecommendations()).pipe(
+				from(this.stayVacationService.getRecommendations()).pipe(
 					map((accomodations) => AccomodationActions.GetRecommodationsSuccess({ payload: accomodations })),
 					catchError((error) => of(AccomodationActions.GetAccomodationFail({ payload: error })))
 				)
@@ -47,7 +47,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.GetLocationAccomodations),
 			switchMap(({ payload }) =>
-				from(this.requestService.getAccommodationsFromLocation(payload)).pipe(
+				from(this.stayVacationService.getAccommodationsFromLocation(payload)).pipe(
 					map((accomodations) => AccomodationActions.GetLocationAccomodationsSuccess({ payload: accomodations })),
 					catchError((error) => of(AccomodationActions.GetLocationAccomodationsFail({ payload: error })))
 				)
@@ -59,7 +59,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.GetAccomodation),
 			switchMap(({ payload }) =>
-				from(this.requestService.getAccommodation(payload)).pipe(
+				from(this.stayVacationService.getAccommodation(payload)).pipe(
 					map((accomodation) => AccomodationActions.GetAccomodationSuccess({ payload: accomodation })),
 					catchError((error) => of(AccomodationActions.GetAccomodationFail({ payload: error })))
 				)
@@ -71,7 +71,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.DeleteAccomodation),
 			switchMap(({ payload }) =>
-				from(this.requestService.deleteAccommodation(payload)).pipe(
+				from(this.stayVacationService.deleteAccommodation(payload)).pipe(
 					map(() => AccomodationActions.DeleteAccomodationSuccess()),
 					catchError((error) => of(AccomodationActions.DeleteAccomodationFail({ payload: error })))
 				)
@@ -83,7 +83,7 @@ export class AccomodationEffects {
 		this.actions$.pipe(
 			ofType(AccomodationActions.PutAccomodation),
 			switchMap(({ payload }) =>
-				from(this.requestService.putAccommodation(payload)).pipe(
+				from(this.stayVacationService.putAccommodation(payload)).pipe(
 					map(() => AccomodationActions.DeleteAccomodationSuccess()),
 					catchError((error) => of(AccomodationActions.PutAccomodationFail({ payload: error })))
 				)
@@ -91,5 +91,5 @@ export class AccomodationEffects {
 		)
 	);
 
-	constructor(private actions$: Actions, private requestService: StayVacationService) {}
+	constructor(private actions$: Actions, private stayVacationService: StayVacationService) {}
 }
