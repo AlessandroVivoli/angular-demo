@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +21,8 @@ import { MyAccomodationFormComponent } from './modules/components/my-accomodatio
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
 import { SharedModule } from './modules/components/shared/shared.module';
-import { RequestService } from './services/request.service';
+import { LoggingInterceptorService } from './services/logging-interceptor.service';
+import { StayVacationService } from './services/stay-vacation.service';
 import { AccomodationEffects } from './state/accomodations/accomodation.effects';
 import { accomodationReducer } from './state/accomodations/accomodation.reducer';
 
@@ -56,7 +57,12 @@ import { accomodationReducer } from './state/accomodations/accomodation.reducer'
     })
   ],
   providers: [
-    RequestService
+    StayVacationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
