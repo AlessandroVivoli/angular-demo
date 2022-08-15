@@ -1,4 +1,3 @@
-import { HttpErrorResponse, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { createReducer, on } from '@ngrx/store';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
@@ -23,7 +22,7 @@ import {
 	PostAccomodationSuccess,
 	PutAccomodation,
 	PutAccomodationFail,
-	PutAccomodationSuccess,
+	PutAccomodationSuccess
 } from './accomodation.actions';
 
 export interface AccomodationState {
@@ -35,7 +34,7 @@ export interface AccomodationState {
 
 export const initialState: AccomodationState = {
 	accomodations: [],
-	loading: true,
+	loading: true
 };
 
 export const accomodationReducer = createReducer(
