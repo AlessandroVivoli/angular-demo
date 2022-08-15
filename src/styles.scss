@@ -1,5 +1,30 @@
 $primary-color: #40e0d0;
 
+.loader {
+    --border-color: #555;
+    --border-width: 10px;
+
+    border: var(--border-width) solid white;
+    border-top: var(--border-width) solid var(--border-color);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    animation: spin 2s linear infinite;
+
+    &.loader-primary {
+        --border-color: #40e0d0;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --navbar-height: 56px;
