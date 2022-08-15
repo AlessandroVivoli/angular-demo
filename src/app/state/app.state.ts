@@ -1,7 +1,9 @@
 import { AccomodationState } from "./accomodations/accomodation.reducer";
-import { LocationState } from "./locations/location.reducer";
+import { LocationState } from "./location/location.reducer";
+import { LocationsState } from "./locations/locations.reducer";
 
 export interface AppState {
     accomodations: AccomodationState,
-    locations: LocationState
+    locations: LocationsState,
+    location: LocationState
 }
