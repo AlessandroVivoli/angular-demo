@@ -21,6 +21,7 @@
     "@ng-select/ng-select": "^9.0.2",
     "@ngrx/effects": "^14.1.0",
     "@ngrx/store": "^14.1.0",
+    "@ngrx/store-devtools": "^14.1.0",
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.2.0",
     "jquery": "^3.6.0",
