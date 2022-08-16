@@ -41,8 +41,6 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 	data: { inputValue: string; label: string }[] = [];
 	#sub: Subscription = new Subscription();
 
-	private types: Set<string> = new Set();
-
 	constructor(private activatedRoute: ActivatedRoute, private router: Router, private store: Store<AppState>) {
 		this.accomodationsError$ = this.store.select(selectAccomodationError);
 		this.accomodationsLoading$ = this.store.select(selectAccomodationLoading);
@@ -102,13 +100,12 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 
 						this.properties = this.accomodations.length;
 
-						this.types = new Set(accomodations.map((accomodation) => accomodation.type.toString()).sort((first, next) => first.localeCompare(next)));
-
 						this.data = [];
 
-						this.types.forEach((type) => {
-							this.data.push({ inputValue: type, label: type });
-						});
+						this.data = accomodations
+							.map((accomodation) => ({ inputValue: accomodation.type.toString(), label: accomodation.type.toString() }))
+							.filter((value, index, self) => self.map((x) => x.label).indexOf(value.label) === index)
+							.sort((first, next) => first.label.localeCompare(next.label));
 					})
 				);
 			})
