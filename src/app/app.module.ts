@@ -11,6 +11,7 @@ import { AccomodationBookingComponent } from './modules/components/accomodations
 import { AccomodationDetailsComponent } from './modules/components/accomodations/accomodation-details/accomodation-details.component';
 import { AccomodationsComponent } from './modules/components/accomodations/accomodations.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './modules/components/footer/footer.component';
@@ -33,54 +34,56 @@ import { LocationsEffects } from './state/locations/locations.effects';
 import { locationsReducer } from './state/locations/locations.reducer';
 import { ReservationEffects } from './state/reservations/reservation.effects';
 import { deleteReservationReducer, putReservationReducer, reservationReducer } from './state/reservations/reservation.reducer';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    AccomodationsComponent,
-    AccomodationBookingComponent,
-    AccomodationDetailsComponent,
-    MyAccomodationFormComponent,
-    LocationsComponent,
-    MyPlacesComponent,
-    MyBookingComponent,
-    FormControlInputComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SharedModule,
-    HttpClientModule,
-    EffectsModule.forRoot([
-      AccomodationEffects,
-      LocationsEffects,
-      LocationEffects,
-      ReservationEffects
-    ]),
-    StoreModule.forRoot({
-      accomodations: accomodationReducer,
-      locations: locationsReducer,
-      location: locationReducer,
-      reservations: reservationReducer,
-      deleteReservation: deleteReservationReducer,
-      putReservation: putReservationReducer
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
-  ],
-  providers: [
-    StayVacationService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoggingInterceptorService,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		LoginComponent,
+		HeaderComponent,
+		FooterComponent,
+		HomeComponent,
+		AccomodationsComponent,
+		AccomodationBookingComponent,
+		AccomodationDetailsComponent,
+		MyAccomodationFormComponent,
+		LocationsComponent,
+		MyPlacesComponent,
+		MyBookingComponent,
+		FormControlInputComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
+		FormsModule,
+		SharedModule,
+		HttpClientModule,
+		EffectsModule.forRoot([AccomodationEffects, LocationsEffects, LocationEffects, ReservationEffects]),
+		StoreModule.forRoot({
+			accomodations: accomodationReducer,
+			locations: locationsReducer,
+			location: locationReducer,
+			reservations: reservationReducer,
+			deleteReservation: deleteReservationReducer,
+			putReservation: putReservationReducer
+		}),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
+	],
+	providers: [
+		StayVacationService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: LoggingInterceptorService,
+			multi: true
+		}
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
