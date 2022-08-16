@@ -27,6 +27,8 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 	guests = new FormControl<number>(0);
 	accomodationType = new FormControl('');
 
+	accomodations: AccomodationModel[] = [];
+
 	accomodations$: Observable<AccomodationModel[]>;
 	accomodationsError$: Observable<CustomErrorResponse | undefined>;
 	accomodationsLoading$: Observable<boolean>;
@@ -62,9 +64,11 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 					this.store.dispatch(GetLocationAccomodations({ payload: this.id }));
 					this.store.dispatch(GetLocations());
 
-					this.#sub.add(this.locations$.subscribe(locations => {
-						this.location = locations.find(location => location.id === this.id);
-					}));
+					this.#sub.add(
+						this.locations$.subscribe((locations) => {
+							this.location = locations.find((location) => location.id === this.id);
+						})
+					);
 				}
 			})
 		);
@@ -76,13 +80,33 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 				this.guests.setValue(params['guests']);
 				this.accomodationType.setValue(params['type']);
 
-				console.log();
+				this.#sub.add(
+					this.accomodations$.subscribe((accomodations) => {
+						this.accomodations = accomodations
+							.filter(
+								(accomodation) =>
+									(!accomodation.capacity || !this.guests.value || this.guests.value <= accomodation.capacity) &&
+									(!accomodation.type ||
+										!this.accomodationType.value ||
+										this.accomodationType.value.trim().length === 0 ||
+										accomodation.type.toString() == this.accomodationType.value)
+							)
+							.sort((prev, next) => {
+								if (!prev.categorization || !next.categorization) return 0;
+
+								if (prev.categorization > next.categorization) return -1;
+								if (prev.categorization < next.categorization) return 1;
+								return 0;
+							});
+
+						this.properties = this.accomodations.length;
+					})
+				);
 			})
 		);
 
 		this.#sub.add(
 			this.accomodations$.subscribe((accomodations) => {
-				this.properties = accomodations.length;
 				this.types = new Set(
 					accomodations
 						.map((accomodation) => {

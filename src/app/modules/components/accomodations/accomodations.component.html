@@ -1,9 +1,11 @@
 <div class="container pt-3">
 	<div class="d-flex justify-content-between">
 		<h3 class="col d-flex flex-column fw-400">
-			<span *ngIf="!location && !(locationsLoading$ | async)">Homes guests love</span>
-			<div class="loader loader-primary loader-small" *ngIf="(locationsLoading$ | async) && !location"></div>
+			<span *ngIf="!location; else locationBlock">Homes guests love</span>
 			<span *ngIf="location">Stays in {{ location.name }}</span>
+			<ng-template #locationBlock>
+				<div class="loader loader-primary loader-small" *ngIf="(locationsLoading$ | async) && !location"></div>
+			</ng-template>
 			<small class="text-muted fs-5 mt-1">{{ properties }} {{ properties != 1 ? "properties" : "property" }}</small>
 		</h3>
 		<a
@@ -38,7 +40,7 @@
 		</div>
 	</div>
 	<div class="row py-4 pt-lg-0 g-3" *ngIf="!(accomodationsLoading$ | async) && !(accomodationsError$ | async); else elseBlock">
-		<div class="col-lg-3 col-md-6 col-12" *ngFor="let accomodation of accomodations$ | async">
+		<div class="col-lg-3 col-md-6 col-12" *ngFor="let accomodation of accomodations">
 			<app-accomodation-box (OnClick)="accommodationClicked($event)" [accomodation]="accomodation" [changeLayout]="true"></app-accomodation-box>
 		</div>
 	</div>
