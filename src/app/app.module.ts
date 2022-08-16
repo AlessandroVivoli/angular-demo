@@ -11,6 +11,8 @@ import { AccomodationBookingComponent } from './modules/components/accomodations
 import { AccomodationDetailsComponent } from './modules/components/accomodations/accomodation-details/accomodation-details.component';
 import { AccomodationsComponent } from './modules/components/accomodations/accomodations.component';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { FormControlInputComponent } from './modules/components/form-control-input/form-control-input.component';
 import { HeaderComponent } from './modules/components/header/header.component';
@@ -29,8 +31,8 @@ import { LocationEffects } from './state/location/location.effects';
 import { locationReducer } from './state/location/location.reducer';
 import { LocationsEffects } from './state/locations/locations.effects';
 import { locationsReducer } from './state/locations/locations.reducer';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { ReservationEffects } from './state/reservations/reservation.effects';
+import { deleteReservationReducer, putReservationReducer, reservationReducer } from './state/reservations/reservation.reducer';
 
 @NgModule({
   declarations: [
@@ -58,12 +60,16 @@ import { environment } from '../environments/environment';
     EffectsModule.forRoot([
       AccomodationEffects,
       LocationsEffects,
-      LocationEffects
+      LocationEffects,
+      ReservationEffects
     ]),
     StoreModule.forRoot({
       accomodations: accomodationReducer,
       locations: locationsReducer,
-      location: locationReducer
+      location: locationReducer,
+      reservations: reservationReducer,
+      deleteReservation: deleteReservationReducer,
+      putReservation: putReservationReducer
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],

@@ -57,6 +57,6 @@ export class AccomodationDetailsComponent implements OnInit, OnDestroy {
 	}
 
 	onBook() {
-		this.router.navigateByUrl(`accomodations/${this.id}/book`);
+		this.router.navigate(['/accomodation', this.id, 'book']);
 	}
 }
