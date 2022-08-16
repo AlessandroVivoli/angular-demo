@@ -1,14 +1,12 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map, Observable, Subscription } from 'rxjs';
-import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
+import { Observable, Subscription } from 'rxjs';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { LocationModel } from 'src/app/models/location.model';
-import { GetAccomodations, GetLocationAccomodations, GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
+import { GetLocationAccomodations, GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
 import { selectAccomodationError, selectAccomodationLoading, selectAllAccomodations } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
 import { GetLocations } from 'src/app/state/locations/locations.actions';
@@ -55,6 +53,9 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
+		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+		this.router.onSameUrlNavigation = 'reload';
+
 		this.#sub.add(
 			this.activatedRoute.paramMap.subscribe((params) => {
 				this.id = params.get('id') as string;
@@ -100,35 +101,16 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 							});
 
 						this.properties = this.accomodations.length;
+
+						this.types = new Set(accomodations.map((accomodation) => accomodation.type.toString()).sort((first, next) => first.localeCompare(next)));
+
+						this.data = [];
+
+						this.types.forEach((type) => {
+							this.data.push({ inputValue: type, label: type });
+						});
 					})
 				);
-			})
-		);
-
-		this.#sub.add(
-			this.accomodations$.subscribe((accomodations) => {
-				this.types = new Set(
-					accomodations
-						.map((accomodation) => {
-							switch (accomodation.type) {
-								case AccomodationTypeEnum.Apartment:
-									return 'Apartment';
-								case AccomodationTypeEnum.MobileHome:
-									return 'MobileHome';
-								case AccomodationTypeEnum.Room:
-									return 'Room';
-								case AccomodationTypeEnum.Suite:
-									return 'Suite';
-							}
-						})
-						.sort((first, next) => first.localeCompare(next))
-				);
-
-				this.data = [];
-
-				this.types.forEach((type) => {
-					this.data.push({ inputValue: type, label: type });
-				});
 			})
 		);
 	}
@@ -142,9 +124,6 @@ export class AccomodationsComponent implements OnInit, OnDestroy {
 		const checkOutValue = this.checkOut.value !== undefined ? this.checkOut.value : '';
 		const guestsValue = this.guests.value !== undefined ? this.guests.value : 0;
 		const typeValue = this.accomodationType.value !== undefined ? this.accomodationType.value : '';
-
-		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-		this.router.onSameUrlNavigation = 'reload';
 
 		if (!!this.id)
 			this.router.navigate(['/location', this.id], {
