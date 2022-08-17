@@ -19,7 +19,7 @@
 				</ng-template>
 				<ng-template [ngIf]="!isFavorite">
 					<p class="card-text text-uppercase fw-500 my-3" *ngIf="!isReservation">EUR {{ accomodation.price }}</p>
-					<p class="card-text fw-500 my-3" *ngIf="isReservation">{{ checkIn }} - {{ checkOut }} 2022</p>
+					<p class="card-text fw-500 my-3" *ngIf="isReservation">{{ checkIn | date}} - {{ checkOut | date}}</p>
 					<div class="row">
 						<div class="col-1" *ngFor="let i of [].constructor(accomodation.categorization)">
 							<i class="fas fa-star"></i>
