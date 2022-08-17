@@ -5,8 +5,8 @@ export class ReservationModel {
     email?: string;
     accomodationId!: string;
     accomodation?: AccomodationModel;
-    checkIn?: string;
-    checkOut?: string;
+    checkIn?: Date;
+    checkOut?: Date;
     personsCount!: number;
     confirmed!: boolean;
 }
