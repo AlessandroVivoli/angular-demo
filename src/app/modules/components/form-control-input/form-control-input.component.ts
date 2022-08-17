@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,9 @@ export class FormControlInputComponent implements OnInit {
   @Input() required: boolean;
   @Input() label: string;
   @Input() control: FormControl = new FormControl;
+  @Input() id: string;
+
+  @ViewChild('#control') controlElement: ElementRef<HTMLElement>;
 
   @Input() data: { inputValue: string, label: string }[] = [];
 
@@ -29,5 +32,13 @@ export class FormControlInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.hasIcon = this.icon.length > 0;
+  }
+
+  OnChange(event: any) {
+    const element = event.target as HTMLInputElement | HTMLSelectElement;
+
+    if(!this.control.valid) 
+      element.setCustomValidity('error')
+    else element.setCustomValidity('')
   }
 }

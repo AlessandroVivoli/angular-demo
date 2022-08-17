@@ -11,7 +11,7 @@
 					</div>
 					<div class="col-12">
 						<app-form-control-input type="email" label="Email address" [control]="email" [required]="true">
-							<p class="invalid-feedback">Please enter your email.</p>
+							<p class="invalid-feedback">Please enter a valid email.</p>
 						</app-form-control-input>
 					</div>
 					<div class="col-12">
@@ -20,13 +20,13 @@
 						</app-form-control-input>
 					</div>
 					<div class="col-6">
-						<app-form-control-input type="text" label="Check in" [control]="checkIn" icon="far fa-calendar" [required]="true">
-							<p class="invalid-feedback">Please enter your check in date.</p>
+						<app-form-control-input type="text" name="checkIn" label="Check in" [control]="checkIn" icon="far fa-calendar" [required]="true">
+							<p class="invalid-feedback">Please enter a valid check in date.</p>
 						</app-form-control-input>
 					</div>
 					<div class="col-6">
-						<app-form-control-input type="text" label="Check out" [control]="checkOut" icon="far fa-calendar" [required]="true">
-							<p class="invalid-feedback">Please enter your check out date.</p>
+						<app-form-control-input type="text" name="checkOut" label="Check out" [control]="checkOut" icon="far fa-calendar" [required]="true">
+							<p class="invalid-feedback">Please enter a valid check out date.</p>
 						</app-form-control-input>
 					</div>
 					<div class="col-6 d-none d-lg-inline"></div>
@@ -67,7 +67,7 @@
 					<div class="modal-body">
 						<p class="m-0">{{ accomodation.title }}</p>
 						<p class="m-0">{{ guestCount.value }} guests</p>
-						<p class="m-0">{{ checkIn.value }} - {{ checkOut.value }} {{ year }}</p>
+						<p class="m-0">{{ reservation.checkIn | date }} - {{ reservation.checkOut | date }}</p>
 						<p class="m-0">{{ AccomodationType[accomodation.type] }}</p>
 						<p class="m-0" *ngIf="location$ | async as location">{{ location.name }}</p>
 						<p class="m-0">EUR {{ accomodation.price * nights + (guestCount.value - 1) * 55 }}</p>
