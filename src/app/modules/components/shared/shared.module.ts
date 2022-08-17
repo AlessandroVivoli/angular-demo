@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AccomodationBoxComponent } from './components/accomodation-box/accomodation-box.component';
 import { LocationBoxComponent } from './components/location-box/location-box.component';
+import { DeletePopupComponent } from './components/delete-popup/delete-popup.component';
 
 @NgModule({
   declarations: [
     LocationBoxComponent,
-    AccomodationBoxComponent
+    AccomodationBoxComponent,
+    DeletePopupComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { LocationBoxComponent } from './components/location-box/location-box.com
   ],
   exports: [
     LocationBoxComponent,
-    AccomodationBoxComponent
+    AccomodationBoxComponent,
+    DeletePopupComponent
   ]
 })
 export class SharedModule { }

@@ -24,9 +24,16 @@ export class AccomodationBoxComponent implements OnInit, OnDestroy {
 	@Input() checkOut?: string;
 	@Input() routerLink: string | any[] | null | undefined;
 	@Input() queryParams: any;
+	@Input() noRedirect: boolean = false;
 
 	@Output('OnClick')
 	accomodationOutput: EventEmitter<AccomodationModel> = new EventEmitter();
+
+	@Output('OnDelete')
+	accomodationDeleteOutput: EventEmitter<AccomodationModel> = new EventEmitter();
+
+	@Output('OnEdit')
+	accomodationEditOutput: EventEmitter<AccomodationModel> = new EventEmitter();
 
 	locations$: Observable<LocationModel[]>;
 	location$: Observable<LocationModel>;
@@ -56,5 +63,13 @@ export class AccomodationBoxComponent implements OnInit, OnDestroy {
 
 	onClick() {
 		this.accomodationOutput.emit(this.accomodation);
+	}
+
+	onClickDelete() {
+		this.accomodationDeleteOutput.emit(this.accomodation);
+	}
+
+	onClickEdit() {
+		this.accomodationEditOutput.emit(this.accomodation);
 	}
 }

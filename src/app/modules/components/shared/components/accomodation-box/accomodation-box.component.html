@@ -14,7 +14,7 @@
 					<p class="card-text fw-500 my-3">Renting the entire unit</p>
 					<div class="d-flex justify-content-between">
 						<a href="#" class="text-primary text-decoration-none text-uppercase fw-500">Edit</a>
-						<a href="#" class="text-danger text-decoration-none text-uppercase fw-500">Delete place</a>
+						<a type="button" class="text-danger text-decoration-none text-uppercase fw-500" (click)="onClickDelete()">Delete place</a>
 					</div>
 				</ng-template>
 				<ng-template [ngIf]="!isFavorite">

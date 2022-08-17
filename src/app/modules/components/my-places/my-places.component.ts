@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
@@ -6,6 +6,7 @@ import { CustomErrorResponse } from 'src/app/models/custom-error-response.model'
 import { GetAccomodations } from 'src/app/state/accomodations/accomodation.actions';
 import { selectAccomodationError, selectAccomodationLoading, selectAllAccomodations } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
+import { DeletePopupComponent } from '../shared/components/delete-popup/delete-popup.component';
 
 @Component({
 	selector: 'app-favorites',
@@ -18,6 +19,8 @@ export class MyPlacesComponent implements OnInit, OnDestroy {
 	accomodationsError$: Observable<CustomErrorResponse | undefined>;
 
 	favoriteAccomodations: AccomodationModel[] = [];
+
+  @ViewChild(DeletePopupComponent) popup: DeletePopupComponent;
 
 	#sub: Subscription = new Subscription();
 
@@ -42,4 +45,8 @@ export class MyPlacesComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.#sub.unsubscribe();
 	}
+
+  deleteClicked(accomodaton: AccomodationModel) {
+    this.popup.show(accomodaton);
+  }
 }
