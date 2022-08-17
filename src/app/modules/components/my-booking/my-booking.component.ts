@@ -1,34 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { ReservationModel } from 'src/app/models/reservation.model';
 import { AccomodationListService } from 'src/app/services/accomodation-list.service';
 import { ReservationListService } from 'src/app/services/reservation-list.service';
+import { AppState } from 'src/app/state/app.state';
+import { selectReservations, selectReservationsError, selectReservationsLoading } from 'src/app/state/reservations/reservation.selectors';
+import { GetReservations } from 'src/app/state/reservations/reservations.actions';
 
 @Component({
-  selector: 'app-my-booking',
-  templateUrl: './my-booking.component.html',
-  styleUrls: ['./my-booking.component.scss']
+	selector: 'app-my-booking',
+	templateUrl: './my-booking.component.html',
+	styleUrls: ['./my-booking.component.scss']
 })
-export class MyBookingComponent implements OnInit {
+export class MyBookingComponent implements OnInit, OnDestroy {
+	reservations$: Observable<ReservationModel[]>;
+	reservationsLoading$: Observable<boolean>;
+	reservationsError$: Observable<CustomErrorResponse | undefined>;
 
-  reservations: AccomodationModel[] = [];
+	pastBookings: ReservationModel[] = [];
+	upcomingBookings: ReservationModel[] = [];
 
-  constructor(
-    private accommodationList: AccomodationListService,
-    private reservationList: ReservationListService
-  ) { }
+	#sub: Subscription = new Subscription();
 
-  ngOnInit(): void {
-    this.reservations = this.accommodationList.accomodationList.filter(
-      accommodation => this.reservationList.reservationList.find(
-        reservation => reservation.accomodationId === accommodation.id
-      )
-    );
-  }
+	constructor(private store: Store<AppState>) {
+		this.reservations$ = this.store.select(selectReservations);
+		this.reservationsLoading$ = this.store.select(selectReservationsLoading);
+		this.reservationsError$ = this.store.select(selectReservationsError);
+	}
 
-  getReservation(accommodation: AccomodationModel): ReservationModel {
-    return this.reservationList.reservationList.find(
-      reservation => reservation.accomodationId === accommodation.id
-    ) as ReservationModel;
-  }
+	ngOnInit(): void {
+		this.store.dispatch(GetReservations());
+
+		this.reservations$ = this.reservations$.pipe(
+			map((reservations) => {
+				const newReservations: ReservationModel[] = [];
+
+				console.log(reservations);
+				console.log(localStorage.getItem('email'));
+
+				for (let reservation of reservations) if (reservation.email === localStorage.getItem('email')) newReservations.push(reservation);
+
+				return newReservations;
+			})
+		);
+
+		this.#sub.add(
+			this.reservations$.subscribe((reservations) => {
+				for (let reservation of reservations) {
+          if(reservation.checkIn && (new Date(reservation.checkIn).getTime() >= Date.now()))
+            this.upcomingBookings.push(reservation);
+          else this.pastBookings.push(reservation);
+				}
+			})
+		);
+	}
+
+	ngOnDestroy(): void {
+		this.#sub.unsubscribe();
+	}
 }
