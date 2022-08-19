@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { AccomodationModel } from '../models/accomodation.model';
+import { AccomodationModel, PostAccomodationModel } from '../models/accomodation.model';
 import { LocationModel } from '../models/location.model';
 import { ReservationModel } from '../models/reservation.model';
 
@@ -15,7 +15,7 @@ export class StayVacationService {
 		return this.http.get<AccomodationModel[]>('/api/Accomodations');
 	}
 
-	public postAccommodation(payload: AccomodationModel) {
+	public postAccommodation(payload: PostAccomodationModel) {
 		return this.http.post('/api/Accomodations', payload);
 	}
 
