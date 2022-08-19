@@ -1,8 +1,7 @@
 import { AccomodationTypeEnum } from "src/app/enums/accomodation-type.enum";
-import { LocationModel } from "./location.model";
+import { LocationModel, PostLocationModel } from "./location.model";
 
-export class AccomodationModel {
-    id!: string;
+export class PostAccomodationModel {
     title?: string;
     subtitle?: string;
     description?: string;
@@ -13,7 +12,13 @@ export class AccomodationModel {
     imageUrl?: string;
     freeCancelation!: boolean;
     price!: number;
-    location!: LocationModel;
     locationID?: string;
+    location?: LocationModel | PostLocationModel;
     capacity?: number;
 }
+
+
+export class AccomodationModel extends PostAccomodationModel{
+    id!: string;
+}
+
