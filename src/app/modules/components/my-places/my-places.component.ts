@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
@@ -24,7 +25,7 @@ export class MyPlacesComponent implements OnInit, OnDestroy {
 
 	#sub: Subscription = new Subscription();
 
-	constructor(private store: Store<AppState>) {
+	constructor(private store: Store<AppState>, private router: Router) {
 		this.accomodations$ = this.store.select(selectAllAccomodations);
 		this.accomodationsLoading$ = this.store.select(selectAccomodationLoading);
 		this.accomodationsError$ = this.store.select(selectAccomodationError);
@@ -37,7 +38,7 @@ export class MyPlacesComponent implements OnInit, OnDestroy {
 			this.accomodations$.subscribe((accomodations) => {
 				const favorites = localStorage.getItem('favorites');
 				if (favorites)
-					this.favoriteAccomodations = accomodations.filter((accomodation) => (JSON.parse(favorites) as string[]).includes(accomodation.id));
+					this.favoriteAccomodations = accomodations.filter((accomodation) => accomodation.title && (JSON.parse(favorites) as string[]).includes(accomodation.title));
 			})
 		);
 	}
@@ -48,5 +49,9 @@ export class MyPlacesComponent implements OnInit, OnDestroy {
 
   deleteClicked(accomodaton: AccomodationModel) {
     this.popup.show(accomodaton);
+  }
+
+  editClicked(accomodation: AccomodationModel) {
+	this.router.navigate(['/edit', accomodation.id])
   }
 }

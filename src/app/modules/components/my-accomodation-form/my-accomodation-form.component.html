@@ -1,52 +1,57 @@
 <div class="container">
-    <h3 class="py-4">Add new place</h3>
-    <form #addForm class="d-flex flex-column gap-4" style="max-width: 500px">
-        <app-form-control-input type="text" name="name" label="Listing name" [control]="name"></app-form-control-input>
-        <app-form-control-input type="text" name="short-desc" label="Short description" [control]="shortDesc">
-        </app-form-control-input>
-        <app-form-control-input type="textarea" name="long-desc" label="Long description" [control]="longDesc">
-        </app-form-control-input>
-        <app-form-control-input class="d-md-none" type="number" name="categorization"
-            label="Cateogorization (Number of stars)" [control]="categorization"></app-form-control-input>
-        <div class="d-none d-md-flex justify-content-between align-items-center py-3">
-            <h6 class="m-0">Categorization</h6>
-            <div class="d-flex gap-1 fs-5" id="stars" #stars>
-                <button class="star">
-                    <div class="background"></div>
-                </button>
-                <button class="star">
-                    <div class="background"></div>
-                </button>
-                <button class="star">
-                    <div class="background"></div>
-                </button>
-                <button class="star">
-                    <div class="background"></div>
-                </button>
-                <button class="star">
-                    <div class="background"></div>
-                </button>
-            </div>
-        </div>
-        <app-form-control-input name="type" type="select" label="Accommodation type" [control]="type" [data]="data">
-        </app-form-control-input>
-        <app-form-control-input name="price" type="text" label="Price" [control]="price"></app-form-control-input>
-        <app-form-control-input name="location" type="text" label="Location" [control]="location">
-        </app-form-control-input>
-        <app-form-control-input name="postal-code" type="text" label="Postal Code" [control]="postalCode">
-        </app-form-control-input>
-        <div class="d-flex justify-content-between align-items-center">
-            <h6 class="m-0">Free cancellation available</h6>
-            <input type="checkbox" name="free-cancellation" id="freeCancellation" class="form-check-input"
-                [formControl]="freeCancellation">
-            <label for="freeCancellation" class="switch">
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div class="row justify-content-center justify-content-md-end pb-3">
-            <div class="col-12 col-md-4">
-                <button type="button" class="btn btn-primary w-100 text-uppercase text-white" (click)="onSubmit()">Add new place</button>
-            </div>
-        </div>
-    </form>
+	<h3 class="py-4">Add new place</h3>
+	<form #addForm class="d-flex flex-column gap-4" style="max-width: 500px">
+		<app-form-control-input type="text" name="name" label="Listing name" [control]="name"></app-form-control-input>
+		<app-form-control-input type="text" name="short-desc" label="Short description" [control]="shortDesc"> </app-form-control-input>
+		<app-form-control-input type="textarea" name="long-desc" label="Long description" [control]="longDesc"> </app-form-control-input>
+		<app-form-control-input
+			class="d-md-none"
+			type="number"
+			name="categorization"
+			label="Cateogorization (Number of stars)"
+			[control]="categorization"
+		></app-form-control-input>
+		<div class="d-none d-md-flex justify-content-between align-items-center py-3">
+			<h6 class="m-0">Categorization</h6>
+			<div class="d-flex gap-1 fs-5" id="stars" #stars>
+				<button class="star">
+					<div class="background"></div>
+				</button>
+				<button class="star">
+					<div class="background"></div>
+				</button>
+				<button class="star">
+					<div class="background"></div>
+				</button>
+				<button class="star">
+					<div class="background"></div>
+				</button>
+				<button class="star">
+					<div class="background"></div>
+				</button>
+			</div>
+		</div>
+		<app-form-control-input name="type" type="select" label="Accommodation type" [control]="type" [data]="data"> </app-form-control-input>
+		<app-form-control-input name="price" type="text" label="Price" [control]="price"></app-form-control-input>
+		<app-form-control-input name="location" type="text" label="Location" [control]="location"> </app-form-control-input>
+		<app-form-control-input name="postal-code" type="text" label="Postal Code" [control]="postalCode"> </app-form-control-input>
+		<div class="d-flex justify-content-between align-items-center">
+			<h6 class="m-0">Free cancellation available</h6>
+			<input type="checkbox" name="free-cancellation" id="freeCancellation" class="form-check-input" [formControl]="freeCancellation" />
+			<label for="freeCancellation" class="switch">
+				<span class="slider round"></span>
+			</label>
+		</div>
+		<div class="row justify-content-center justify-content-md-end pb-3">
+			<div class="col-6" *ngIf="accomodationId">
+				<button type="button" class="btn btn-danger w-100 text-uppercase text-white" (click)="onCancel()">Cancel</button>
+			</div>
+			<div [ngClass]="{ 'col-12 col-md-4': !accomodationId, 'col-6': accomodationId }">
+				<button type="button" class="btn btn-primary w-100 text-uppercase text-white" (click)="onSubmit()" *ngIf="!accomodationId">
+					Add new place
+				</button>
+				<button type="button" class="btn btn-primary w-100 text-uppercase text-white" (click)="onSave()" *ngIf="accomodationId">Save</button>
+			</div>
+		</div>
+	</form>
 </div>
