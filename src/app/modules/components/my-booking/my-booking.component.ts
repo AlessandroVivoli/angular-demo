@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, Observable, Subscription } from 'rxjs';
-import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { map, Observable, Subscription } from 'rxjs';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { ReservationModel } from 'src/app/models/reservation.model';
-import { AccomodationListService } from 'src/app/services/accomodation-list.service';
-import { ReservationListService } from 'src/app/services/reservation-list.service';
 import { AppState } from 'src/app/state/app.state';
 import { selectReservations, selectReservationsError, selectReservationsLoading } from 'src/app/state/reservations/reservation.selectors';
 import { GetReservations } from 'src/app/state/reservations/reservations.actions';

@@ -3,17 +3,13 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { AccomodationTypeEnum } from 'src/app/enums/accomodation-type.enum';
 import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { LocationModel } from 'src/app/models/location.model';
-import { LocationListService } from 'src/app/services/location-list.service';
 import { GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
 import {
 	selectAccomodationError,
-	selectAccomodationLoading,
-	selectAccomodations,
-	selectAllAccomodations
+	selectAccomodationLoading, selectAllAccomodations
 } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
 import { GetLocations } from 'src/app/state/locations/locations.actions';
@@ -46,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	#sub: Subscription = new Subscription();
 
-	constructor(private store: Store<AppState>, private locationService: LocationListService, private router: Router) {
+	constructor(private store: Store<AppState>, private router: Router) {
 		this.accomodations$ = this.store.select(selectAllAccomodations);
 		this.accomodationsLoading$ = this.store.select(selectAccomodationLoading);
 		this.accomodationsError$ = this.store.select(selectAccomodationError);
