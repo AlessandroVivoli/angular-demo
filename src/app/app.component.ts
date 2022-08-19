@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +22,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
 
-    if (!this.isLoggedIn && location.pathname !== '/login')
-      this.router.navigate(['login']);
-    else if(location.pathname === '/') this.router.navigate(['home']);
+    if(this.isLoggedIn)
+      this.router.navigate(['/home']);
   }
 }
