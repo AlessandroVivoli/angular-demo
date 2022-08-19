@@ -7,10 +7,7 @@ import { AccomodationModel } from 'src/app/models/accomodation.model';
 import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
 import { LocationModel } from 'src/app/models/location.model';
 import { GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
-import {
-	selectAccomodationError,
-	selectAccomodationLoading, selectAllAccomodations
-} from 'src/app/state/accomodations/accomodation.selectors';
+import { selectAccomodationError, selectAccomodationLoading, selectAllAccomodations } from 'src/app/state/accomodations/accomodation.selectors';
 import { AppState } from 'src/app/state/app.state';
 import { GetLocations } from 'src/app/state/locations/locations.actions';
 import { selectAllLocations, selectLocationsError, selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
@@ -50,23 +47,30 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.locations$ = this.store.select(selectAllLocations);
 		this.locationsLoading$ = this.store.select(selectLocationsLoading);
 		this.locationsError$ = this.store.select(selectLocationsError);
+
+		this.places = [];
+		this.types = [];
 	}
 
 	ngOnInit(): void {
-		let types: Set<string> = new Set();
-
 		this.#sub.add(
 			this.accomodations$.subscribe((accomodations) => {
-				accomodations.forEach((accomodation) => types.add(accomodation.type.toString()));
+				this.types = [
+					...new Set(
+						accomodations.map((accomodation) => ({ inputValue: accomodation.type.toString(), label: accomodation.type.toString() }))
+					)
+				];
+			})
+		);
+
+		this.#sub.add(
+			this.locations$.subscribe((locations) => {
+				this.places = locations.map((location) => ({ inputValue: location.id, label: location.name as string }));
 			})
 		);
 
 		this.store.dispatch(GetRecommendations());
 		this.store.dispatch(GetLocations());
-
-		types.forEach((type) => {
-			this.types.push({ inputValue: type, label: type });
-		});
 	}
 
 	ngOnDestroy(): void {
@@ -78,12 +82,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 			event.preventDefault();
 			event.stopPropagation();
 		} else {
-			this.router.navigate(['location', this.place.value], { queryParams: {
-				'check-in': this.checkIn.value,
-				'check-out': this.checkOut.value,
-				guests: this.guests.value,
-				type: this.accomodationType.value
-			} });
+			this.router.navigate(['location', this.place.value], {
+				queryParams: {
+					'check-in': this.checkIn.value,
+					'check-out': this.checkOut.value,
+					guests: this.guests.value,
+					type: this.accomodationType.value
+				}
+			});
 		}
 
 		this.el.nativeElement.classList.add('was-validated');
