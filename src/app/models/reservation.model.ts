@@ -1,15 +1,12 @@
-import {v4 as uuid} from 'uuid';
+import { AccomodationModel } from "./accomodation.model";
 
 export class ReservationModel {
     id!: string;
-    email!: string;
-    accommodationId!: string;
-    checkIn!: string;
-    checkOut!: string;
+    email?: string;
+    accomodationId!: string;
+    accomodation?: AccomodationModel;
+    checkIn?: Date;
+    checkOut?: Date;
     personsCount!: number;
     confirmed!: boolean;
-
-    constructor() {
-        this.id = uuid();
-    }
 }

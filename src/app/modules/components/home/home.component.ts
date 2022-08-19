@@ -1,65 +1,95 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccommodationTypeEnum } from 'src/app/enums/accommodation-type.enum';
-import { AccommodationModel } from '../../../models/accommodation.model';
-import { LocationModel } from '../../../models/location.model';
-import { AccommodationListService } from '../shared/services/accomodation-list.service';
-import { LocationListService } from '../shared/services/location-list.service';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { AccomodationModel } from 'src/app/models/accomodation.model';
+import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
+import { LocationModel } from 'src/app/models/location.model';
+import { GetRecommendations } from 'src/app/state/accomodations/accomodation.actions';
+import {
+	selectAccomodationError,
+	selectAccomodationLoading, selectAllAccomodations
+} from 'src/app/state/accomodations/accomodation.selectors';
+import { AppState } from 'src/app/state/app.state';
+import { GetLocations } from 'src/app/state/locations/locations.actions';
+import { selectAllLocations, selectLocationsError, selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+	selector: 'app-main',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  locations: LocationModel[] = [];
-  accomodations: AccommodationModel[] = [];
-  nums: number[] = [];
+export class HomeComponent implements OnInit, OnDestroy {
+	accomodations$: Observable<AccomodationModel[]>;
+	accomodationsLoading$: Observable<boolean>;
+	accomodationsError$: Observable<CustomErrorResponse | undefined>;
 
-  place = new FormControl('');
-  checkIn = new FormControl('');
-  checkOut = new FormControl('');
-  guests = new FormControl<number>(0);
-  accomodation = new FormControl('');
+	locations$: Observable<LocationModel[]>;
+	locationsLoading$: Observable<boolean>;
+	locationsError$: Observable<CustomErrorResponse | undefined>;
 
-  places: { inputValue: string, label: string }[] = [];
-  types: { inputValue: string, label: string }[] = [];
+	place = new FormControl('');
+	checkIn = new FormControl('');
+	checkOut = new FormControl('');
+	guests = new FormControl<number>(0);
+	accomodationType = new FormControl('');
 
-  @ViewChild('form') el: ElementRef<HTMLFormElement>;
+	places: { inputValue: string; label: string }[] = [];
+	types: { inputValue: string; label: string }[] = [];
 
-  constructor(private accommodationService: AccommodationListService, private locationService: LocationListService, private router: Router) {}
+	@ViewChild('form') el: ElementRef<HTMLFormElement>;
 
-  ngOnInit(): void {
-    this.accomodations = this.accommodationService.accommodationList;
-    this.locations = this.locationService.locationList;
+	#sub: Subscription = new Subscription();
 
-    const types: Set<string> = new Set(this.accommodationService.accommodationList.map((accommodation) => AccommodationTypeEnum[accommodation.type]));
+	constructor(private store: Store<AppState>, private router: Router) {
+		this.accomodations$ = this.store.select(selectAllAccomodations);
+		this.accomodationsLoading$ = this.store.select(selectAccomodationLoading);
+		this.accomodationsError$ = this.store.select(selectAccomodationError);
 
-    types.forEach(type => {
-      this.types.push({ inputValue: type, label: type })
-    });
+		this.locations$ = this.store.select(selectAllLocations);
+		this.locationsLoading$ = this.store.select(selectLocationsLoading);
+		this.locationsError$ = this.store.select(selectLocationsError);
+	}
 
-    this.locations.forEach((location) => {
-      this.places.push({ inputValue: location.name, label: location.name });
+	ngOnInit(): void {
+		let types: Set<string> = new Set();
 
-      this.nums.push(
-        this.accomodations.filter((accommodation) => accommodation.locationID === location.id)
-          .reduce((prev) => {
-            return prev + 1;
-          }, 0)
-      );
-    })
-  }
+		this.#sub.add(
+			this.accomodations$.subscribe((accomodations) => {
+				accomodations.forEach((accomodation) => types.add(accomodation.type.toString()));
+			})
+		);
 
-  onSubmit(event: Event) {
-    if (!this.el.nativeElement.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      this.router.navigateByUrl(`/accommodations?city=${this.place.value}&check-in=${this.checkIn.value}&check-out=${this.checkOut.value}&guests=${this.guests.value}&type=${this.accomodation.value}`)
-    }
+		this.store.dispatch(GetRecommendations());
+		this.store.dispatch(GetLocations());
 
-    this.el.nativeElement.classList.add('was-validated')
-  }
+		types.forEach((type) => {
+			this.types.push({ inputValue: type, label: type });
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.#sub.unsubscribe();
+	}
+
+	onSubmit(event: Event) {
+		if (!this.el.nativeElement.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+		} else {
+			this.router.navigate(['location', this.place.value], { queryParams: {
+				'check-in': this.checkIn.value,
+				'check-out': this.checkOut.value,
+				guests: this.guests.value,
+				type: this.accomodationType.value
+			} });
+		}
+
+		this.el.nativeElement.classList.add('was-validated');
+	}
+
+	accomodationClicked(accomodation: AccomodationModel) {
+		this.router.navigate(['accomodation', accomodation.id]);
+	}
 }

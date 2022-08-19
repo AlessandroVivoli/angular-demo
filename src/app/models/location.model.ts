@@ -1,12 +1,11 @@
-import {v4 as uuid} from 'uuid';
 
-export class LocationModel {
-    id!: string;
-    name!: string;
+export class PostLocationModel {
+    name?: string;
+    imageUrl?: string;
     postalCode!: number;
-    imageUrl!: string;
+    properties!: number;
+}
 
-    constructor() {
-        this.id = uuid();
-    }
+export class LocationModel extends PostLocationModel{
+    id!: string;
 }

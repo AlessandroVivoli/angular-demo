@@ -1,11 +1,44 @@
 <div class="container">
-    <h3 class="py-4">My bookings</h3>
-    <h5 class="pb-3">Upcoming bookings</h5>
-    <div class="row g-4">
-        <div class="col-12 col-md-3 col-lg-4" *ngFor="let reservation of reservations">
-            <app-accommodation-box  [isReservation]="true"
-                [accommodation]="reservation" [changeLayout]="true" [checkIn]="getReservation(reservation).checkIn"
-                [checkOut]="getReservation(reservation).checkOut" [href]="'accommodation/' + reservation.id"></app-accommodation-box>
+	<h3 class="pt-4">My bookings</h3>
+	<div class="row g-4 py-3" *ngIf="!(reservationsLoading$ | async) && !(reservationsError$ | async); else pastBookingsElse">
+		<div class="col-12 col-md-3 col-lg-4" *ngFor="let reservation of pastBookings">
+			<app-accomodation-box
+				[isReservation]="true"
+				[accomodation]="reservation.accomodation"
+				[changeLayout]="true"
+				[checkIn]="reservation.checkIn?.toString()"
+				[checkOut]="reservation.checkOut?.toString()"
+				[routerLink]="['/accomodation', reservation.accomodationId]"
+				*ngIf="reservation.accomodation"
+			></app-accomodation-box>
+		</div>
+        <h3 class="text-primary" *ngIf="pastBookings.length === 0">No bookings found</h3>
+	</div>
+    <ng-template #pastBookingsElse>
+        <div class="d-flex justify-content-center align-items-center py-3">
+            <div class="loader loader-primary" *ngIf="reservationsLoading$ | async"></div>
+            <h3 class="text-danger" *ngIf="reservationsError$ | async as error">{{error.statusText}}</h3>
         </div>
-    </div>
+    </ng-template>
+	<h5>Upcoming bookings</h5>
+	<div class="row g-4 py-3" *ngIf="!(reservationsLoading$ | async) && !(reservationsError$ | async); else upcomingBookingsElse">
+		<div class="col-12 col-md-3 col-lg-4" *ngFor="let reservation of upcomingBookings">
+			<app-accomodation-box
+				[isReservation]="true"
+				[accomodation]="reservation.accomodation"
+				[changeLayout]="true"
+				[checkIn]="reservation.checkIn?.toString()"
+				[checkOut]="reservation.checkOut?.toString()"
+				[routerLink]="['/accomodation', reservation.accomodationId]"
+				*ngIf="reservation.accomodation"
+			></app-accomodation-box>
+		</div>
+        <h3 class="text-primary" *ngIf="upcomingBookings.length === 0">No upcoming bookings found</h3>
+	</div>
+    <ng-template #upcomingBookingsElse>
+        <div class="d-flex justify-content-center align-items-center py-3">
+            <div class="loader loader-primary" *ngIf="reservationsLoading$ | async"></div>
+            <h3 class="text-danger" *ngIf="reservationsError$ | async as error">{{error.statusText}}</h3>
+        </div>
+    </ng-template>
 </div>

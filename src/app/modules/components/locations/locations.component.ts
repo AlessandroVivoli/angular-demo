@@ -1,69 +1,75 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { LocationModel } from '../../../models/location.model';
-import { AccommodationListService } from '../shared/services/accomodation-list.service';
-import { LocationListService } from '../shared/services/location-list.service';
+import { Store } from '@ngrx/store';
+import { filter, Observable, Subscription } from 'rxjs';
+import { CustomErrorResponse } from 'src/app/models/custom-error-response.model';
+import { LocationModel } from 'src/app/models/location.model';
+import { AppState } from 'src/app/state/app.state';
+import { GetLocations } from 'src/app/state/locations/locations.actions';
+import { selectAllLocations, selectLocationsError, selectLocationsLoading } from 'src/app/state/locations/locations.selectors';
 
 @Component({
-  selector: 'app-locations',
-  templateUrl: './locations.component.html',
-  styleUrls: ['./locations.component.scss']
+	selector: 'app-locations',
+	templateUrl: './locations.component.html',
+	styleUrls: ['./locations.component.scss']
 })
 export class LocationsComponent implements OnInit, OnDestroy {
-  places: { inputValue: string, label: string }[] = [];
-  data: { location: LocationModel, num: number }[] = [];
+	places: { inputValue: string; label: string }[] = [];
 
-  city = new FormControl('');
+	city = new FormControl('');
 
-  @ViewChild('submit') button: ElementRef<HTMLButtonElement>;
+	@ViewChild('submit') button: ElementRef<HTMLButtonElement>;
 
-  #sub: Subscription = new Subscription();
+	#sub: Subscription = new Subscription();
 
-  constructor(
-    private accomodationService: AccommodationListService,
-    private locationService: LocationListService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) { }
+  locations: LocationModel[] = [];
 
-  ngOnInit(): void {
-    let city: string = '';
+	locations$: Observable<LocationModel[]>;
+	locationsLoading$: Observable<boolean>;
+	locationsError$: Observable<CustomErrorResponse | undefined>;
+
+	constructor(private store: Store<AppState>, private activatedRoute: ActivatedRoute, private router: Router) {
+    this.locations$ = this.store.select(selectAllLocations);
+    this.locationsLoading$ = this.store.select(selectLocationsLoading);
+    this.locationsError$ = this.store.select(selectLocationsError);
+  }
+
+	ngOnInit(): void {
+		let city: string = '';
+
+    this.store.dispatch(GetLocations());
+
+		this.#sub.add(
+			this.activatedRoute.queryParams.subscribe((params) => {
+				city = params['city'];
+			})
+		);
 
     this.#sub.add(
-      this.activatedRoute.queryParams.subscribe(params => {
-        city = params['city'];
+      this.locations$.subscribe(locations => {
+        this.places = locations.map(location => ({inputValue: location.name as string, label: location.name as string}))
+        this.locations = locations.filter(location => (location.name === city || city === '' || !city));
       })
-    );
+    )
 
-    this.city.setValue(city);
+		this.city.setValue(city);
 
-    const locations = this.locationService.locationList;
-    locations.filter(location => city === undefined || city === '' || location.name === city).forEach(location => {
-      this.data.push({
-        location: location,
-        num: this.accomodationService.accommodationList.filter(apartment => apartment.locationID === location.id).reduce((first) => { return first + 1 }, 0)
-      });
-    })
+		this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+		this.router.onSameUrlNavigation = 'reload';
+	}
 
-    locations.forEach((location) => {
-      this.places.push({ inputValue: location.name, label: location.name });
-    });
-  }
+	ngOnDestroy(): void {
+		this.#sub.unsubscribe();
+	}
 
-  ngOnDestroy(): void {
-    this.#sub.unsubscribe();
-  }
+	onSubmit() {
+		this.router.navigate(['/locations'], { queryParams: { city: this.city.value } });
+	}
 
-  onSubmit() {
-    this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
-  }
+	onSelectChange(event: Event) {
+		const parentDisplay = window.getComputedStyle(this.button.nativeElement.parentElement as HTMLDivElement).display;
 
-  onSelectChange(event: Event) {
-    const parentDisplay = window.getComputedStyle(this.button.nativeElement.parentElement as HTMLDivElement).display;
-
-    if (parentDisplay === 'none')
-      this.router.navigateByUrl(`/locations?city=${this.city.value}`).then(() => location.reload());
-  }
+		if (parentDisplay === 'none') this.router.navigate(['/locations'], { queryParams: { city: this.city.value } });
+	}
 }

@@ -1,5 +1,5 @@
+import { LocationModel } from 'src/app/models/location.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { LocationModel } from '../../../../../models/location.model';
 
 @Component({
   selector: 'app-location-box',
@@ -9,8 +9,10 @@ import { LocationModel } from '../../../../../models/location.model';
 export class LocationBoxComponent implements OnInit {
   @Input() location: LocationModel;
   @Input('property-num') num: number;
-  @Input('href') link: string;
+  @Input('href') link?: string;
   @Input() data: object;
+  @Input() routerLink: string | any[] | null | undefined;
+  @Input() queryParams: any;
 
   constructor() { }
 
