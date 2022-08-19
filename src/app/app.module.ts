@@ -35,6 +35,8 @@ import { locationsReducer } from './state/locations/locations.reducer';
 import { ReservationEffects } from './state/reservations/reservation.effects';
 import { deleteReservationReducer, putReservationReducer, reservationReducer } from './state/reservations/reservation.reducer';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './services/auth/auth.guard';
 
 @NgModule({
 	declarations: [
@@ -77,6 +79,8 @@ import { ToastrModule } from 'ngx-toastr';
     })
 	],
 	providers: [
+		AuthService,
+		AuthGuard,
 		StayVacationService,
 		{
 			provide: HTTP_INTERCEPTORS,
