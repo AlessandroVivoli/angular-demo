@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import { AccomodationModel } from '../../models/accomodation.model';
+import { AccomodationModel, PostAccomodationModel } from '../../models/accomodation.model';
 
 export const GET_ACCOMODATIONS = '[Accomodations] GET';
 export const GET_ACCOMODATIONS_SUCCESS = '[Accomodations] GET SUCCESS';
@@ -34,7 +34,7 @@ export const GetAccomodations = createAction(GET_ACCOMODATIONS);
 export const GetAccomodationsSuccess = createAction(GET_ACCOMODATIONS_SUCCESS, props<{ payload: AccomodationModel[] }>());
 export const GetAccomodationsFail = createAction(GET_ACCOMODATIONS_FAIL, props<{ payload: HttpErrorResponse }>());
 
-export const PostAccomodation = createAction(POST_ACCOMODATION, props<{ payload: AccomodationModel }>());
+export const PostAccomodation = createAction(POST_ACCOMODATION, props<{ payload: PostAccomodationModel }>());
 export const PostAccomodationSuccess = createAction(POST_ACCOMODATION_SUCCESS);
 export const PostAccomodationFail = createAction(POST_ACCOMODATION_FAIL, props<{ payload: HttpErrorResponse }>());
 
