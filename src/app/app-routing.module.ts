@@ -10,25 +10,25 @@ import { LoginComponent } from './modules/components/login/login.component';
 import { MyAccomodationFormComponent } from './modules/components/my-accomodation-form/my-accomodation-form.component';
 import { MyBookingComponent } from './modules/components/my-booking/my-booking.component';
 import { MyPlacesComponent } from './modules/components/my-places/my-places.component';
-
+import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'locations', component: LocationsComponent },
-  { path: 'location/:id', component: AccomodationsComponent },
-  { path: 'recommendations', component: AccomodationsComponent },
-  { path: 'accomodation/:id', component: AccomodationDetailsComponent },
-  { path: 'accomodation/:id/book', component: AccomodationBookingComponent },
-  { path: 'my-places', component: MyPlacesComponent },
-  { path: 'my-bookings', component: MyBookingComponent },
-  { path: 'add-new', component: MyAccomodationFormComponent },
-  { path: 'edit/:id', component: MyAccomodationFormComponent },
-  { path: 'login', component: LoginComponent }
+	{ path: '', component: AppComponent, canActivate: [AuthGuard] },
+	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+	{ path: 'locations', component: LocationsComponent, canActivate: [AuthGuard] },
+	{ path: 'location/:id', component: AccomodationsComponent, canActivate: [AuthGuard] },
+	{ path: 'recommendations', component: AccomodationsComponent, canActivate: [AuthGuard] },
+	{ path: 'accomodation/:id', component: AccomodationDetailsComponent, canActivate: [AuthGuard] },
+	{ path: 'accomodation/:id/book', component: AccomodationBookingComponent, canActivate: [AuthGuard] },
+	{ path: 'my-places', component: MyPlacesComponent, canActivate: [AuthGuard] },
+	{ path: 'my-bookings', component: MyBookingComponent, canActivate: [AuthGuard] },
+	{ path: 'add-new', component: MyAccomodationFormComponent, canActivate: [AuthGuard] },
+	{ path: 'edit/:id', component: MyAccomodationFormComponent, canActivate: [AuthGuard] },
+	{ path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

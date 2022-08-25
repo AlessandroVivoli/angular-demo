@@ -36,7 +36,7 @@ export class AccomodationBoxComponent implements OnInit, OnDestroy {
 	accomodationEditOutput: EventEmitter<AccomodationModel> = new EventEmitter();
 
 	locations$: Observable<LocationModel[]>;
-	location$: Observable<LocationModel>;
+	location$: Observable<LocationModel | undefined>;
 
 	#sub: Subscription = new Subscription();
 
@@ -45,16 +45,17 @@ export class AccomodationBoxComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-		if (!this.accomodation.location) {
+		if (this.accomodation && !this.accomodation.location) {
 			this.store.dispatch(GetLocations());
 			this.#sub.add(
 				this.locations$.subscribe((locations) => {
-					this.location$ = of(locations.find((location) => location.id === this.accomodation.locationID) as LocationModel);
+					this.location$ = of(locations.find((location) => location.id === this.accomodation.locationID));
 				})
 			);
 		}
 
-		if (!this.accomodation.location && !!this.accomodation.locationID) this.store.dispatch(GetLocation({ payload: this.accomodation.locationID }));
+		if (this.accomodation && !this.accomodation.location && !!this.accomodation.locationID)
+			this.store.dispatch(GetLocation({ payload: this.accomodation.locationID }));
 	}
 
 	ngOnDestroy(): void {

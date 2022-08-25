@@ -7,7 +7,7 @@
             </button>
         </ng-template>
         <div class="d-flex justify-content-start flex-grow-1">
-            <a href="home" class="navbar-brand text-dark fw-500">Staycation</a>
+            <a [routerLink]="['/home']" class="navbar-brand text-dark fw-500">Staycation</a>
         </div>
         <ng-template [ngIf]="isLoggedIn">
             <div class="offcanvas offcanvas-start p-4" tabindex="-1" id="offcanvasNavbar"
@@ -21,22 +21,13 @@
                 <div class="off-canvas-body">
                     <ul class="navbar-nav gap-4 gap-md-5">
                         <li class="nav-item rounded p-2">
-                            <a href="locations" class="nav-link link-primary" [ngClass]="{
-                                'text-primary disabled': pathName === '/locations',
-                                'text-dark': pathName !== '/locations'
-                            }">Locations</a>
+                            <a [routerLink]="['/locations']" class="nav-link link-primary text-dark" routerLinkActive="text-primary disabled">Locations</a>
                         </li>
                         <li class="nav-item rounded p-2">
-                            <a href="my-places" class="nav-link link-primary" [ngClass]="{
-                                'text-primary disabled': pathName === '/my-places',
-                                'text-dark': pathName !== '/my-places'
-                            }">My places</a>
+                            <a [routerLink]="['/my-places']" class="nav-link link-primary text-dark" routerLinkActive="text-primary disabled">My places</a>
                         </li>
                         <li class="nav-item rounded p-2">
-                            <a href="my-bookings" class="nav-link link-primary" [ngClass]="{
-                                'text-primary disabled': pathName === '/my-bookings',
-                                'text-dark': pathName !== '/my-bookings'
-                            }">My bookings</a>
+                            <a [routerLink]="['/my-bookings']" class="nav-link link-primary text-dark" routerLinkActive="text-primary disabled">My bookings</a>
                         </li>
                     </ul>
                 </div>

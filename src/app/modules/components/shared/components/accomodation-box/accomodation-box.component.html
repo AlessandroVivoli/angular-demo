@@ -1,4 +1,4 @@
-<div type="button" class="card h-100" (click)="onClick()">
+<div type="button" class="card h-100" (click)="onClick()" *ngIf="accomodation">
 	<div class="d-flex h-100" [ngClass]="{ 'flex-column': !changeLayout, 'flex-row flex-md-column': changeLayout }">
 		<img [src]="accomodation.imageUrl" [alt]="accomodation.title" class="card-img" [ngClass]="{ 'w-md-100 w-50': changeLayout }" />
 		<div class="card-body d-flex flex-column flex-grow-1">
