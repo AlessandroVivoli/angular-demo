@@ -13,7 +13,7 @@ import { MyPlacesComponent } from './modules/components/my-places/my-places.comp
 import { AuthGuard } from './services/auth/auth.guard';
 
 const routes: Routes = [
-	{ path: '', component: AppComponent },
+	{ path: '', component: AppComponent, canActivate: [AuthGuard] },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 	{ path: 'locations', component: LocationsComponent, canActivate: [AuthGuard] },
 	{ path: 'location/:id', component: AccomodationsComponent, canActivate: [AuthGuard] },
